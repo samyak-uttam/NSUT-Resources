@@ -10,6 +10,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.nsutallin1.Fragments.HomeFragment;
+import com.example.nsutallin1.Fragments.NotesFragment;
+import com.example.nsutallin1.Fragments.PapersFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                    new NotesFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_notes);
+                    new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
         }
     }
 
@@ -53,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
+                        new HomeFragment()).commit();
+                break;
             case R.id.nav_notes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
                         new NotesFragment()).commit();
