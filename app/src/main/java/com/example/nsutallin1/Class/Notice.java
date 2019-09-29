@@ -8,10 +8,13 @@ public class Notice {
 
     private String pubBy;
 
-    public Notice(String pubDate, String title, String pubBy) {
+    private String downloadLink;
+
+    public Notice(String pubDate, String title, String pubBy, String downloadLink) {
         this.pubDate = pubDate;
         this.title = title;
         this.pubBy = pubBy;
+        this.downloadLink = downloadLink;
     }
 
     public String getPubDate() {
@@ -24,5 +27,9 @@ public class Notice {
 
     public String getPubBy() {
         return pubBy;
+    }
+
+    public String getDownloadLink() {
+        return downloadLink;
     }
 }

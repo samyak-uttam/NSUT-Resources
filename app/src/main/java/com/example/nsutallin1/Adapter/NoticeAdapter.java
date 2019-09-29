@@ -1,6 +1,8 @@
 package com.example.nsutallin1.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,13 +35,22 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NoticeViewHolder holder, int position) {
 
         final Notice notice = mNotices.get(position);
 
         holder.subject.setText(notice.getTitle());
         holder.pubDate.setText(notice.getPubDate());
         holder.pubBy.setText(notice.getPubBy());
+
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(notice.getDownloadLink()));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -53,9 +64,11 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         TextView pubDate;
         TextView pubBy;
 
+        View rootView;
+
         public NoticeViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            rootView = itemView;
             subject = (TextView) itemView.findViewById(R.id.subject);
             pubDate = (TextView) itemView.findViewById(R.id.published_on);
             pubBy = (TextView) itemView.findViewById(R.id.published_by);
