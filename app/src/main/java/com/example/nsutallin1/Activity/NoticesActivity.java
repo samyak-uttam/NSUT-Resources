@@ -1,4 +1,4 @@
-package com.example.nsutallin1;
+package com.example.nsutallin1.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,15 +12,14 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.nsutallin1.Adapter.NoticeAdapter;
 import com.example.nsutallin1.Class.Notice;
 import com.example.nsutallin1.Loader.NoticeLoader;
+import com.example.nsutallin1.R;
 
-import java.net.NetworkInterface;
 import java.util.ArrayList;
 
 public class NoticesActivity extends AppCompatActivity implements LoaderCallbacks<ArrayList<Notice>> {

@@ -25,12 +25,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/home_black" />
+            android:src="@drawable/home_black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="College" />
+            android:text="College" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,19 +45,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/pages_black" />
+            android:src="@drawable/pages_black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="IMS" />
+            android:text="IMS" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/notices_and_circulars"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/notes_black" />
 
 </RelativeLayout>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        tools:context=".NoticesActivity">
+        tools:context=".Activity.NoticesActivity">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -1,4 +1,4 @@
-package com.example.nsutallin1;
+package com.example.nsutallin1.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.example.nsutallin1.Fragments.HomeFragment;
 import com.example.nsutallin1.Fragments.NotesFragment;
 import com.example.nsutallin1.Fragments.PapersFragment;
+import com.example.nsutallin1.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
