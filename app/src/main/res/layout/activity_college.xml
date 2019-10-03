@@ -306,6 +306,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="Semester"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/odd_sem"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="ODD"
+                android:textAppearance="?android:textAppearanceMedium"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/even_sem"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="EVEN"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="DATA"
             android:textSize="20sp" />
 
@@ -428,10 +459,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/round_rect"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -439,13 +470,14 @@
                 android:layout_height="wrap_content"
                 android:text=" CONTINUE "
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/keyboard_arrow_right_black"
-                android:tint="@color/white"/>
+                android:tint="@color/white" />
         </LinearLayout>
 
     </LinearLayout>

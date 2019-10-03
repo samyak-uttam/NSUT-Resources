@@ -5,12 +5,19 @@ import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.nsutallin1.R;
 
 public class CollegeActivity extends AppCompatActivity {
+
+    private String selectedBranch = null, selectedData = null;
+    private int selectedSem = -1;
+
+    private CheckBox oddSem, evenSem;
 
     private static class BranchViewHolder {
         LinearLayout coeBranch;
@@ -71,46 +78,156 @@ public class CollegeActivity extends AppCompatActivity {
 
         continueLayout = (LinearLayout) findViewById(R.id.continue_button);
 
+        oddSem = (CheckBox) findViewById(R.id.odd_sem);
+        evenSem = (CheckBox) findViewById(R.id.even_sem);
+
         branchViewHolder.coeBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.itBranch.setBackgroundDrawable(ContextCompat.getDrawable(CollegeActivity.this, R.drawable.check_black) );
+                selectedBranch = "COE";
             }
         });
 
         branchViewHolder.itBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.itBranch.setBackgroundResource(R.drawable.check_black);
+                selectedBranch = "IT";
             }
         });
 
         branchViewHolder.eceBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.eceBranch.setBackgroundResource(R.drawable.check_black);
+                selectedBranch = "ECE";
             }
         });
 
         branchViewHolder.iceBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.iceBranch.setBackgroundResource(R.drawable.check_black);
+                selectedBranch = "ICE";
             }
         });
 
         branchViewHolder.mpaeBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.mpaeBranch.setBackgroundResource(R.drawable.check_black);
+                selectedBranch = "MPAE";
             }
         });
 
         branchViewHolder.btBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                branchViewHolder.btBranch.setBackgroundResource(R.drawable.check_black);
+                selectedBranch = "BT";
             }
         });
+
+
+        yearViewHolder.yearOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedSem = 0;
+            }
+        });
+
+        yearViewHolder.yearTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedSem = 2;
+            }
+        });
+
+        yearViewHolder.yearThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedSem = 4;
+            }
+        });
+
+        yearViewHolder.yearFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedSem = 6;
+            }
+        });
+
+
+        dataViewHolder.booksData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedData = "Books";
+            }
+        });
+
+        dataViewHolder.notesData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedData = "Notes";
+            }
+        });
+
+        dataViewHolder.papersData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedData = "Papers";
+            }
+        });
+
+        dataViewHolder.practicalsData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedData = "Practicals";
+            }
+        });
+
+        oddSem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(oddSem.isChecked() && evenSem.isChecked())
+                    evenSem.setChecked(false);
+            }
+        });
+
+        evenSem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(oddSem.isChecked() && evenSem.isChecked())
+                    oddSem.setChecked(false);
+            }
+        });
+
+        continueLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData();
+            }
+        });
+
+    }
+
+    private void getData() {
+
+        if(selectedBranch == null) {
+            Toast.makeText(this, "Please Select a branch", Toast.LENGTH_SHORT).show();
+            return;
+        } else if(selectedSem == -1) {
+            Toast.makeText(this, "Please Select a year", Toast.LENGTH_SHORT).show();
+            return;
+        } else if(!oddSem.isChecked() && !evenSem.isChecked()) {
+            Toast.makeText(this, "Please Select a semester", Toast.LENGTH_SHORT).show();
+            return;
+        } else if(selectedData == null) {
+            Toast.makeText(this, "Please Select a data", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(oddSem.isChecked()) {
+            selectedSem += 1;
+        } else {
+            selectedSem += 2;
+        }
+
+
     }
 }
