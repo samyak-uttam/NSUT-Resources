@@ -1,8 +1,9 @@
 package com.example.nsutallin1.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -12,7 +13,12 @@ import android.widget.Toast;
 
 import com.example.nsutallin1.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CollegeActivity extends AppCompatActivity {
+
+    private Map<String, String> map;
 
     private String selectedBranch = null, selectedData = null;
     private int selectedSem = -1;
@@ -54,6 +60,20 @@ public class CollegeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
+
+        map = new HashMap<String, String>();
+
+        map.put("ECE1Books", "16kCUSPIblbCDRyiIE__sqHjHsr1O_LWn");
+        map.put("ECE1Notes", "1kWCs1rdKoWoXGdVD-0XCyMmJQR4QaacF");
+        map.put("ECE1Practicals", "1nzx3ZuGQSnM-v-mA7wANEUYnOSBfhc7s");
+        map.put("ECE2Books", "1C6KBeOHnK3jK_VX0qiH98zbcOjVdAA7Z");
+        map.put("ECE2Notes", "1BMnsQDY6oydKc34JxUlvRU3rzkdWRhKu");
+        map.put("ECE2Papers", "1-bbTx-Gnb9mIiHUC2FTH3rUo4rv-E6Iv");
+        map.put("ECE2Practicals", "16KsqtV6LupiBecqClrx75fCQmLXXJP8a");
+        map.put("ECE3Books", "15_PcxLYl5ivKpn68E4Av8IGTZMhNKBZc");
+        map.put("ECE3Notes", "170-u1m7X2HeO3iswap3BosQ1DNCzIICT");
+        map.put("ECE3Papers", "1ggggAaffbpIMkPhPrVrngzqAPJndk0uD");
+        map.put("ECE3Practicals", "1J8w2MGWfibzGk-8MqnfVF-cn0hGdTt5D");
 
         branchViewHolder = new CollegeActivity.BranchViewHolder();
         yearViewHolder = new CollegeActivity.YearViewHolder();
@@ -226,6 +246,18 @@ public class CollegeActivity extends AppCompatActivity {
             selectedSem += 1;
         } else {
             selectedSem += 2;
+        }
+
+        String field = selectedBranch + selectedSem + selectedData;
+
+        if(map.containsKey(field)) {
+            String folderID = map.get(field);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://drive.google.com/drive/folders/" + folderID));
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "This feature will be included in our next update.", Toast.LENGTH_SHORT).show();
         }
 
 
