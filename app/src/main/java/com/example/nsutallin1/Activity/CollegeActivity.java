@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.example.nsutallin1.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import static com.example.nsutallin1.R.color.*;
 
 public class CollegeActivity extends AppCompatActivity {
 
@@ -96,15 +99,32 @@ public class CollegeActivity extends AppCompatActivity {
         dataViewHolder.notesData = (LinearLayout) findViewById(R.id.data_notes);
         dataViewHolder.practicalsData = (LinearLayout) findViewById(R.id.data_practicals);
 
+
         continueLayout = (LinearLayout) findViewById(R.id.continue_button);
 
         oddSem = (CheckBox) findViewById(R.id.odd_sem);
         evenSem = (CheckBox) findViewById(R.id.even_sem);
 
         branchViewHolder.coeBranch.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 selectedBranch = "COE";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+
             }
         });
 
@@ -112,6 +132,19 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "IT";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(GrayGoose));
             }
         });
 
@@ -119,6 +152,19 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "ECE";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(GrayGoose));
             }
         });
 
@@ -126,6 +172,20 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "ICE";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(GrayGoose));
             }
         });
 
@@ -133,6 +193,20 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "MPAE";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(GrayGoose));
             }
         });
 
@@ -140,6 +214,20 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "BT";
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(white));
+                branchViewHolder.btBranch.setBackgroundColor(getResources().getColor(white));
+
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.itBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.iceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.mpaeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.eceBranch.setBackgroundColor(getResources().getColor(GrayGoose));
+                branchViewHolder.coeBranch.setBackgroundColor(getResources().getColor(GrayGoose));
             }
         });
 
