@@ -159,6 +159,32 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/me_branch"
+                    style="@style/HoriScrollLayoutTheme">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/me_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/branch_placeholder" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/HoriScrollTextViewTheme"
+                            android:text="ME" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/bt_branch"
                     style="@style/HoriScrollLayoutTheme">
 

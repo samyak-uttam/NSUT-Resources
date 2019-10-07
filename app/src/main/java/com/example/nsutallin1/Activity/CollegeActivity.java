@@ -36,6 +36,7 @@ public class CollegeActivity extends AppCompatActivity {
         LinearLayout itBranch;
         LinearLayout iceBranch;
         LinearLayout mpaeBranch;
+        LinearLayout meBranch;
         LinearLayout btBranch;
     }
 
@@ -92,6 +93,7 @@ public class CollegeActivity extends AppCompatActivity {
         branchViewHolder.itBranch = findViewById(R.id.it_branch);
         branchViewHolder.iceBranch = findViewById(R.id.ice_branch);
         branchViewHolder.mpaeBranch = findViewById(R.id.mpae_branch);
+        branchViewHolder.meBranch = findViewById(R.id.me_branch);
         branchViewHolder.btBranch = findViewById(R.id.bt_branch);
 
         yearViewHolder.yearOne = findViewById(R.id.year_1);
@@ -152,6 +154,13 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedBranch = "BT";
+            }
+        });
+
+        branchViewHolder.meBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedBranch = "ME";
             }
         });
 

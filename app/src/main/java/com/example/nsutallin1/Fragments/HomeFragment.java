@@ -13,19 +13,21 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nsutallin1.Activity.CollegeActivity;
 import com.example.nsutallin1.Activity.ImsActivity;
+import com.example.nsutallin1.Activity.SyllabusActivity;
 import com.example.nsutallin1.R;
 
 public class HomeFragment extends Fragment {
 
-    private LinearLayout clgStuff, imsStuff;
+    private LinearLayout clgStuff, imsStuff, syllabus;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        clgStuff = (LinearLayout) rootView.findViewById(R.id.clg_stuff);
-        imsStuff = (LinearLayout) rootView.findViewById(R.id.ims_stuff);
+        clgStuff = rootView.findViewById(R.id.clg_stuff);
+        imsStuff = rootView.findViewById(R.id.ims_stuff);
+        syllabus = rootView.findViewById(R.id.syllabus);
 
         clgStuff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ImsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        syllabus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SyllabusActivity.class);
                 startActivity(intent);
             }
         });
