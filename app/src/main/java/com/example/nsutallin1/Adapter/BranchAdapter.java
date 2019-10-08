@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 
 import java.util.ArrayList;
@@ -20,44 +21,36 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         void onBranchItemClick(int clickedItemIndex);
     }
 
-    private int mNumberItems;
     final private ListItemClickListener mOnClickListener;
 
-    private static ArrayList<String> branchNames=new ArrayList<>();
-    private static ArrayList<Integer> branchImages=new ArrayList<>();
+    private ArrayList<Data> branches;
 
-    public BranchAdapter(int NumberItems,ListItemClickListener listener,ArrayList<String> branchNames1,ArrayList<Integer> branchImages1)
-    {
-        mNumberItems=NumberItems;
-        mOnClickListener=listener;
-        branchNames=branchNames1;
-        branchImages=branchImages1;
+    public BranchAdapter(ListItemClickListener listener, ArrayList<Data> branches) {
+        mOnClickListener = listener;
+        this.branches = branches;
     }
 
 
     @NonNull
     @Override
-    public BranchViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        Context context=viewGroup.getContext();
-        int layoutIdForListItem=R.layout.branch_view_holder;
-        LayoutInflater inflater=LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately=false;
+    public BranchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view=inflater.inflate(layoutIdForListItem,viewGroup,shouldAttachToParentImmediately);
-        BranchViewHolder viewHolder=new BranchViewHolder(view);
-
-        return viewHolder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.branch_view_holder, parent, false);
+        return new BranchViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BranchViewHolder holder, int position) {
 
-        holder.bind(position);
+        final Data data = branches.get(position);
+
+        holder.brachName.setText(data.getName());
+        holder.branchImage.setImageResource(data.getImageResID());
     }
 
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return branches.size();
     }
 
     public class BranchViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
@@ -66,55 +59,10 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         public BranchViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            brachName=(TextView) itemView.findViewById(R.id.branch_name);
-            branchImage=(ImageView) itemView.findViewById(R.id.branch_image);
+            brachName = itemView.findViewById(R.id.branch_name);
+            branchImage = itemView.findViewById(R.id.branch_image);
 
             itemView.setOnClickListener(this);
-        }
-
-        public void bind(int position) {
-
-            brachName.setText(branchNames.get(position));
-            branchImage.setImageResource(branchImages.get(position));
-
-            /*if (position==0) {
-                branchImage.setImageResource(R.drawable.coe);
-                brachName.setText("COE");
-            }
-
-            else if (position==1) {
-                    branchImage.setImageResource(R.drawable.it);
-                    brachName.setText("IT");
-            }
-
-
-            else if (position==2) {
-                branchImage.setImageResource(R.drawable.ece);
-                brachName.setText("ECE");
-            }
-
-
-            else if (position==3) {
-                branchImage.setImageResource(R.drawable.ice);
-                brachName.setText("ICE");
-            }
-
-
-            else if (position==4) {
-                branchImage.setImageResource(R.drawable.mpae);
-                brachName.setText("MPAE");
-            }
-
-
-            else if (position==5) {
-                branchImage.setImageResource(R.drawable.me);
-                brachName.setText("ME");
-            }
-
-            else if (position==6) {
-                branchImage.setImageResource(R.drawable.bt);
-                brachName.setText("BT");
-            }*/
         }
 
         @Override

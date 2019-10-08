@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 
 import java.util.ArrayList;
@@ -21,44 +22,35 @@ public class YearAdapter extends RecyclerView.Adapter<YearAdapter.YearViewHolder
         void onYearItemClick(int clickedItemIndex);
     }
 
-    private int mNumberItems;
     private ListItemClickListener mOnClickListener;
 
-    private static ArrayList<String> yearNames=new ArrayList<>();
-    private static ArrayList<Integer> yearImages=new ArrayList<>();
+    private ArrayList<Data> years;
 
 
-    public YearAdapter(int NumberItems,ListItemClickListener clickListener,ArrayList<String> yearNames1,ArrayList<Integer> yearImages1)
-    {
-        mNumberItems=NumberItems;
-        mOnClickListener=clickListener;
-        yearNames=yearNames1;
-        yearImages=yearImages1;
+    public YearAdapter(ListItemClickListener clickListener,ArrayList<Data> years) {
+        mOnClickListener = clickListener;
+        this.years = years;
     }
 
     @NonNull
     @Override
-    public YearViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public YearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        Context context=viewGroup.getContext();
-        int layoutIdForListItem= R.layout.year_view_holder;
-        LayoutInflater inflater=LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately=false;
-
-        View view=inflater.inflate(layoutIdForListItem,viewGroup,shouldAttachToParentImmediately);
-        YearAdapter.YearViewHolder viewHolder=new YearAdapter.YearViewHolder(view);
-
-        return viewHolder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.year_view_holder, parent, false);
+        return new YearViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull YearViewHolder holder, int position) {
-      holder.bind(position);
+        final Data year = years.get(position);
+
+        holder.yearName.setText(year.getName());
+        holder.yearImage.setImageResource(year.getImageResID());
     }
 
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return years.size();
     }
 
     public class YearViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -69,39 +61,10 @@ public class YearAdapter extends RecyclerView.Adapter<YearAdapter.YearViewHolder
         public YearViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            yearImage=(ImageView) itemView.findViewById(R.id.year_image);
-            yearName=(TextView) itemView.findViewById(R.id.year_name);
+            yearImage = itemView.findViewById(R.id.year_image);
+            yearName = itemView.findViewById(R.id.year_name);
 
             itemView.setOnClickListener(this);
-        }
-
-        public void bind(int position) {
-
-            yearName.setText(yearNames.get(position));
-            yearImage.setImageResource(yearImages.get(position));
-            /*if (position==0)
-            {
-                yearName.setText(Integer.toString(1));
-                yearImage.setImageResource(R.drawable.year_placeholder);
-            }
-
-            else if (position==1)
-            {
-                yearName.setText(Integer.toString(2));
-                yearImage.setImageResource(R.drawable.year_placeholder);
-            }
-
-            else if (position==2)
-            {
-                yearName.setText(Integer.toString(3));
-                yearImage.setImageResource(R.drawable.year_placeholder);
-            }
-
-            else if (position==3)
-            {
-                yearName.setText(Integer.toString(4));
-                yearImage.setImageResource(R.drawable.year_placeholder);
-            }*/
         }
 
         @Override
