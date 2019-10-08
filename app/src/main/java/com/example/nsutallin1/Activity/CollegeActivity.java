@@ -1,6 +1,8 @@
 package com.example.nsutallin1.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.ColorMatrix;
@@ -15,57 +17,160 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.nsutallin1.Adapter.BranchAdapter;
+import com.example.nsutallin1.Adapter.DataAdapter;
+import com.example.nsutallin1.Adapter.YearAdapter;
 import com.example.nsutallin1.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static androidx.recyclerview.widget.LinearLayoutManager.*;
 import static com.example.nsutallin1.R.color.*;
 
-public class CollegeActivity extends AppCompatActivity {
+public class CollegeActivity extends AppCompatActivity implements BranchAdapter.ListItemClickListener,YearAdapter.ListItemClickListener,DataAdapter.ListItemClickListener {
+
+    private static ArrayList<String> branchNames=new ArrayList<>();
+    private static ArrayList<Integer> branchImages=new ArrayList<>();
+
+    private static ArrayList<String> yearNames=new ArrayList<>();
+    private static ArrayList<Integer> yearImages=new ArrayList<>();
+
+    private static ArrayList<String> dataNames=new ArrayList<>();
+    private static ArrayList<Integer> dataImages=new ArrayList<>();
 
     private Map<String, String> map;
-
     private String selectedBranch = null, selectedData = null;
     private int selectedSem = -1;
+    LinearLayout continueLayout;
+
+    private BranchAdapter branchAdapter;
+    private RecyclerView RecyclerView_Branch;
+
+    private YearAdapter yearAdapter;
+    private RecyclerView RecyclerView_Year;
+
+    private DataAdapter dataAdapter;
+    private RecyclerView RecyclerView_Data;
 
     private CheckBox oddSem, evenSem;
 
-    private static class BranchViewHolder {
-        LinearLayout coeBranch;
-        LinearLayout eceBranch;
-        LinearLayout itBranch;
-        LinearLayout iceBranch;
-        LinearLayout mpaeBranch;
-        LinearLayout meBranch;
-        LinearLayout btBranch;
-    }
-
-    private static class YearViewHolder {
-        LinearLayout yearOne;
-        LinearLayout yearTwo;
-        LinearLayout yearThree;
-        LinearLayout yearFour;
-    }
-
-    private static class DataViewHolder {
-        LinearLayout booksData;
-        LinearLayout papersData;
-        LinearLayout notesData;
-        LinearLayout practicalsData;
-    }
-
-    private CollegeActivity.BranchViewHolder branchViewHolder;
-
-    private CollegeActivity.YearViewHolder yearViewHolder;
-
-    private CollegeActivity.DataViewHolder dataViewHolder;
-
-    private LinearLayout continueLayout;
+    private final int NUM_BRANCHES=7;
+    private final int NUM_YEAR=4;
+    private final int NUM_DATA=4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
+
+        for (int position=0;position<NUM_BRANCHES;position++)
+        {
+            if (position==0)
+            {
+                branchNames.add("COE");
+                branchImages.add(R.drawable.coe);
+            }
+
+            else if (position==1) {
+
+                branchNames.add("IT");
+                branchImages.add(R.drawable.it);
+            }
+
+
+            else if (position==2) {
+
+                branchNames.add("ECE");
+                branchImages.add(R.drawable.ece);
+            }
+
+
+            else if (position==3) {
+
+                branchNames.add("ICE");
+                branchImages.add(R.drawable.ice);
+            }
+
+
+            else if (position==4) {
+
+                branchNames.add("MPAE");
+                branchImages.add(R.drawable.mpae);
+            }
+
+
+            else if (position==5) {
+
+                branchImages.add(R.drawable.me);
+                branchNames.add("ME");
+            }
+
+            else if (position==6) {
+
+                branchImages.add(R.drawable.bt);
+                branchNames.add("BT");
+
+            }
+
+            for (int position1=0;position1<NUM_YEAR;position1++)
+            {
+                if (position1==0)
+                {
+                    yearNames.add(Integer.toString(1));
+                    yearImages.add(R.drawable.year_placeholder);
+                }
+
+                else if (position1==1)
+                {
+                    yearNames.add(Integer.toString(2));
+                    yearImages.add(R.drawable.year_placeholder);
+                }
+
+                else if (position1==2)
+                {
+                    yearNames.add(Integer.toString(3));
+                    yearImages.add(R.drawable.year_placeholder);
+                }
+
+                else if (position1==3)
+                {
+                    yearNames.add(Integer.toString(4));
+                    yearImages.add(R.drawable.year_placeholder);
+                }
+            }
+
+            for (int position2=0;position2<NUM_DATA;position2++)
+            {
+                if (position2==0)
+                {
+                    dataNames.add("Books");
+                    dataImages.add(R.drawable.notes_black);
+                }
+
+                else if (position2==1)
+                {
+                    dataNames.add("Papers");
+                    dataImages.add(R.drawable.pages_black);
+                }
+
+                else if (position2==2)
+                {
+                    dataNames.add("Notes");
+                    dataImages.add(R.drawable.notes_black);
+                }
+
+                else if (position2==3)
+                {
+                    dataNames.add("Practicals");
+                    dataImages.add(R.drawable.pages_black);
+                }
+            }
+        }
+        initRecyclerViewBranch();
+        initRecyclerViewYear();
+        initRecyclerViewData();
 
         map = new HashMap<>();
 
@@ -84,143 +189,11 @@ public class CollegeActivity extends AppCompatActivity {
         map.put("ECE3Papers", "1ggggAaffbpIMkPhPrVrngzqAPJndk0uD");
         map.put("ECE3Practicals", "1J8w2MGWfibzGk-8MqnfVF-cn0hGdTt5D");
 
-        branchViewHolder = new CollegeActivity.BranchViewHolder();
-        yearViewHolder = new CollegeActivity.YearViewHolder();
-        dataViewHolder = new CollegeActivity.DataViewHolder();
-
-        branchViewHolder.coeBranch = findViewById(R.id.coe_branch);
-        branchViewHolder.eceBranch = findViewById(R.id.ece_branch);
-        branchViewHolder.itBranch = findViewById(R.id.it_branch);
-        branchViewHolder.iceBranch = findViewById(R.id.ice_branch);
-        branchViewHolder.mpaeBranch = findViewById(R.id.mpae_branch);
-        branchViewHolder.meBranch = findViewById(R.id.me_branch);
-        branchViewHolder.btBranch = findViewById(R.id.bt_branch);
-
-        yearViewHolder.yearOne = findViewById(R.id.year_1);
-        yearViewHolder.yearTwo = findViewById(R.id.year_2);
-        yearViewHolder.yearThree = findViewById(R.id.year_3);
-        yearViewHolder.yearFour = findViewById(R.id.year_4);
-
-        dataViewHolder.booksData = findViewById(R.id.data_books);
-        dataViewHolder.papersData = findViewById(R.id.data_papers);
-        dataViewHolder.notesData = findViewById(R.id.data_notes);
-        dataViewHolder.practicalsData = findViewById(R.id.data_practicals);
-
 
         continueLayout = (LinearLayout) findViewById(R.id.continue_button);
 
         oddSem = (CheckBox) findViewById(R.id.odd_sem);
         evenSem = (CheckBox) findViewById(R.id.even_sem);
-
-        branchViewHolder.coeBranch.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "COE";
-                ImageView imageView = branchViewHolder.itBranch.findViewById(R.id.it_image);
-                imageView.setColorFilter(new ColorMatrixColorFilter(matrix));
-            }
-        });
-
-        branchViewHolder.itBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "IT";
-            }
-        });
-
-        branchViewHolder.eceBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "ECE";
-            }
-        });
-
-        branchViewHolder.iceBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "ICE";
-            }
-        });
-
-        branchViewHolder.mpaeBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "MPAE";
-            }
-        });
-
-        branchViewHolder.btBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "BT";
-            }
-        });
-
-        branchViewHolder.meBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedBranch = "ME";
-            }
-        });
-
-
-        yearViewHolder.yearOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSem = 0;
-            }
-        });
-
-        yearViewHolder.yearTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSem = 2;
-            }
-        });
-
-        yearViewHolder.yearThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSem = 4;
-            }
-        });
-
-        yearViewHolder.yearFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSem = 6;
-            }
-        });
-
-
-        dataViewHolder.booksData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedData = "Books";
-            }
-        });
-
-        dataViewHolder.notesData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedData = "Notes";
-            }
-        });
-
-        dataViewHolder.papersData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedData = "Papers";
-            }
-        });
-
-        dataViewHolder.practicalsData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedData = "Practicals";
-            }
-        });
 
         oddSem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -244,6 +217,80 @@ public class CollegeActivity extends AppCompatActivity {
                 getData();
             }
         });
+
+    }
+
+    @Override
+    public void onBranchItemClick(int clickedItemIndex)
+    {
+        selectedBranch=branchNames.get(clickedItemIndex);
+        Toast.makeText(this,Integer.toString(clickedItemIndex),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onYearItemClick(int clickedItemIndex)
+    {
+        int year=Integer.valueOf(yearNames.get(clickedItemIndex));
+
+        if (year==1)
+        {
+            selectedSem=0;
+        }
+
+        else if (year==2)
+        {
+            selectedSem=2;
+        }
+
+        else if (year==3)
+        {
+            selectedSem=4;
+        }
+
+        else if (year==4)
+        {
+            selectedSem=6;
+        }
+    }
+
+    @Override
+    public void onDataItemClick(int clickedItemIndex) {
+        Toast.makeText(this,Integer.toString(clickedItemIndex),Toast.LENGTH_SHORT).show();
+
+        selectedData=dataNames.get(clickedItemIndex);
+    }
+
+    private void initRecyclerViewData()
+    {
+        RecyclerView_Data=findViewById(R.id.rv_data);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, HORIZONTAL,false);
+        RecyclerView_Data.setLayoutManager(linearLayoutManager2);
+
+        RecyclerView_Data.setHasFixedSize(true);
+        dataAdapter=new DataAdapter(NUM_DATA,this,yearNames,yearImages);
+        RecyclerView_Data.setAdapter(dataAdapter);
+
+    }
+
+    private void initRecyclerViewYear() {
+        RecyclerView_Year=findViewById(R.id.rv_year);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, HORIZONTAL,false);
+        RecyclerView_Year.setLayoutManager(linearLayoutManager1);
+
+        RecyclerView_Year.setHasFixedSize(true);
+        yearAdapter=new YearAdapter(NUM_YEAR,this,yearNames,yearImages);
+        RecyclerView_Year.setAdapter(yearAdapter);
+
+    }
+
+    private void initRecyclerViewBranch() {
+        RecyclerView_Branch=findViewById(R.id.rv_branch);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, HORIZONTAL,false);
+        RecyclerView_Branch.setLayoutManager(linearLayoutManager);
+
+        RecyclerView_Branch.setHasFixedSize(true);
+        branchAdapter=new BranchAdapter(NUM_BRANCHES, (BranchAdapter.ListItemClickListener) this,branchNames,branchImages);
+        RecyclerView_Branch.setAdapter(branchAdapter);
 
     }
 
@@ -283,4 +330,5 @@ public class CollegeActivity extends AppCompatActivity {
 
 
     }
+
 }
