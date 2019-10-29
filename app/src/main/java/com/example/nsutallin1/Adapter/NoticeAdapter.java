@@ -1,8 +1,10 @@
 package com.example.nsutallin1.Adapter;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +48,16 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(notice.getDownloadLink()));
-                mContext.startActivity(intent);
+                DownloadManager downloadmanager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(notice.getDownloadLink()));
+                request.setTitle(notice.getTitle());
+                request.setDescription("Downloading");
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                request.setVisibleInDownloadsUi(false);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,notice.getTitle());
+
+                downloadmanager.enqueue(request);
             }
         });
     }

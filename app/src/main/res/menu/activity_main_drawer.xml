@@ -8,14 +8,6 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home_black"
             android:title="Home" />
-        <item
-            android:id="@+id/nav_papers"
-            android:icon="@drawable/pages_black"
-            android:title="Papers"/>
-        <item
-            android:id="@+id/nav_notes"
-            android:icon="@drawable/notes_black"
-            android:title="Notes"/>
     </group>
 
 </menu>

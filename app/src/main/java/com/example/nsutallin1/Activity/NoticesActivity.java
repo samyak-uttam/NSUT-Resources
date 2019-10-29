@@ -3,8 +3,12 @@ package com.example.nsutallin1.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.LoaderManager;
+
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,6 +70,14 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
 
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
+
+        String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        ActivityCompat.requestPermissions((Activity) this, PERMISSIONS, 112 );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @NonNull
