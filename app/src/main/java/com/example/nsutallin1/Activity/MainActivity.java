@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.nsutallin1.Fragments.HomeFragment;
-import com.example.nsutallin1.Fragments.NotesFragment;
-import com.example.nsutallin1.Fragments.PapersFragment;
 import com.example.nsutallin1.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,14 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_praciticals:
                 getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
                         new HomeFragment()).commit();
-                break;
-            case R.id.nav_notes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                        new NotesFragment()).commit();
-                break;
-            case R.id.nav_papers:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                        new PapersFragment()).commit();
                 break;
         }
 

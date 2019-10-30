@@ -20,8 +20,9 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
-                tools:src="@drawable/syllabus"
-                android:layout_marginRight="8dp"/>
+                android:background="#e8e8e8"
+                android:layout_marginRight="8dp"
+                tools:src="@drawable/syllabus"/>
 
             <TextView
                 android:id="@+id/branch_name"

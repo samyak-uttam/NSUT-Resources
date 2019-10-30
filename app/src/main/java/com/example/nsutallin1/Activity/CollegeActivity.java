@@ -22,7 +22,6 @@ import com.example.nsutallin1.Adapter.YearAdapter;
 import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.Fragments.HomeFragment;
 import com.example.nsutallin1.Fragments.NotesFragment;
-import com.example.nsutallin1.Fragments.PapersFragment;
 import com.example.nsutallin1.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -159,8 +158,9 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
                           new NotesFragment()).commit();
                   break;
               case R.id.nav_papers:
-                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                          new PapersFragment()).commit();
+                  //getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
+                          //new PapersFragment()).commit();
+                          ;
                   break;
           }
 

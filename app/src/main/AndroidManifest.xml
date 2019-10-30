@@ -23,21 +23,21 @@
             android:name=".Activity.ImsActivity"
             android:parentActivityName=".Activity.MainActivity" />
         <activity
-            android:name=".Activity.CollegeActivity"
-            android:parentActivityName=".Activity.MainActivity" />
-        <activity
-            android:name=".Activity.NoticesActivity"
-            android:parentActivityName=".Activity.ImsActivity" />
-        <activity
-            android:name=".Activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activity.CollegeActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activity.NoticesActivity"
+            android:parentActivityName=".Activity.ImsActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
