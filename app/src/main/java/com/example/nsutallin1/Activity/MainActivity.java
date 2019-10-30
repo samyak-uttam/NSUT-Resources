@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState == null) {
+       if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
                     new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+            navigationView.setCheckedItem(R.id.home);
         }
     }
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home:
+            case R.id.nav_praciticals:
                 getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
                         new HomeFragment()).commit();
                 break;

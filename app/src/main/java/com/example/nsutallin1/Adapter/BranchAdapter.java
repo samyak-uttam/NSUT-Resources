@@ -1,6 +1,7 @@
 package com.example.nsutallin1.Adapter;
 
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchViewHolder> {
 
@@ -24,6 +26,38 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     final private ListItemClickListener mOnClickListener;
 
     private ArrayList<Data> branches;
+    private SparseBooleanArray selectedItems;
+
+    public void toggleSelection(int pos) {
+        if (selectedItems.get(pos, false)) {
+            selectedItems.delete(pos);
+        }
+        else {
+            selectedItems.put(pos, true);
+        }
+        notifyItemChanged(pos);
+    }
+
+    public void clearSelections() {
+        selectedItems.clear();
+        notifyDataSetChanged();
+    }
+
+    public int getSelectedItemCount() {
+        return selectedItems.size();
+    }
+
+    public List<Integer> getSelectedItems() {
+        List<Integer> items =
+                new ArrayList<Integer>(selectedItems.size());
+        for (int i = 0; i < selectedItems.size(); i++) {
+            items.add(selectedItems.keyAt(i));
+        }
+        return items;
+    }
+
+
+
 
     public BranchAdapter(ListItemClickListener listener, ArrayList<Data> branches) {
         mOnClickListener = listener;
@@ -46,6 +80,8 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
         holder.brachName.setText(data.getName());
         holder.branchImage.setImageResource(data.getImageResID());
+
+
     }
 
     @Override

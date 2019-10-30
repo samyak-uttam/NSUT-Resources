@@ -1,12 +1,15 @@
 package com.example.nsutallin1.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,7 +20,12 @@ import com.example.nsutallin1.Adapter.BranchAdapter;
 import com.example.nsutallin1.Adapter.DataAdapter;
 import com.example.nsutallin1.Adapter.YearAdapter;
 import com.example.nsutallin1.Class.Data;
+import com.example.nsutallin1.Fragments.HomeFragment;
+import com.example.nsutallin1.Fragments.NotesFragment;
+import com.example.nsutallin1.Fragments.PapersFragment;
 import com.example.nsutallin1.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,11 +33,11 @@ import java.util.Map;
 
 import static androidx.recyclerview.widget.LinearLayoutManager.*;
 
-public class CollegeActivity extends AppCompatActivity implements BranchAdapter.ListItemClickListener,YearAdapter.ListItemClickListener,DataAdapter.ListItemClickListener {
+public class CollegeActivity extends AppCompatActivity implements BranchAdapter.ListItemClickListener, YearAdapter.ListItemClickListener, DataAdapter.ListItemClickListener {
 
 
     private ArrayList<Data> branches, years, data;
-
+    public static final int NUM_COLUMNS=2;
     private Map<String, String> map;
     private String selectedBranch = null, selectedData = null;
     private int selectedSem = -1;
@@ -55,6 +63,7 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         years = new ArrayList<>();
         data = new ArrayList<>();
 
+
         branches.add(new Data("ECE", R.drawable.ece));
         branches.add(new Data("COE", R.drawable.coe));
         branches.add(new Data("IT", R.drawable.it));
@@ -74,8 +83,9 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         data.add(new Data("Practicals", R.drawable.notes_black));
 
         initRecyclerViewBranch();
-        initRecyclerViewYear();
-        initRecyclerViewData();
+        initNavigationBar();
+        //initRecyclerViewYear();
+        //initRecyclerViewData();
 
         map = new HashMap<>();
 
@@ -92,7 +102,7 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         map.put("ECE3Practicals", "1J8w2MGWfibzGk-8MqnfVF-cn0hGdTt5D");
 
 
-        continueLayout = findViewById(R.id.continue_button);
+        /*continueLayout = findViewById(R.id.continue_button);
 
         oddSem = findViewById(R.id.odd_sem);
         evenSem = findViewById(R.id.even_sem);
@@ -120,7 +130,44 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
             }
         });
 
+         */
+
     }
+
+    private void initNavigationBar() {
+        BottomNavigationView bottomNav= findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListner);
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListner=new BottomNavigationView.OnNavigationItemSelectedListener()
+    {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item)
+        {
+          switch (item.getItemId())
+          {
+
+              case R.id.nav_home:
+
+                  break;
+              case R.id.nav_praciticals:
+                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
+                          new HomeFragment()).commit();
+                  break;
+              case R.id.nav_notes:
+                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
+                          new NotesFragment()).commit();
+                  break;
+              case R.id.nav_papers:
+                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
+                          new PapersFragment()).commit();
+                  break;
+          }
+
+          return true;
+        }
+
+    };
 
     @Override
     public void onBranchItemClick(int clickedItemIndex)
@@ -133,7 +180,6 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
     public void onYearItemClick(int clickedItemIndex)
     {
         int year = Integer.valueOf(years.get(clickedItemIndex).getName());
-
         if (year == 1) {
             selectedSem = 0;
 
@@ -156,35 +202,13 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         selectedData = data.get(clickedItemIndex).getName();
     }
 
-    private void initRecyclerViewData()
-    {
-        RecyclerView_Data=findViewById(R.id.rv_data);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, HORIZONTAL,false);
-        RecyclerView_Data.setLayoutManager(linearLayoutManager2);
-
-        RecyclerView_Data.setHasFixedSize(true);
-        dataAdapter=new DataAdapter(this, data);
-        RecyclerView_Data.setAdapter(dataAdapter);
-
-    }
-
-    private void initRecyclerViewYear() {
-        RecyclerView_Year=findViewById(R.id.rv_year);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, HORIZONTAL,false);
-        RecyclerView_Year.setLayoutManager(linearLayoutManager1);
-
-        RecyclerView_Year.setHasFixedSize(true);
-        yearAdapter=new YearAdapter(this, years);
-        RecyclerView_Year.setAdapter(yearAdapter);
-
-    }
 
     private void initRecyclerViewBranch() {
         RecyclerView_Branch=findViewById(R.id.rv_branch);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, HORIZONTAL,false);
-        RecyclerView_Branch.setLayoutManager(linearLayoutManager);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, VERTICAL);
+        RecyclerView_Branch.setLayoutManager(staggeredGridLayoutManager);
 
-        RecyclerView_Branch.setHasFixedSize(true);
+       // RecyclerView_Branch.setHasFixedSize(true);
         branchAdapter=new BranchAdapter(this, branches);
         RecyclerView_Branch.setAdapter(branchAdapter);
 
@@ -226,5 +250,4 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
 
 
     }
-
 }

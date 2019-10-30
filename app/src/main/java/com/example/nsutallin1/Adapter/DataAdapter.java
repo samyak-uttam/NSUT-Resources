@@ -34,7 +34,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
     @Override
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_view_holder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_view_holder, parent, false);
         return new DataViewHolder(view);
     }
 
@@ -58,8 +58,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
         public DataViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            dataImage = itemView.findViewById(R.id.data_image);
-            dataName = itemView.findViewById(R.id.data_name);
+            dataImage = itemView.findViewById(R.id.tempImg);
+            dataName = itemView.findViewById(R.id.tempText);
 
             itemView.setOnClickListener(this);
         }

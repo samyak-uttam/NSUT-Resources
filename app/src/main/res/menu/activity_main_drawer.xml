@@ -3,11 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/nav_items">
+       <item
+           android:id="@+id/nav_home"
+           android:icon="@drawable/ic_launcher_foreground"
+           android:title="home"/>
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_books"
             android:icon="@drawable/home_black"
-            android:title="Home" />
+            android:title="books" />
         <item
             android:id="@+id/nav_papers"
             android:icon="@drawable/pages_black"
@@ -16,6 +20,11 @@
             android:id="@+id/nav_notes"
             android:icon="@drawable/notes_black"
             android:title="Notes"/>
+
+        <item
+            android:id="@+id/nav_praciticals"
+            android:icon="@drawable/notes_black"
+            android:title="Practicals" />
     </group>
 
 </menu>
