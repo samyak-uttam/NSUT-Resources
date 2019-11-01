@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,25 +8,13 @@
     tools:context=".Activity.CollegeActivity"
     android:background="@color/baige">
 
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="100dp"
-           android:background="@color/blue" />
-
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="40dp"
-        app:cardCornerRadius="20dp"
-        android:layout_above="@id/bottom_navigation">>
-
-        <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/activity_main_drawer"
+        android:background="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_branch"
@@ -35,19 +22,7 @@
             android:layout_height="match_parent"
             android:layout_above="@id/bottom_navigation"
             android:padding="8dp"
-            android:background="@drawable/selector_row">
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/activity_main_drawer"
-        android:background="@color/navcolor"
-        />
+            android:background="@drawable/selector_row"/>
 
 
     </RelativeLayout>

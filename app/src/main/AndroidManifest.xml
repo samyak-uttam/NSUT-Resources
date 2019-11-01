@@ -38,6 +38,11 @@
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".Activity.onNavItemsSelected"
+            android:parentActivityName=".Activity.CollegeActivity"
+        />
     </application>
 
 </manifest>

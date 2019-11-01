@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,7 +22,6 @@ import com.example.nsutallin1.Adapter.DataAdapter;
 import com.example.nsutallin1.Adapter.YearAdapter;
 import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.Fragments.HomeFragment;
-import com.example.nsutallin1.Fragments.NotesFragment;
 import com.example.nsutallin1.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -52,6 +52,8 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
     private RecyclerView RecyclerView_Data;
 
     private CheckBox oddSem, evenSem;
+
+    String navSelection=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,22 +147,32 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         {
           switch (item.getItemId())
           {
-
               case R.id.nav_home:
+                  navSelection="books";
+                  break;
 
+              case R.id.nav_books:
+                  Log.e("nav_books","You are in books");
+                  Toast.makeText(getApplicationContext(),"You are in books",Toast.LENGTH_SHORT).show();
+                  navSelection="books";
                   break;
+
               case R.id.nav_praciticals:
-                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                          new HomeFragment()).commit();
+                  Log.e("nav_notes","You are in practicals");
+                  Toast.makeText(getApplicationContext(),"You are in practicals",Toast.LENGTH_SHORT).show();
+                  navSelection="practicals";
                   break;
+
               case R.id.nav_notes:
-                  getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                          new NotesFragment()).commit();
+                  Log.e("nav_notes","You are in notes");
+                  Toast.makeText(getApplicationContext(),"You are in notes",Toast.LENGTH_SHORT).show();
+                  navSelection="notes";
                   break;
+
               case R.id.nav_papers:
-                  //getSupportFragmentManager().beginTransaction().replace(R.id.framgment_container,
-                          //new PapersFragment()).commit();
-                          ;
+                  Log.e("nav_papers","You are in papers");
+                  Toast.makeText(getApplicationContext(),"You are in papers",Toast.LENGTH_SHORT).show();
+                  navSelection="papers";
                   break;
           }
 
@@ -173,7 +185,17 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
     public void onBranchItemClick(int clickedItemIndex)
     {
         selectedBranch = branches.get(clickedItemIndex).getName();
-        Toast.makeText(this,Integer.toString(clickedItemIndex),Toast.LENGTH_SHORT).show();
+        if (navSelection!=null) {
+            Intent intent = new Intent(this, onNavItemsSelected.class);
+            intent.putExtra("branchName", selectedBranch);
+            intent.putExtra("navSelectedItem", navSelection);
+            startActivity(intent);
+        }
+
+        else
+        {
+            Toast.makeText(this,"Please Select Something First!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

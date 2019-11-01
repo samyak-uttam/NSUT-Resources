@@ -34,7 +34,7 @@
         android:layout_height="200dp"
         android:scaleType="center"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/branch_placeholder"/>
+        android:src="@drawable/coe"/>
     
     <TextView
         android:id="@+id/branch_name"
