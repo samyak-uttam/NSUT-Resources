@@ -3,15 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    android:background="@drawable/back2"
-    tools:context=".Activity.ImsActivity">
+    android:background="@drawable/back2">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notices_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="20dp"
+        android:layout_above="@id/login_card">
     <LinearLayout
         android:id="@+id/notices_and_circulars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/baige">
 
         <ImageView
             android:layout_width="80dp"
@@ -24,16 +32,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Notices and Circulars"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="26sp" />
     </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_centerVertical="true">
     <LinearLayout
         android:id="@+id/student_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/notices_and_circulars">
+        android:layout_below="@id/notices_and_circulars"
+        android:background="@color/baige">
 
         <ImageView
             android:layout_width="80dp"
@@ -45,9 +62,10 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Student login"
             android:textSize="26sp" />
     </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

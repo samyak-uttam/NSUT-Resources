@@ -1,10 +1,15 @@
-package com.example.nsutallin1.Activity;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.nsutallin1.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nsutallin1.Adapter.SyllabusAdapter;
 import com.example.nsutallin1.Class.Syllabus;
@@ -12,7 +17,7 @@ import com.example.nsutallin1.R;
 
 import java.util.ArrayList;
 
-public class SyllabusActivity extends AppCompatActivity {
+public class SyllabusFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private SyllabusAdapter mAdapter;
@@ -20,10 +25,11 @@ public class SyllabusActivity extends AppCompatActivity {
 
     private static final int SYLLABUS_LOADER_ID = 1;
 
+    @NonNull
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_syllabus);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View rootView=inflater.inflate(R.layout.activity_syllabus,container,false);
 
         syllabi = new ArrayList<>();
 
@@ -35,10 +41,12 @@ public class SyllabusActivity extends AppCompatActivity {
         syllabi.add(new Syllabus("Mechanical Engineering", R.drawable.me, "14RDozAq8qesAbrs5RLjScTzlrNgmc8DK"));
         syllabi.add(new Syllabus("Biotechnology", R.drawable.bt, "14RW0NXb-hPfmzSHLLWidpMG0NnPB48lZ"));
 
-        mRecyclerView = findViewById(R.id.syllabus_rec_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(SyllabusActivity.this));
+        mRecyclerView = rootView.findViewById(R.id.syllabus_rec_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mAdapter = new SyllabusAdapter(syllabi, this);
+        mAdapter = new SyllabusAdapter(syllabi,getContext());
         mRecyclerView.setAdapter(mAdapter);
+
+        return rootView;
     }
 }

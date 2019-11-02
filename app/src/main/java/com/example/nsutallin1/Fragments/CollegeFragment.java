@@ -1,8 +1,8 @@
-package com.example.nsutallin1.Activity;
+package com.example.nsutallin1.Fragments;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -10,21 +10,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.nsutallin1.Activity.onNavItemsSelected;
 import com.example.nsutallin1.Adapter.BranchAdapter;
-import com.example.nsutallin1.Adapter.DataAdapter;
-import com.example.nsutallin1.Adapter.YearAdapter;
 import com.example.nsutallin1.Class.Data;
-import com.example.nsutallin1.Fragments.HomeFragment;
 import com.example.nsutallin1.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,12 @@ import java.util.Map;
 
 import static androidx.recyclerview.widget.LinearLayoutManager.*;
 
-public class CollegeActivity extends AppCompatActivity implements BranchAdapter.ListItemClickListener, YearAdapter.ListItemClickListener, DataAdapter.ListItemClickListener {
+public class CollegeFragment extends Fragment implements BranchAdapter.ListItemClickListener {
+
+    public CollegeFragment()
+    {
+
+    }
 
 
     private ArrayList<Data> branches, years, data;
@@ -45,20 +50,23 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
     private BranchAdapter branchAdapter;
     private RecyclerView RecyclerView_Branch;
 
-    private YearAdapter yearAdapter;
-    private RecyclerView RecyclerView_Year;
-
-    private DataAdapter dataAdapter;
-    private RecyclerView RecyclerView_Data;
-
-    private CheckBox oddSem, evenSem;
-
     String navSelection=null;
 
+    BottomNavigationView bottomNavigationView;
+    @NonNull
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_college);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.activity_college, container, false);
+
+        bottomNavigationView= rootView.findViewById(R.id.bottom_navigation);
+
+        RecyclerView_Branch=rootView.findViewById(R.id.rv_branch);
+        Log.e("well see", String.valueOf(R.id.rv_branch));
+        //bottomNavigationView.setOnNavigationItemSelectedListener(navListner);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, VERTICAL);
+        RecyclerView_Branch.setLayoutManager(staggeredGridLayoutManager);
+
 
         branches = new ArrayList<>();
         years = new ArrayList<>();
@@ -83,10 +91,54 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         data.add(new Data("Papers", R.drawable.pages_black));
         data.add(new Data("Practicals", R.drawable.notes_black));
 
-        initRecyclerViewBranch();
-        initNavigationBar();
         //initRecyclerViewYear();
         //initRecyclerViewData();
+        branchAdapter=new BranchAdapter( branches,this);
+
+        RecyclerView_Branch.setAdapter(branchAdapter);
+
+        BottomNavigationView.OnNavigationItemSelectedListener navListner=new BottomNavigationView.OnNavigationItemSelectedListener()
+        {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item)
+            {
+                switch (item.getItemId())
+                {
+
+                    case R.id.nav_books:
+                        Log.e("nav_books","You are in books");
+                        Toast.makeText(getContext(),"You are in books",Toast.LENGTH_SHORT).show();
+                        navSelection="books";
+                        break;
+
+                    case R.id.nav_praciticals:
+                        Log.e("nav_notes","You are in practicals");
+                        Toast.makeText(getContext(),"You are in practicals",Toast.LENGTH_SHORT).show();
+                        navSelection="practicals";
+                        break;
+
+                    case R.id.nav_notes:
+                        Log.e("nav_notes","You are in notes");
+                        Toast.makeText(getContext(),"You are in notes",Toast.LENGTH_SHORT).show();
+                        navSelection="notes";
+                        break;
+
+                    case R.id.nav_papers:
+                        Log.e("nav_papers","You are in papers");
+                        Toast.makeText(getContext(),"You are in papers",Toast.LENGTH_SHORT).show();
+                        navSelection="papers";
+                        break;
+                }
+
+                return true;
+            }
+
+        };
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListner);
+
+
+
 
         map = new HashMap<>();
 
@@ -102,6 +154,7 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         map.put("ECE3Papers", "1ggggAaffbpIMkPhPrVrngzqAPJndk0uD");
         map.put("ECE3Practicals", "1J8w2MGWfibzGk-8MqnfVF-cn0hGdTt5D");
 
+        return rootView;
 
         /*continueLayout = findViewById(R.id.continue_button);
 
@@ -135,58 +188,12 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
 
     }
 
-    private void initNavigationBar() {
-        BottomNavigationView bottomNav= findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListner);
-    }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListner=new BottomNavigationView.OnNavigationItemSelectedListener()
-    {
-        @Override
-        public boolean onNavigationItemSelected(MenuItem item)
-        {
-          switch (item.getItemId())
-          {
-              case R.id.nav_home:
-                  navSelection="books";
-                  break;
-
-              case R.id.nav_books:
-                  Log.e("nav_books","You are in books");
-                  Toast.makeText(getApplicationContext(),"You are in books",Toast.LENGTH_SHORT).show();
-                  navSelection="books";
-                  break;
-
-              case R.id.nav_praciticals:
-                  Log.e("nav_notes","You are in practicals");
-                  Toast.makeText(getApplicationContext(),"You are in practicals",Toast.LENGTH_SHORT).show();
-                  navSelection="practicals";
-                  break;
-
-              case R.id.nav_notes:
-                  Log.e("nav_notes","You are in notes");
-                  Toast.makeText(getApplicationContext(),"You are in notes",Toast.LENGTH_SHORT).show();
-                  navSelection="notes";
-                  break;
-
-              case R.id.nav_papers:
-                  Log.e("nav_papers","You are in papers");
-                  Toast.makeText(getApplicationContext(),"You are in papers",Toast.LENGTH_SHORT).show();
-                  navSelection="papers";
-                  break;
-          }
-
-          return true;
-        }
-
-    };
-
     @Override
     public void onBranchItemClick(int clickedItemIndex)
     {
         selectedBranch = branches.get(clickedItemIndex).getName();
         if (navSelection!=null) {
-            Intent intent = new Intent(this, onNavItemsSelected.class);
+            Intent intent = new Intent(getActivity(), onNavItemsSelected.class);
             intent.putExtra("branchName", selectedBranch);
             intent.putExtra("navSelectedItem", navSelection);
             startActivity(intent);
@@ -194,11 +201,11 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
 
         else
         {
-            Toast.makeText(this,"Please Select Something First!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Please Select Something First!",Toast.LENGTH_SHORT).show();
         }
     }
 
-    @Override
+   /* @Override
     public void onYearItemClick(int clickedItemIndex)
     {
         int year = Integer.valueOf(years.get(clickedItemIndex).getName());
@@ -217,38 +224,20 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
         }
     }
 
-    @Override
-    public void onDataItemClick(int clickedItemIndex) {
-        Toast.makeText(this,Integer.toString(clickedItemIndex),Toast.LENGTH_SHORT).show();
-
-        selectedData = data.get(clickedItemIndex).getName();
-    }
-
-
-    private void initRecyclerViewBranch() {
-        RecyclerView_Branch=findViewById(R.id.rv_branch);
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, VERTICAL);
-        RecyclerView_Branch.setLayoutManager(staggeredGridLayoutManager);
-
-       // RecyclerView_Branch.setHasFixedSize(true);
-        branchAdapter=new BranchAdapter(this, branches);
-        RecyclerView_Branch.setAdapter(branchAdapter);
-
-    }
 
     private void getData() {
 
         if(selectedBranch == null) {
-            Toast.makeText(this, "Please Select a branch", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Select a branch", Toast.LENGTH_SHORT).show();
             return;
         } else if(selectedSem == -1) {
-            Toast.makeText(this, "Please Select a year", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Select a year", Toast.LENGTH_SHORT).show();
             return;
         } else if(!oddSem.isChecked() && !evenSem.isChecked()) {
-            Toast.makeText(this, "Please Select a semester", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Select a semester", Toast.LENGTH_SHORT).show();
             return;
         } else if(selectedData == null) {
-            Toast.makeText(this, "Please Select a data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Select a data", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -267,9 +256,9 @@ public class CollegeActivity extends AppCompatActivity implements BranchAdapter.
             intent.setData(Uri.parse("https://drive.google.com/drive/folders/" + folderID));
             startActivity(intent);
         } else {
-            Toast.makeText(this, "This feature will be included in our next update.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "This feature will be included in our next update.", Toast.LENGTH_SHORT).show();
         }
 
 
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nsutallin1.Adapter.DataAdapter;
+
 import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 

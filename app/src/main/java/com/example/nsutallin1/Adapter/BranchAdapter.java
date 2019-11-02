@@ -58,7 +58,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
 
 
-    public BranchAdapter(ListItemClickListener listener, ArrayList<Data> branches) {
+    public BranchAdapter( ArrayList<Data> branches,ListItemClickListener listener) {
         mOnClickListener = listener;
         this.branches = branches;
     }
