@@ -29,7 +29,7 @@ public class SyllabusFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView=inflater.inflate(R.layout.activity_syllabus,container,false);
+        View rootView = inflater.inflate(R.layout.activity_syllabus, container, false);
 
         syllabi = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class SyllabusFragment extends Fragment {
         mRecyclerView = rootView.findViewById(R.id.syllabus_rec_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mAdapter = new SyllabusAdapter(syllabi,getContext());
+        mAdapter = new SyllabusAdapter(syllabi, getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

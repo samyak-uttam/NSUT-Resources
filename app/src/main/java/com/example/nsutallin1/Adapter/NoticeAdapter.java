@@ -78,9 +78,9 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         public NoticeViewHolder(@NonNull View itemView) {
             super(itemView);
             rootView = itemView;
-            subject = (TextView) itemView.findViewById(R.id.subject);
-            pubDate = (TextView) itemView.findViewById(R.id.published_on);
-            pubBy = (TextView) itemView.findViewById(R.id.published_by);
+            subject = itemView.findViewById(R.id.subject);
+            pubDate = itemView.findViewById(R.id.published_on);
+            pubBy = itemView.findViewById(R.id.published_by);
         }
     }
 }

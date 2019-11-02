@@ -44,9 +44,9 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
         notices = new ArrayList<>();
 
         mRecyclerView = findViewById(R.id.notices_rec_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(NoticesActivity.this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mEmptyStateTextView =(TextView) findViewById(R.id.empty_list_view);
+        mEmptyStateTextView = findViewById(R.id.empty_list_view);
 
         mNoticeAdapter = new NoticeAdapter(notices, this);
         mRecyclerView.setAdapter(mNoticeAdapter);

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/GrayGoose"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Activity.StudentLoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:hint="User ID" />
+            android:hint="User ID"
+            android:paddingBottom="16dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
+            android:hint="Password"
             android:paddingTop="16dp"
-            android:hint="Password" />
+            android:paddingBottom="16dp" />
 
         <Button
             android:layout_width="wrap_content"

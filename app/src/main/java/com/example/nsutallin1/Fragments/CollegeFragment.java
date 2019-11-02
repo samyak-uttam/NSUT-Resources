@@ -34,14 +34,13 @@ import static androidx.recyclerview.widget.LinearLayoutManager.*;
 
 public class CollegeFragment extends Fragment implements BranchAdapter.ListItemClickListener {
 
-    public CollegeFragment()
-    {
+    public CollegeFragment() {
 
     }
 
 
     private ArrayList<Data> branches, years, data;
-    public static final int NUM_COLUMNS=2;
+    public static final int NUM_COLUMNS = 2;
     private Map<String, String> map;
     private String selectedBranch = null, selectedData = null;
     private int selectedSem = -1;
@@ -50,18 +49,19 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
     private BranchAdapter branchAdapter;
     private RecyclerView RecyclerView_Branch;
 
-    String navSelection=null;
+    String navSelection = null;
 
     BottomNavigationView bottomNavigationView;
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_college, container, false);
 
-        bottomNavigationView= rootView.findViewById(R.id.bottom_navigation);
+        bottomNavigationView = rootView.findViewById(R.id.bottom_navigation);
 
-        RecyclerView_Branch=rootView.findViewById(R.id.rv_branch);
+        RecyclerView_Branch = rootView.findViewById(R.id.rv_branch);
         Log.e("well see", String.valueOf(R.id.rv_branch));
         //bottomNavigationView.setOnNavigationItemSelectedListener(navListner);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, VERTICAL);
@@ -93,40 +93,37 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
         //initRecyclerViewYear();
         //initRecyclerViewData();
-        branchAdapter=new BranchAdapter( branches,this);
+        branchAdapter = new BranchAdapter(branches, this);
 
         RecyclerView_Branch.setAdapter(branchAdapter);
 
-        BottomNavigationView.OnNavigationItemSelectedListener navListner=new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
+        BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item)
-            {
-                switch (item.getItemId())
-                {
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
 
                     case R.id.nav_books:
-                        Log.e("nav_books","You are in books");
-                        Toast.makeText(getContext(),"You are in books",Toast.LENGTH_SHORT).show();
-                        navSelection="books";
+                        Log.e("nav_books", "You are in books");
+                        Toast.makeText(getContext(), "You are in books", Toast.LENGTH_SHORT).show();
+                        navSelection = "books";
                         break;
 
                     case R.id.nav_praciticals:
-                        Log.e("nav_notes","You are in practicals");
-                        Toast.makeText(getContext(),"You are in practicals",Toast.LENGTH_SHORT).show();
-                        navSelection="practicals";
+                        Log.e("nav_notes", "You are in practicals");
+                        Toast.makeText(getContext(), "You are in practicals", Toast.LENGTH_SHORT).show();
+                        navSelection = "practicals";
                         break;
 
                     case R.id.nav_notes:
-                        Log.e("nav_notes","You are in notes");
-                        Toast.makeText(getContext(),"You are in notes",Toast.LENGTH_SHORT).show();
-                        navSelection="notes";
+                        Log.e("nav_notes", "You are in notes");
+                        Toast.makeText(getContext(), "You are in notes", Toast.LENGTH_SHORT).show();
+                        navSelection = "notes";
                         break;
 
                     case R.id.nav_papers:
-                        Log.e("nav_papers","You are in papers");
-                        Toast.makeText(getContext(),"You are in papers",Toast.LENGTH_SHORT).show();
-                        navSelection="papers";
+                        Log.e("nav_papers", "You are in papers");
+                        Toast.makeText(getContext(), "You are in papers", Toast.LENGTH_SHORT).show();
+                        navSelection = "papers";
                         break;
                 }
 
@@ -136,8 +133,6 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
         };
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navListner);
-
-
 
 
         map = new HashMap<>();
@@ -189,19 +184,15 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
     }
 
     @Override
-    public void onBranchItemClick(int clickedItemIndex)
-    {
+    public void onBranchItemClick(int clickedItemIndex) {
         selectedBranch = branches.get(clickedItemIndex).getName();
-        if (navSelection!=null) {
+        if (navSelection != null) {
             Intent intent = new Intent(getActivity(), onNavItemsSelected.class);
             intent.putExtra("branchName", selectedBranch);
             intent.putExtra("navSelectedItem", navSelection);
             startActivity(intent);
-        }
-
-        else
-        {
-            Toast.makeText(getContext(),"Please Select Something First!",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Please Select Something First!", Toast.LENGTH_SHORT).show();
         }
     }
 
