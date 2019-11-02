@@ -52,25 +52,25 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         switch (selectedBranch) {
             case "COE":
-                mAdapter = new SubjectAdapter(coeSubs, this);
+                mAdapter = new SubjectAdapter(coeSubs,1,this);
                 break;
             case "IT":
-                mAdapter = new SubjectAdapter(itSubs, this);
+                mAdapter = new SubjectAdapter(itSubs,2,this);
                 break;
             case "ECE":
-                mAdapter = new SubjectAdapter(eceSubs, this);
+                mAdapter = new SubjectAdapter(eceSubs,3,this);
                 break;
             case "ICE":
-                mAdapter = new SubjectAdapter(iceSubs, this);
+                mAdapter = new SubjectAdapter(iceSubs,4,this);
                 break;
             case "ME":
-                mAdapter = new SubjectAdapter(meSubs, this);
+                mAdapter = new SubjectAdapter(meSubs,5,this);
                 break;
             case "MPAE":
-                mAdapter = new SubjectAdapter(mpaeSubs, this);
+                mAdapter = new SubjectAdapter(mpaeSubs,6,this);
                 break;
             case "BT":
-                mAdapter = new SubjectAdapter(btSubs, this);
+                mAdapter = new SubjectAdapter(btSubs,7,this);
                 break;
         }
         mRecyclerView.setAdapter(mAdapter);
@@ -117,7 +117,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         coeSubs.add(new Subject("English I"));
 
         coeSubs.add(new Subject("Mathematics II"));
-        coeSubs.add(new Subject("English-II"));
+        coeSubs.add(new Subject("English II"));
         coeSubs.add(new Subject("Discrete Structures"));
         coeSubs.add(new Subject("Data Structures"));
         coeSubs.add(new Subject("Digital Logic Design"));
@@ -148,7 +148,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         itSubs.add(new Subject("English I"));
 
         itSubs.add(new Subject("Mathematics II"));
-        itSubs.add(new Subject("English-II"));
+        itSubs.add(new Subject("English II"));
         itSubs.add(new Subject("Chemistry"));
         itSubs.add(new Subject("Object Oriented Techniques"));
         itSubs.add(new Subject("Analog and Digital Communication"));
@@ -172,5 +172,131 @@ public class onNavItemsSelected extends AppCompatActivity {
         itSubs.add(new Subject("Compiler and Translator Design"));
         itSubs.add(new Subject("Modeling and Simulation"));
 
+        iceSubs.add(new Subject("Mathematics I"));
+        iceSubs.add(new Subject("Computer Programming"));
+        iceSubs.add(new Subject("Electrical and Electronics Engineering"));
+        iceSubs.add(new Subject("Physics"));
+        iceSubs.add(new Subject("English I"));
+
+        iceSubs.add(new Subject("Mathematics II"));
+        iceSubs.add(new Subject("English II"));
+        iceSubs.add(new Subject("Physics of Material"));
+        iceSubs.add(new Subject("Applied Mechanics"));
+        iceSubs.add(new Subject("Signal and Systems"));
+        iceSubs.add(new Subject("Power Apparatus"));
+        iceSubs.add(new Subject("Electronic Instrumentation"));
+        iceSubs.add(new Subject("Electronics"));
+        iceSubs.add(new Subject("Engineering Graphics"));
+        iceSubs.add(new Subject("Data Structures"));
+        iceSubs.add(new Subject("Chemistry"));
+        iceSubs.add(new Subject("Mathematics III"));
+        iceSubs.add(new Subject("Control System I"));
+        iceSubs.add(new Subject("Transducer and Measurement"));
+        iceSubs.add(new Subject("Industrial Electronics"));
+        iceSubs.add(new Subject("Digital Circuits and Systems"));
+        iceSubs.add(new Subject("Microprocessor and Microcontroller"));
+        iceSubs.add(new Subject("Process Dynamics and Control"));
+        iceSubs.add(new Subject("Analog & Digital Communication"));
+        iceSubs.add(new Subject("Control System II"));
+        iceSubs.add(new Subject("Industrial Instrumentation"));
+        iceSubs.add(new Subject("Robotics"));
+        iceSubs.add(new Subject("Digital Signal Processing"));
+
+
+        meSubs.add(new Subject("Mathematics I"));
+        meSubs.add(new Subject("Computer Programming"));
+        meSubs.add(new Subject("Electrical and Electronics Engineering"));
+        meSubs.add(new Subject("Physics"));
+        meSubs.add(new Subject("English I"));
+
+        meSubs.add(new Subject("Mathematics II"));
+        meSubs.add(new Subject("English II"));
+        meSubs.add(new Subject("Chemistry"));
+        meSubs.add(new Subject("Engineering Mechanics"));
+        meSubs.add(new Subject("Workshop Technology"));
+        meSubs.add(new Subject("Engineering Graphics"));
+        meSubs.add(new Subject("Machine Drawing"));
+        meSubs.add(new Subject("Manufacturing Processes I"));
+        meSubs.add(new Subject("Mathematics III"));
+        meSubs.add(new Subject("Thermal Engineering"));
+        meSubs.add(new Subject("Science of Materials"));
+        meSubs.add(new Subject("Kinematics Dynamics of Machines"));
+        meSubs.add(new Subject("Mechanics of Solids"));
+        meSubs.add(new Subject("Fluid Mechanics"));
+        meSubs.add(new Subject("Manufacturing Processes II"));
+        meSubs.add(new Subject("Management of Manufacturing Systems"));
+        meSubs.add(new Subject("Industrial Engineering"));
+        meSubs.add(new Subject("Refrigeration & Air-Conditioning"));
+        meSubs.add(new Subject("Transducers and Measurements"));
+        meSubs.add(new Subject("Control Systems"));
+        meSubs.add(new Subject("Heat & Mass Transfer"));
+        meSubs.add(new Subject("Fluid Systems"));
+        meSubs.add(new Subject("Machine Element Design"));
+        meSubs.add(new Subject("Mechanical Vibrations"));
+        meSubs.add(new Subject("Product Design"));
+
+
+        mpaeSubs.add(new Subject("Mathematics I"));
+        mpaeSubs.add(new Subject("Computer Programming"));
+        mpaeSubs.add(new Subject("Electrical and Electronics Engineering"));
+        mpaeSubs.add(new Subject("Physics"));
+        mpaeSubs.add(new Subject("English I"));
+
+        mpaeSubs.add(new Subject("Mathematics II"));
+        mpaeSubs.add(new Subject("English II"));
+        mpaeSubs.add(new Subject("Chemistry"));
+        mpaeSubs.add(new Subject("Engineering Mechanics"));
+        mpaeSubs.add(new Subject("Workshop Technology"));
+        mpaeSubs.add(new Subject("Engineering Graphics"));
+        mpaeSubs.add(new Subject("Machine Drawing"));
+        mpaeSubs.add(new Subject("Manufacturing Processes I"));
+        mpaeSubs.add(new Subject("Mechanical Sciences"));
+        mpaeSubs.add(new Subject("Control Systems"));
+        mpaeSubs.add(new Subject("Mathematics III"));
+        mpaeSubs.add(new Subject("Kinematics Dynamics of Machines"));
+        mpaeSubs.add(new Subject("Mechanics of Solids"));
+        mpaeSubs.add(new Subject("Transducers and Measurements"));
+        mpaeSubs.add(new Subject("Manufacturing Processes II"));
+        mpaeSubs.add(new Subject("Science of Materials"));
+        mpaeSubs.add(new Subject("Machine Tools, CNC and Automation"));
+        mpaeSubs.add(new Subject("Metrology and Quality Control"));
+        mpaeSubs.add(new Subject("Tool Design"));
+        mpaeSubs.add(new Subject("Operations Research"));
+        mpaeSubs.add(new Subject("Geometric Modeling"));
+        mpaeSubs.add(new Subject("Applied Plasticity"));
+        mpaeSubs.add(new Subject("Mechanical Design"));
+        mpaeSubs.add(new Subject("Product Design"));
+        mpaeSubs.add(new Subject("Modern Methods of Manufacturing"));
+
+
+        btSubs.add(new Subject("Mathematics I"));
+        btSubs.add(new Subject("Computer Programming"));
+        btSubs.add(new Subject("Electrical and Electronics Engineering"));
+        btSubs.add(new Subject("Physics"));
+        btSubs.add(new Subject("English I"));
+
+        btSubs.add(new Subject("Mathematics II"));
+        btSubs.add(new Subject("English II"));
+        btSubs.add(new Subject("Physics of Material"));
+        btSubs.add(new Subject("Advance Chemistry"));
+        btSubs.add(new Subject("Biostatistics"));
+        btSubs.add(new Subject("Introduction to Biotechnology"));
+        btSubs.add(new Subject("Biochemistry"));
+        btSubs.add(new Subject("Microbiology"));
+        btSubs.add(new Subject("Cell Biology"));
+        btSubs.add(new Subject("Data Structure And Algorithms"));
+        btSubs.add(new Subject("Chemical Enggineering Principles"));
+        btSubs.add(new Subject("Methods & Instrumentation In Biotechnology"));
+        btSubs.add(new Subject("Molecular Biology"));
+        btSubs.add(new Subject("Immunology"));
+        btSubs.add(new Subject("Database Management ystems"));
+        btSubs.add(new Subject("Genetics"));
+        btSubs.add(new Subject("Recombinant DNA Technology"));
+        btSubs.add(new Subject("Structural Biology"));
+        btSubs.add(new Subject("Fundamentals of Biochemical Engg."));
+        btSubs.add(new Subject("Enzymology"));
+        btSubs.add(new Subject("Bioprocess Technology"));
+        btSubs.add(new Subject("Plant and Animal Technology"));
+        btSubs.add(new Subject("Downstream Processing"));
     }
 }

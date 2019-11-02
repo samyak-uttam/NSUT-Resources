@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="12dp">
 
     <ImageView
         android:id="@+id/branch_image"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_gravity="center"
         android:layout_marginRight="8dp"
         tools:src="@drawable/coe" />
