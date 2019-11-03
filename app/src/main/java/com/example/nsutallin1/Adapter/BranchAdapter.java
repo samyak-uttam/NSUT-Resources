@@ -30,8 +30,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     public void toggleSelection(int pos) {
         if (selectedItems.get(pos, false)) {
             selectedItems.delete(pos);
-        }
-        else {
+        } else {
             selectedItems.put(pos, true);
         }
         notifyItemChanged(pos);
@@ -55,10 +54,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         return items;
     }
 
-
-
-
-    public BranchAdapter( ArrayList<Data> branches,ListItemClickListener listener) {
+    public BranchAdapter(ArrayList<Data> branches, ListItemClickListener listener) {
         mOnClickListener = listener;
         this.branches = branches;
     }
@@ -79,8 +75,6 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
         holder.brachName.setText(data.getName());
         holder.branchImage.setImageResource(data.getImageResID());
-
-
     }
 
     @Override
@@ -88,9 +82,10 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         return branches.size();
     }
 
-    public class BranchViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
+    public class BranchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView brachName;
         ImageView branchImage;
+
         public BranchViewHolder(@NonNull View itemView) {
             super(itemView);
 

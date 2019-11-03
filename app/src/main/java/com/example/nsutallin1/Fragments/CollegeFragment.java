@@ -7,16 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -72,7 +68,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
         years = new ArrayList<>();
         data = new ArrayList<>();
 
-
+        branches.add(new Data("1st SEM", R.drawable.one));
         branches.add(new Data("ECE", R.drawable.ece));
         branches.add(new Data("COE", R.drawable.coe));
         branches.add(new Data("IT", R.drawable.it));

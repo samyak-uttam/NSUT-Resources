@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1019287952683",
+    "firebase_url": "https://nsut-all-in-1-774fd.firebaseio.com",
+    "project_id": "nsut-all-in-1-774fd",
+    "storage_bucket": "nsut-all-in-1-774fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019287952683:android:5449ad38d3ab08145eb96e",
+        "android_client_info": {
+          "package_name": "com.example.nsutallin1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019287952683-0n5vr1rjk20n95p9rlbu4ralul1g03qt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nsutallin1",
+            "certificate_hash": "f7609ae779682ce7c6c8a36d224496e9c6b5d37a"
+          }
+        },
+        {
+          "client_id": "1019287952683-qeg8p3us97h4vr2fv1m950n3cjf9irjp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwz6C4VpyEEi7xqmTNxGpAJuSHJB1ALbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019287952683-qeg8p3us97h4vr2fv1m950n3cjf9irjp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
