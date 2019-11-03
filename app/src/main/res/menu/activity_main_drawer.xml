@@ -18,7 +18,7 @@
 
         <item
             android:id="@+id/nav_praciticals"
-            android:icon="@drawable/notes_black"
+            android:icon="@drawable/practical"
             android:title="Practicals" />
     </group>
 
