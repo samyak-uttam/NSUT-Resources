@@ -23,7 +23,7 @@ public class onNavItemsSelected extends AppCompatActivity {
     private SubjectAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private static ArrayList<Subject> coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs;
+    private static ArrayList<Subject> yearOneSubs, coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         setContentView(R.layout.on_nav_items_selected);
 
+        yearOneSubs = new ArrayList<>();
         coeSubs = new ArrayList<>();
         itSubs = new ArrayList<>();
         eceSubs = new ArrayList<>();
@@ -50,38 +51,46 @@ public class onNavItemsSelected extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.rv_notes);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        String data[] = new String[2];
+        data[0] = selectedBranch;
+        data[1] = navSelection;
+
         switch (selectedBranch) {
+            case "1st SEM":
+                mAdapter = new SubjectAdapter(yearOneSubs, 0, data,this);
+                break;
             case "COE":
-                mAdapter = new SubjectAdapter(coeSubs,1,this);
+                mAdapter = new SubjectAdapter(coeSubs,1, data,this);
                 break;
             case "IT":
-                mAdapter = new SubjectAdapter(itSubs,2,this);
+                mAdapter = new SubjectAdapter(itSubs,2, data,this);
                 break;
             case "ECE":
-                mAdapter = new SubjectAdapter(eceSubs,3,this);
+                mAdapter = new SubjectAdapter(eceSubs,3, data,this);
                 break;
             case "ICE":
-                mAdapter = new SubjectAdapter(iceSubs,4,this);
+                mAdapter = new SubjectAdapter(iceSubs,4, data,this);
                 break;
             case "ME":
-                mAdapter = new SubjectAdapter(meSubs,5,this);
+                mAdapter = new SubjectAdapter(meSubs,5, data,this);
                 break;
             case "MPAE":
-                mAdapter = new SubjectAdapter(mpaeSubs,6,this);
+                mAdapter = new SubjectAdapter(mpaeSubs,6, data,this);
                 break;
             case "BT":
-                mAdapter = new SubjectAdapter(btSubs,7,this);
+                mAdapter = new SubjectAdapter(btSubs,7, data,this);
                 break;
         }
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void assignSubjects() {
-        eceSubs.add(new Subject("Mathematics I"));
-        eceSubs.add(new Subject("Computer Programming"));
-        eceSubs.add(new Subject("Electrical and Electronics Engineering"));
-        eceSubs.add(new Subject("Physics"));
-        eceSubs.add(new Subject("English I"));
+
+        yearOneSubs.add(new Subject("Mathematics I"));
+        yearOneSubs.add(new Subject("Computer Programming"));
+        yearOneSubs.add(new Subject("Electrical and Electronics Engineering"));
+        yearOneSubs.add(new Subject("Physics"));
+        yearOneSubs.add(new Subject("English I"));
 
         eceSubs.add(new Subject("Mathematics II"));
         eceSubs.add(new Subject("English II"));
@@ -89,13 +98,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         eceSubs.add(new Subject("Electronics I"));
         eceSubs.add(new Subject("Digital Circuits and Systems"));
         eceSubs.add(new Subject("Electrical Machines"));
-
         eceSubs.add(new Subject("Mathematics III"));
         eceSubs.add(new Subject("Electronics II"));
         eceSubs.add(new Subject("Network Analysis and Synthesis"));
         eceSubs.add(new Subject("Signal and Systems"));
         eceSubs.add(new Subject("Electromagnetic Field Theory"));
-
         eceSubs.add(new Subject("Linear Integrated Circuits"));
         eceSubs.add(new Subject("Data Structures"));
         eceSubs.add(new Subject("Transmission lines and Waveguides"));
@@ -109,12 +116,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         eceSubs.add(new Subject("VLSI"));
         eceSubs.add(new Subject("Computer Networks"));
 
-
-        coeSubs.add(new Subject("Mathematics I"));
-        coeSubs.add(new Subject("Computer Programming"));
-        coeSubs.add(new Subject("Electrical and Electronics Engineering"));
-        coeSubs.add(new Subject("Physics"));
-        coeSubs.add(new Subject("English I"));
 
         coeSubs.add(new Subject("Mathematics II"));
         coeSubs.add(new Subject("English II"));
@@ -141,19 +142,12 @@ public class onNavItemsSelected extends AppCompatActivity {
         coeSubs.add(new Subject("Open Source Technologies"));
 
 
-        itSubs.add(new Subject("Mathematics I"));
-        itSubs.add(new Subject("Computer Programming"));
-        itSubs.add(new Subject("Electrical and Electronics Engineering"));
-        itSubs.add(new Subject("Physics"));
-        itSubs.add(new Subject("English I"));
-
         itSubs.add(new Subject("Mathematics II"));
         itSubs.add(new Subject("English II"));
         itSubs.add(new Subject("Chemistry"));
         itSubs.add(new Subject("Object Oriented Techniques"));
         itSubs.add(new Subject("Analog and Digital Communication"));
         itSubs.add(new Subject("Discrete Structure"));
-
         itSubs.add(new Subject("Mathematics III"));
         itSubs.add(new Subject("Data Structure and Algorithm"));
         itSubs.add(new Subject("Digital Circuits and Systems"));
@@ -172,11 +166,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         itSubs.add(new Subject("Compiler and Translator Design"));
         itSubs.add(new Subject("Modeling and Simulation"));
 
-        iceSubs.add(new Subject("Mathematics I"));
-        iceSubs.add(new Subject("Computer Programming"));
-        iceSubs.add(new Subject("Electrical and Electronics Engineering"));
-        iceSubs.add(new Subject("Physics"));
-        iceSubs.add(new Subject("English I"));
 
         iceSubs.add(new Subject("Mathematics II"));
         iceSubs.add(new Subject("English II"));
@@ -202,12 +191,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         iceSubs.add(new Subject("Robotics"));
         iceSubs.add(new Subject("Digital Signal Processing"));
 
-
-        meSubs.add(new Subject("Mathematics I"));
-        meSubs.add(new Subject("Computer Programming"));
-        meSubs.add(new Subject("Electrical and Electronics Engineering"));
-        meSubs.add(new Subject("Physics"));
-        meSubs.add(new Subject("English I"));
 
         meSubs.add(new Subject("Mathematics II"));
         meSubs.add(new Subject("English II"));
@@ -236,12 +219,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         meSubs.add(new Subject("Product Design"));
 
 
-        mpaeSubs.add(new Subject("Mathematics I"));
-        mpaeSubs.add(new Subject("Computer Programming"));
-        mpaeSubs.add(new Subject("Electrical and Electronics Engineering"));
-        mpaeSubs.add(new Subject("Physics"));
-        mpaeSubs.add(new Subject("English I"));
-
         mpaeSubs.add(new Subject("Mathematics II"));
         mpaeSubs.add(new Subject("English II"));
         mpaeSubs.add(new Subject("Chemistry"));
@@ -268,12 +245,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         mpaeSubs.add(new Subject("Product Design"));
         mpaeSubs.add(new Subject("Modern Methods of Manufacturing"));
 
-
-        btSubs.add(new Subject("Mathematics I"));
-        btSubs.add(new Subject("Computer Programming"));
-        btSubs.add(new Subject("Electrical and Electronics Engineering"));
-        btSubs.add(new Subject("Physics"));
-        btSubs.add(new Subject("English I"));
 
         btSubs.add(new Subject("Mathematics II"));
         btSubs.add(new Subject("English II"));

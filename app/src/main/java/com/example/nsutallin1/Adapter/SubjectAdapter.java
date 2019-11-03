@@ -1,31 +1,38 @@
 package com.example.nsutallin1.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nsutallin1.Activity.DataResultActivity;
 import com.example.nsutallin1.Class.Subject;
 import com.example.nsutallin1.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
 
     private ArrayList<Subject> mSubjects;
     private int imageCode;
     private Context mContext;
+    private Map<String, String> map;
+    private String[] data;
 
-    public SubjectAdapter(ArrayList<Subject> mSubjects, int imageCode, Context mContext) {
+    public SubjectAdapter(ArrayList<Subject> mSubjects, int imageCode, String[] data, Context mContext) {
         this.mSubjects = mSubjects;
         this.imageCode = imageCode;
+        this.data = data;
         this.mContext = mContext;
+        map = new HashMap<>();
     }
 
     @NonNull
@@ -40,6 +47,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         final Subject subject = mSubjects.get(position);
 
         switch (imageCode) {
+            case 0:
+                holder.branchImage.setImageResource(R.drawable.one);
+                break;
             case 1:
                 holder.branchImage.setImageResource(R.drawable.coe);
                 break;
@@ -68,7 +78,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, subject.getSubjectName() + " clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DataResultActivity.class);
+                intent.putExtra("branchName", data[0]);
+                intent.putExtra("dataType", data[1]);
+                intent.putExtra("subName", subject.getSubjectName());
+                mContext.startActivity(intent);
             }
         });
     }
