@@ -2,12 +2,16 @@ package com.example.nsutallin1.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ActivityNotFoundException;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +21,12 @@ import com.example.nsutallin1.Adapter.DataAdapter;
 import com.example.nsutallin1.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +37,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private DataAdapter mAdapter;
     private List<StorageReference> files;
     private ArrayList<String> data;
+    private static int REQUEST_PERMISSION = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +83,48 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     }
 
     @Override
-    public void OnDataItemClick(final int clickedItemIndex) {
+    public void OnDataItemClick(final int index) {
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(files.get(clickedItemIndex).getDownloadUrl().toString()), "application/pdf");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        Intent newIntent = Intent.createChooser(intent, "Open File");
-        try {
-            startActivity(newIntent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
         }
+
+        final File appDir = getExternalFilesDir(null);
+        File listFile[] = appDir.listFiles();
+        if(listFile != null && listFile.length > 0) {
+            int check = 0;
+            for(int i = 0; i < listFile.length; i++) {
+                if(listFile[i].getName().equals(data.get(index) + ".pdf")) {
+                    check = 1;
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(FileProvider.getUriForFile(this,
+                            this.getApplicationContext().getPackageName() + ".provider", listFile[i]), "application/pdf");
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivity(intent);
+                }
+                if(check == 0) {
+                    DownloadFile(index);
+                }
+            }
+        } else {
+            DownloadFile(index);
+        }
+    }
+
+    private void DownloadFile(int index) {
+        final File localFile = new File(getExternalFilesDir(null), data.get(index) + ".pdf");
+
+        files.get(index).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(DataResultActivity.this, "File downloaded.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

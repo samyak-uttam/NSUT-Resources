@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +42,7 @@ public class AboutDevelopersFragment extends Fragment implements View.OnClickLis
         ankitFacebookImageView = rootView.findViewById(R.id.ankit_facebook);
         ankitInstagramImageView = rootView.findViewById(R.id.ankit_instagram);
 
-        contributeCardView=rootView.findViewById(R.id.contribue_card);
+        contributeCardView = rootView.findViewById(R.id.contribue_card);
 
         samyakLinkdinImageView.setOnClickListener(this);
         samyakFacebookImageView.setOnClickListener(this);
@@ -87,7 +86,6 @@ public class AboutDevelopersFragment extends Fragment implements View.OnClickLis
                 break;
 
 
-
             case R.id.ankit_linkdin:
                 String linkdinUrlA = "https://www.linkedin.com/in/ankit-kumar-mishra-68873b17a/";
                 Intent linkdinintentA = new Intent(Intent.ACTION_VIEW);
@@ -112,7 +110,7 @@ public class AboutDevelopersFragment extends Fragment implements View.OnClickLis
 
             case R.id.contribue_card:
                 Log.i("Send email", "");
-                String[] TO = {"ankit.pro.132000@gmail.com","samyakuttam@gmail.com"};
+                String[] TO = {"ankit.pro.132000@gmail.com", "samyakuttam@gmail.com"};
                 String[] CC = {""};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
@@ -123,18 +121,11 @@ public class AboutDevelopersFragment extends Fragment implements View.OnClickLis
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi, I would like to add the following resources:");
                 emailIntent.setType("message/rfc822");
 
-
-                try {
-                    startActivity(Intent.createChooser(emailIntent, "Send Resources"));
-                    Log.i("Finished sending email", "done");
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(getContext(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
-                }
+                startActivity(emailIntent);
                 break;
         }
 
-        }
-
-
     }
 
+
+}

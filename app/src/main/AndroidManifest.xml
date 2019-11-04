@@ -14,12 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="com.example.nsutallin1.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:readPermission="com.example.nsutallin1.fileprovider.READ">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity android:name=".Activity.StudentLoginActivity" />
 
-        <activity android:name=".Activity.DataResultActivity"/>
+        <activity android:name=".Activity.DataResultActivity" />
 
-        <activity
-            android:name=".Activity.NoticesActivity" />
+        <activity android:name=".Activity.NoticesActivity" />
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
@@ -32,7 +42,7 @@
         </activity>
         <activity
             android:name=".Activity.onNavItemsSelected"
-            android:parentActivityName=".Activity.MainActivity"/>
+            android:parentActivityName=".Activity.MainActivity" />
     </application>
 
 </manifest>

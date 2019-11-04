@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.LoaderManager;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -32,6 +35,8 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
     private NoticeAdapter mNoticeAdapter;
     private ArrayList<Notice> notices;
 
+
+    private static int REQUEST_PERMISSION = 1;
     private static final int NOTICE_LOADER_ID = 1;
 
     private TextView mEmptyStateTextView;
@@ -55,7 +60,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
         mEmptyStateTextView.setVisibility(View.VISIBLE);
 
         ConnectivityManager connMgr =
-                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -71,8 +76,10 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
 
-        String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions((Activity) this, PERMISSIONS, 112 );
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
+        }
     }
 
     @Override
@@ -89,7 +96,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
     @Override
     public void onLoadFinished(android.content.Loader<ArrayList<Notice>> loader, ArrayList<Notice> data) {
         notices.clear();
-        if(data != null && !data.isEmpty()) {
+        if (data != null && !data.isEmpty()) {
             notices.addAll(data);
             mNoticeAdapter.notifyDataSetChanged();
             mEmptyStateTextView.setVisibility(View.GONE);
