@@ -17,16 +17,8 @@
 
         <activity android:name=".Activity.StudentLoginActivity" />
         <activity android:name=".Activity.DataResultActivity" />
-<<<<<<< HEAD
 
-
-        <activity
-            android:name=".Activity.NoticesActivity" />
-
-
-=======
         <activity android:name=".Activity.NoticesActivity" />
->>>>>>> a267768e83e98330261197a0c2e26b347d46d5ee
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
