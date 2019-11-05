@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.nsutallin1.Activity.onNavItemsSelected;
@@ -23,8 +22,6 @@ import com.example.nsutallin1.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static androidx.recyclerview.widget.LinearLayoutManager.*;
 
@@ -37,15 +34,10 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
     private ArrayList<Data> branches, years, data;
     public static final int NUM_COLUMNS = 2;
-    private Map<String, String> map;
-    private String selectedBranch = null, selectedData = null;
-    private int selectedSem = -1;
-    LinearLayout continueLayout;
+    private String selectedBranch = null, navSelection = "books";
 
     private BranchAdapter branchAdapter;
     private RecyclerView RecyclerView_Branch;
-
-    String navSelection = null;
 
     BottomNavigationView bottomNavigationView;
 
@@ -130,53 +122,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navListner);
 
-
-        map = new HashMap<>();
-
-        map.put("ECE1Books", "16kCUSPIblbCDRyiIE__sqHjHsr1O_LWn");
-        map.put("ECE1Notes", "1kWCs1rdKoWoXGdVD-0XCyMmJQR4QaacF");
-        map.put("ECE1Practicals", "1nzx3ZuGQSnM-v-mA7wANEUYnOSBfhc7s");
-        map.put("ECE2Books", "1C6KBeOHnK3jK_VX0qiH98zbcOjVdAA7Z");
-        map.put("ECE2Notes", "1BMnsQDY6oydKc34JxUlvRU3rzkdWRhKu");
-        map.put("ECE2Papers", "1-bbTx-Gnb9mIiHUC2FTH3rUo4rv-E6Iv");
-        map.put("ECE2Practicals", "16KsqtV6LupiBecqClrx75fCQmLXXJP8a");
-        map.put("ECE3Books", "15_PcxLYl5ivKpn68E4Av8IGTZMhNKBZc");
-        map.put("ECE3Notes", "170-u1m7X2HeO3iswap3BosQ1DNCzIICT");
-        map.put("ECE3Papers", "1ggggAaffbpIMkPhPrVrngzqAPJndk0uD");
-        map.put("ECE3Practicals", "1J8w2MGWfibzGk-8MqnfVF-cn0hGdTt5D");
-
         return rootView;
-
-        /*continueLayout = findViewById(R.id.continue_button);
-
-        oddSem = findViewById(R.id.odd_sem);
-        evenSem = findViewById(R.id.even_sem);
-
-        oddSem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(oddSem.isChecked() && evenSem.isChecked())
-                    evenSem.setChecked(false);
-            }
-        });
-
-        evenSem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(oddSem.isChecked() && evenSem.isChecked())
-                    oddSem.setChecked(false);
-            }
-        });
-
-        continueLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData();
-            }
-        });
-
-         */
-
     }
 
     @Override
@@ -191,61 +137,4 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
             Toast.makeText(getContext(), "Please Select Something First!", Toast.LENGTH_SHORT).show();
         }
     }
-
-   /* @Override
-    public void onYearItemClick(int clickedItemIndex)
-    {
-        int year = Integer.valueOf(years.get(clickedItemIndex).getName());
-        if (year == 1) {
-            selectedSem = 0;
-
-        } else if (year == 2) {
-            selectedSem = 2;
-
-        } else if (year == 3)
-        {
-            selectedSem = 4;
-
-        } else if (year == 4) {
-            selectedSem = 6;
-        }
-    }
-
-
-    private void getData() {
-
-        if(selectedBranch == null) {
-            Toast.makeText(getContext(), "Please Select a branch", Toast.LENGTH_SHORT).show();
-            return;
-        } else if(selectedSem == -1) {
-            Toast.makeText(getContext(), "Please Select a year", Toast.LENGTH_SHORT).show();
-            return;
-        } else if(!oddSem.isChecked() && !evenSem.isChecked()) {
-            Toast.makeText(getContext(), "Please Select a semester", Toast.LENGTH_SHORT).show();
-            return;
-        } else if(selectedData == null) {
-            Toast.makeText(getContext(), "Please Select a data", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(oddSem.isChecked()) {
-            selectedSem += 1;
-        } else {
-            selectedSem += 2;
-        }
-
-        String field = selectedBranch + selectedSem + selectedData;
-
-        if(map.containsKey(field)) {
-            String folderID = map.get(field);
-
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://drive.google.com/drive/folders/" + folderID));
-            startActivity(intent);
-        } else {
-            //Toast.makeText(this, "This feature will be included in our next update.", Toast.LENGTH_SHORT).show();
-        }
-
-
-    }*/
 }
