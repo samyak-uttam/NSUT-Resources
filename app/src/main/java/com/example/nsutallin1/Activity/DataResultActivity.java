@@ -4,15 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
@@ -97,33 +97,50 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             for(int i = 0; i < listFile.length; i++) {
                 if(listFile[i].getName().equals(data.get(index) + ".pdf")) {
                     check = 1;
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(FileProvider.getUriForFile(this,
-                            this.getApplicationContext().getPackageName() + ".provider", listFile[i]), "application/pdf");
-                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    Intent intent = new Intent(this, PdfActivity.class);
+                    intent.putExtra("index", i);
                     startActivity(intent);
                 }
-                if(check == 0) {
-                    DownloadFile(index);
-                }
+            }
+            if(check == 0) {
+                DownloadFile(index);
             }
         } else {
             DownloadFile(index);
         }
     }
 
-    private void DownloadFile(int index) {
+    private void DownloadFile(final int index) {
         final File localFile = new File(getExternalFilesDir(null), data.get(index) + ".pdf");
+
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("loading");
+        pd.show();
 
         files.get(index).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(DataResultActivity.this, "File downloaded.", Toast.LENGTH_SHORT).show();
+                File listFile[] = getExternalFilesDir(null).listFiles();
+                for(int i = 0; i < listFile.length; i++) {
+                    if(listFile[i].getName().equals(data.get(index) + ".pdf")) {
+                        Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
+                        intent.putExtra("index", i);
+                        startActivity(intent);
+                    }
+                }
+                pd.cancel();
+            }
+        }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull FileDownloadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                pd.setMessage((int) progress + "%...");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
+                pd.cancel();
             }
         });
     }

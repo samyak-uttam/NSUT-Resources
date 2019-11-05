@@ -13,27 +13,20 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <provider
-            android:name=".GenericFileProvider"
-            android:authorities="com.example.nsutallin1.provider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:readPermission="com.example.nsutallin1.fileprovider.READ">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
+        <activity android:name=".Activity.PdfActivity"></activity>
 
         <activity android:name=".Activity.StudentLoginActivity" />
-
         <activity android:name=".Activity.DataResultActivity" />
+<<<<<<< HEAD
 
 
         <activity
             android:name=".Activity.NoticesActivity" />
 
 
+=======
+        <activity android:name=".Activity.NoticesActivity" />
+>>>>>>> a267768e83e98330261197a0c2e26b347d46d5ee
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
