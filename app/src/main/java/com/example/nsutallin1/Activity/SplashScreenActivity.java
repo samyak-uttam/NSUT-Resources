@@ -13,36 +13,23 @@ import com.example.nsutallin1.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
+    private static final long SPLASH_DISPLAY_LENGTH = 1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
 
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("firstRun", true);
-        editor.commit();
-
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        boolean firstRun = settings.getBoolean("firstRun", true);
-        if (!firstRun) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-            Log.d("TAG1", "firstRun(false): " + Boolean.valueOf(firstRun).toString());
-        }
-        else {
-            Log.d("TAG1", "firstRun(true): " + Boolean.valueOf(firstRun).toString());
-        }
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                /* Create an Intent that will start the Menu-Activity. */
+                Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                SplashScreenActivity.this.startActivity(mainIntent);
+                SplashScreenActivity.this.finish();
+            }
+        }, SPLASH_DISPLAY_LENGTH);
     }
 }

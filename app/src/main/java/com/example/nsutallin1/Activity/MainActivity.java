@@ -27,14 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("firstRun", false);
-        editor.commit();
-
-        boolean firstRun = settings.getBoolean("firstRun", true);
-        Log.d("TAG1", "firstRun: " + Boolean.valueOf(firstRun).toString());
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

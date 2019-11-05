@@ -94,7 +94,7 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         eceSubs.add(new Subject("Mathematics II"));
         eceSubs.add(new Subject("English II"));
-        eceSubs.add(new Subject("Electronic Engineering"));
+        eceSubs.add(new Subject("Electronic Engineering Materials"));
         eceSubs.add(new Subject("Electronics I"));
         eceSubs.add(new Subject("Digital Circuits and Systems"));
         eceSubs.add(new Subject("Electrical Machines"));

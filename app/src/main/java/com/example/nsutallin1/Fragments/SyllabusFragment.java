@@ -49,4 +49,11 @@ public class SyllabusFragment extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onDestroyView() {
+
+        mRecyclerView.setAdapter(null);
+        super.onDestroyView();
+    }
 }

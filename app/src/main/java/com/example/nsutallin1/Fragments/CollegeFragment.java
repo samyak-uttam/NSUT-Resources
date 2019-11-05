@@ -38,9 +38,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
     private ArrayList<Data> branches, years, data;
     public static final int NUM_COLUMNS = 2;
     private Map<String, String> map;
-    private String selectedBranch = null, selectedData = null;
-    private int selectedSem = -1;
-    LinearLayout continueLayout;
+    private String selectedBranch = null;
 
     private BranchAdapter branchAdapter;
     private RecyclerView RecyclerView_Branch;
