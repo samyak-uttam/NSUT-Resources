@@ -40,7 +40,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/samyak" />
+            android:src="@drawable/samyak1" />
 
         <TextView
             android:id="@+id/samyak_name"
@@ -93,7 +93,7 @@
 
         <ImageView
             android:id="@+id/ankit_image"
-            android:layout_width="50dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ankit" />

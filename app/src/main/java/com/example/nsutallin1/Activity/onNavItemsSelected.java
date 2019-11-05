@@ -51,7 +51,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.rv_notes);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        String data[] = new String[2];
+        String[] data = new String[2];
         data[0] = selectedBranch;
         data[1] = navSelection;
 

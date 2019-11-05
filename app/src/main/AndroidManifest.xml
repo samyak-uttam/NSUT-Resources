@@ -20,19 +20,27 @@
 
         <activity
             android:name=".Activity.NoticesActivity" />
+
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
+
+        </activity>
+        <activity
+            android:name=".Activity.onNavItemsSelected"
+            android:parentActivityName=".Activity.MainActivity"/>
+
+        <activity android:name=".Activity.SplashScreenActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".Activity.onNavItemsSelected"
-            android:parentActivityName=".Activity.MainActivity"/>
     </application>
 
 </manifest>

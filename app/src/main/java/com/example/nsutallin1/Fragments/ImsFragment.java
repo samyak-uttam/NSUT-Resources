@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +26,8 @@ public class ImsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_ims, container, false);
 
-        notices = (LinearLayout) rootView.findViewById(R.id.notices_and_circulars);
-        studentLogin = (LinearLayout) rootView.findViewById(R.id.student_login);
+        notices = rootView.findViewById(R.id.notices_and_circulars);
+        studentLogin = rootView.findViewById(R.id.student_login);
 
         notices.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +40,9 @@ public class ImsFragment extends Fragment {
         studentLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), StudentLoginActivity.class);
-                startActivity(intent);
+                Toast.makeText(getContext(),"Working on it will be added in the next update!",Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getActivity(), StudentLoginActivity.class);
+                //startActivity(intent);
             }
         });
 

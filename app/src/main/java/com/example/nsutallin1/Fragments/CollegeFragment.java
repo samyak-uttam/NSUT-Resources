@@ -45,7 +45,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
     private BranchAdapter branchAdapter;
     private RecyclerView RecyclerView_Branch;
 
-    String navSelection = null;
+    String navSelection="books";
 
     BottomNavigationView bottomNavigationView;
 

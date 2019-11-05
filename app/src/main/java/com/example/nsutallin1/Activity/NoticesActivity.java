@@ -72,7 +72,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
         }
 
         String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions((Activity) this, PERMISSIONS, 112 );
+        ActivityCompat.requestPermissions(this, PERMISSIONS, 112 );
     }
 
     @Override

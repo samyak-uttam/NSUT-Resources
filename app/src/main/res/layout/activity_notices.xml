@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        tools:context=".Activity.NoticesActivity">
+        tools:context=".Activity.NoticesActivity"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/white"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarSize="5dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
