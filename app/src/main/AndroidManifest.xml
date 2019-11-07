@@ -24,8 +24,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop">
-
         </activity>
+
         <activity
             android:name=".Activity.onNavItemsSelected"
             android:parentActivityName=".Activity.MainActivity"/>
@@ -39,6 +39,17 @@
             </intent-filter>
 
         </activity>
+
+
+        <activity android:name=".Activity.AboutDevelopersActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity android:name=".Activity.SyllabusActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>
