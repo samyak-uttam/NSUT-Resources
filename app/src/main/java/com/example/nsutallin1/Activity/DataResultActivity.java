@@ -134,7 +134,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             @Override
             public void onProgress(@NonNull FileDownloadTask.TaskSnapshot taskSnapshot) {
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                pd.setMessage((int) progress + "%...");
+                pd.setMessage((int) progress + "%");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

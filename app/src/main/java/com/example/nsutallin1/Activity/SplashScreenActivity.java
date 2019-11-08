@@ -13,7 +13,7 @@ import com.example.nsutallin1.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static final long SPLASH_DISPLAY_LENGTH = 1000;
+    private static final long SPLASH_DISPLAY_LENGTH = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,4 +32,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
+
+
 }
