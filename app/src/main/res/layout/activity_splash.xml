@@ -3,27 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue">
+    android:background="@drawable/splashbackground2">
 
-
-    <TextView
-        android:id="@+id/application_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:textFontWeight="600"
-        android:textSize="50sp"
-        android:layout_marginTop="40dp"
-        android:text="NSUT ALL IN 1"
-        android:textColor="#FFFFFF"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:layout_below="@id/application_name"
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:contentDescription="App icon" />
 
 </RelativeLayout>
