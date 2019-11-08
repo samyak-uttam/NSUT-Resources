@@ -54,7 +54,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PdfActivity.class);
-                intent.putExtra("index", position);
+                intent.putExtra("name", mSavedData.get(position).getDataName());
                 mContext.startActivity(intent);
             }
         });

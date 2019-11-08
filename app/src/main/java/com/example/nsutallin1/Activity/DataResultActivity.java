@@ -107,7 +107,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
                     check = 1;
                     Intent intent = new Intent(this, PdfActivity.class);
-                    intent.putExtra("index", i);
+                    intent.putExtra("name", data.get(i));
                     startActivity(intent);
                 }
             }
@@ -134,7 +134,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 for(int i = 0; i < listFile.length; i++) {
                     if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
                         Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
-                        intent.putExtra("index", i);
+                        intent.putExtra("name", data.get(i));
                         startActivity(intent);
                     }
                 }

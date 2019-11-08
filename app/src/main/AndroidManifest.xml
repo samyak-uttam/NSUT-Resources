@@ -13,9 +13,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.PdfActivity"></activity>
+        <activity android:name=".Activity.PdfActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activity.StudentLoginActivity" />
-        <activity android:name=".Activity.DataResultActivity" />
+        <activity
+            android:name=".Activity.DataResultActivity"/>
         <activity android:name=".Activity.NoticesActivity" />
         <activity
             android:name=".Activity.MainActivity"
@@ -25,8 +27,9 @@
 
         <activity
             android:name=".Activity.onNavItemsSelected"
-            android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.SplashScreenActivity">
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activity.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,12 +40,12 @@
 
         <activity android:name=".Activity.AboutDevelopersActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
 
         <activity android:name=".Activity.SyllabusActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
     </application>
 

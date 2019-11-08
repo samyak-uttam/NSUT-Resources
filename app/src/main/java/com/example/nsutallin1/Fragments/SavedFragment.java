@@ -16,6 +16,8 @@ import com.example.nsutallin1.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SavedFragment extends Fragment {
 
@@ -56,6 +58,13 @@ public class SavedFragment extends Fragment {
                 mSavedData.add(new SavedData(dataName, dataType));
             }
         }
+
+        Collections.sort(mSavedData, new Comparator<SavedData>() {
+            @Override
+            public int compare(SavedData o1, SavedData o2) {
+                return o1.getDataType().compareTo(o2.getDataType());
+            }
+        });
     }
 
     @Override

@@ -37,11 +37,7 @@ public class AboutDevelopersActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_developers);
 
-
-        Toolbar toolbar = findViewById(R.id.toolbar_developers);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("ABOUT US");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         samyakLinkdinImageView = findViewById(R.id.samyak_linkdin);
         samyakFacebookImageView = findViewById(R.id.samyak_facebook);
