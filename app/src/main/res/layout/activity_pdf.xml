@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.pdfview.PDFView
-    android:id="@+id/pdf_view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PdfActivity"/>
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="6dp">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdf_viewer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

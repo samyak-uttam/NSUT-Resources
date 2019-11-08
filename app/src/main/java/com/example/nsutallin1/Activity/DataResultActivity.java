@@ -27,8 +27,19 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 
 public class DataResultActivity extends AppCompatActivity implements DataAdapter.ListItemClickListener {
 
@@ -143,5 +154,41 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 pd.cancel();
             }
         });
+    }
+
+    private static void encrypt() throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+        FileInputStream fis = new FileInputStream("data/cleartext");
+        FileOutputStream fos = new FileOutputStream("data/encrypted");
+
+        SecretKeySpec sks = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, sks);
+        CipherOutputStream cos = new CipherOutputStream(fos, cipher);
+        int b;
+        byte[] d = new byte[8];
+        while((b = fis.read(d)) != -1) {
+            cos.write(d, 0, b);
+        }
+        cos.flush();
+        cos.close();
+        fis.close();
+    }
+
+    private static void decrypt() throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+        FileInputStream fis = new FileInputStream("data/encrypted");
+
+        FileOutputStream fos = new FileOutputStream("data/decrypted");
+        SecretKeySpec sks = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, sks);
+        CipherInputStream cis = new CipherInputStream(fis, cipher);
+        int b;
+        byte[] d = new byte[8];
+        while((b = cis.read(d)) != -1) {
+            fos.write(d, 0, b);
+        }
+        fos.flush();
+        fos.close();
+        cis.close();
     }
 }
