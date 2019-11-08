@@ -16,26 +16,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:padding="4dp"
             android:background="@color/white">
 
             <ImageView
-                android:id="@+id/branch_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/data_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="8dp"
-                android:background="#e8e8e8"
                 android:scaleType="fitXY"
-                tools:src="@drawable/syllabus" />
+                tools:src="@drawable/book"/>
 
             <TextView
-                android:id="@+id/branch_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/data_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:text="ECE" />
+                android:textSize="24sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                tools:text="Let Us C" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 </LinearLayout>

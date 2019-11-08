@@ -1,4 +1,4 @@
-package com.example.nsutallin1.Fragments;
+package com.example.nsutallin1.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,39 +11,48 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.nsutallin1.R;
 
-public class AboutDevelopersFragment extends Fragment implements View.OnClickListener {
+public class AboutDevelopersActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    ImageView samyakLinkdinImageView;
-    ImageView samyakFacebookImageView;
-    ImageView samyakInstagramImageView;
+    private ImageView samyakLinkdinImageView;
+    private ImageView samyakFacebookImageView;
+    private ImageView samyakInstagramImageView;
 
-    ImageView ankitLinkdinImageView;
-    ImageView ankitFacebookImageView;
-    ImageView ankitInstagramImageView;
+    private ImageView ankitLinkdinImageView;
+    private ImageView ankitFacebookImageView;
+    private ImageView ankitInstagramImageView;
 
     private CardView contributeCardView;
 
 
-    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.about_developers);
 
-        View rootView = inflater.inflate(R.layout.about_developers, container, false);
-        samyakLinkdinImageView = rootView.findViewById(R.id.samyak_linkdin);
-        samyakFacebookImageView = rootView.findViewById(R.id.samyak_facebook);
-        samyakInstagramImageView = rootView.findViewById(R.id.samyak_instagram);
 
-        ankitLinkdinImageView = rootView.findViewById(R.id.ankit_linkdin);
-        ankitFacebookImageView = rootView.findViewById(R.id.ankit_facebook);
-        ankitInstagramImageView = rootView.findViewById(R.id.ankit_instagram);
+        Toolbar toolbar = findViewById(R.id.toolbar_developers);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("ABOUT US");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        contributeCardView = rootView.findViewById(R.id.contribue_card);
+        samyakLinkdinImageView = findViewById(R.id.samyak_linkdin);
+        samyakFacebookImageView = findViewById(R.id.samyak_facebook);
+        samyakInstagramImageView = findViewById(R.id.samyak_instagram);
+
+
+        ankitLinkdinImageView = findViewById(R.id.ankit_linkdin);
+        ankitFacebookImageView = findViewById(R.id.ankit_facebook);
+        ankitInstagramImageView = findViewById(R.id.ankit_instagram);
+
+        contributeCardView = findViewById(R.id.contribue_card);
 
         samyakLinkdinImageView.setOnClickListener(this);
         samyakFacebookImageView.setOnClickListener(this);
@@ -54,11 +63,6 @@ public class AboutDevelopersFragment extends Fragment implements View.OnClickLis
         ankitInstagramImageView.setOnClickListener(this);
 
         contributeCardView.setOnClickListener(this);
-
-
-        return rootView;
-
-
     }
 
     @Override

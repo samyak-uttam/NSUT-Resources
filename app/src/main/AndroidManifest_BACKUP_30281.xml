@@ -21,8 +21,14 @@
             android:name=".Activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar"></activity>
+=======
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
+        </activity>
 
+>>>>>>> 6cee1d5ead7b9b3e279bdd5a91260de94d70f697
         <activity
             android:name=".Activity.onNavItemsSelected"
             android:parentActivityName=".Activity.MainActivity" />

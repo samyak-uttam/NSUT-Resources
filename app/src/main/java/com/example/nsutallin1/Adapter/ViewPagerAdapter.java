@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.nsutallin1.Fragments.AboutDevelopersFragment;
 import com.example.nsutallin1.Fragments.CollegeFragment;
 import com.example.nsutallin1.Fragments.ImsFragment;
-import com.example.nsutallin1.Fragments.SyllabusFragment;
+import com.example.nsutallin1.Fragments.SavedFragment;
 
 import java.util.ArrayList;
 
@@ -20,10 +19,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         fragmentsInTabView.add(new CollegeFragment());
-        fragmentsInTabView.add(new SyllabusFragment());
+        fragmentsInTabView.add(new SavedFragment());
         fragmentsInTabView.add(new ImsFragment());
-        fragmentsInTabView.add(new AboutDevelopersFragment());
-
     }
 
     @Override
@@ -44,17 +41,12 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         {
             case 0:
                 return "Home";
-
             case 1:
-                return "Syllabus";
-
+                return "Saved";
             case 2:
                 return "College News";
-
-            case 3:
-                return "About";
-                default:
-                    return "null";
+            default:
+                return "null";
         }
     }
 }

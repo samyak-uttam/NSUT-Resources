@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,7 +61,6 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
         mRecyclerView = findViewById(R.id.data_rec_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.HORIZONTAL));
         files = new ArrayList<>();
         data = new ArrayList<>();
 
@@ -106,7 +104,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         if(listFile != null && listFile.length > 0) {
             int check = 0;
             for(int i = 0; i < listFile.length; i++) {
-                if(listFile[i].getName().equals(data.get(index) + ".pdf")) {
+                if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
                     check = 1;
                     Intent intent = new Intent(this, PdfActivity.class);
                     intent.putExtra("index", i);
@@ -122,7 +120,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     }
 
     private void DownloadFile(final int index) {
-        final File localFile = new File(getExternalFilesDir(null), data.get(index) + ".pdf");
+        File localFile = new File(getExternalFilesDir(null), data.get(index) + "&" + selData + ".pdf");
+        localFile.setReadOnly();
 
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("loading");
@@ -133,7 +132,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 File listFile[] = getExternalFilesDir(null).listFiles();
                 for(int i = 0; i < listFile.length; i++) {
-                    if(listFile[i].getName().equals(data.get(index) + ".pdf")) {
+                    if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
                         Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
                         intent.putExtra("index", i);
                         startActivity(intent);
