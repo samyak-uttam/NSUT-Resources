@@ -9,10 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nsutallin1.Adapter.DataAdapter;
@@ -48,6 +54,9 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private List<StorageReference> files;
     private ArrayList<String> data;
     private static int REQUEST_PERMISSION = 2;
+    private LinearLayout emptyLayout;
+    private ImageView emptyIV;
+    private TextView emptyTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,36 +68,61 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         selData = intent.getStringExtra("dataType");
         subName = intent.getStringExtra("subName");
 
+        emptyLayout = findViewById(R.id.empty_layout);
+        emptyIV = findViewById(R.id.empty_image_view);
+        emptyTV = findViewById(R.id.empty_text_view);
         mRecyclerView = findViewById(R.id.data_rec_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         files = new ArrayList<>();
         data = new ArrayList<>();
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        final StorageReference listRef = storage.getReference().child(selBranch + "/" + subName + "/" + selData);
+        ConnectivityManager connMgr =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        listRef.listAll()
-                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                    @Override
-                    public void onSuccess(ListResult listResult) {
-                        files = listResult.getItems();
-                        for (StorageReference item : listResult.getItems()) {
-                            data.add(item.getName().split(".pdf")[0]);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            final StorageReference listRef = storage.getReference().child(selBranch + "/" + subName + "/" + selData);
+
+            listRef.listAll()
+                    .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                        @Override
+                        public void onSuccess(ListResult listResult) {
+                            files = listResult.getItems();
+                            for (StorageReference item : listResult.getItems()) {
+                                data.add(item.getName().split(".pdf")[0]);
+                            }
+
+                            View loadingIndicator = findViewById(R.id.loading_spinner);
+                            loadingIndicator.setVisibility(View.GONE);
+
+                            if (!data.isEmpty() && data.size() > 0) {
+                                mAdapter = new DataAdapter(data, DataResultActivity.this);
+                                mRecyclerView.setAdapter(mAdapter);
+                                mAdapter.notifyDataSetChanged();
+
+                            } else {
+                                emptyIV.setImageResource(R.drawable.empty);
+                                emptyTV.setText("No material available for this category.");
+                            }
                         }
-                        View loadingIndicator = findViewById(R.id.loading_spinner);
-                        loadingIndicator.setVisibility(View.GONE);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-        mAdapter = new DataAdapter(data, this);
-        mRecyclerView.setAdapter(mAdapter);
+        } else {
+            emptyIV.setImageResource(R.drawable.no_internet);
+            emptyTV.setText(R.string.no_internet_connection);
+            View loadingIndicator = findViewById(R.id.loading_spinner);
+            loadingIndicator.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -101,17 +135,17 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
         final File appDir = getExternalFilesDir(null);
         File listFile[] = appDir.listFiles();
-        if(listFile != null && listFile.length > 0) {
+        if (listFile != null && listFile.length > 0) {
             int check = 0;
-            for(int i = 0; i < listFile.length; i++) {
-                if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
+            for (int i = 0; i < listFile.length; i++) {
+                if (listFile[i].getName().split("&")[0].equals(data.get(index))) {
                     check = 1;
                     Intent intent = new Intent(this, PdfActivity.class);
-                    intent.putExtra("name", data.get(i));
+                    intent.putExtra("name", data.get(index));
                     startActivity(intent);
                 }
             }
-            if(check == 0) {
+            if (check == 0) {
                 DownloadFile(index);
             }
         } else {
@@ -131,10 +165,10 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 File listFile[] = getExternalFilesDir(null).listFiles();
-                for(int i = 0; i < listFile.length; i++) {
-                    if(listFile[i].getName().split("&")[0].equals(data.get(index))) {
+                for (int i = 0; i < listFile.length; i++) {
+                    if (listFile[i].getName().split("&")[0].equals(data.get(index))) {
                         Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
-                        intent.putExtra("name", data.get(i));
+                        intent.putExtra("name", data.get(index));
                         startActivity(intent);
                     }
                 }
@@ -165,7 +199,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         CipherOutputStream cos = new CipherOutputStream(fos, cipher);
         int b;
         byte[] d = new byte[8];
-        while((b = fis.read(d)) != -1) {
+        while ((b = fis.read(d)) != -1) {
             cos.write(d, 0, b);
         }
         cos.flush();
@@ -183,7 +217,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         CipherInputStream cis = new CipherInputStream(fis, cipher);
         int b;
         byte[] d = new byte[8];
-        while((b = cis.read(d)) != -1) {
+        while ((b = cis.read(d)) != -1) {
             fos.write(d, 0, b);
         }
         fos.flush();

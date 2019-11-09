@@ -6,10 +6,10 @@
         <item
             android:id="@+id/nav_books"
             android:title="Books"
-            android:icon="@drawable/books_black"/>
+            android:icon="@drawable/book_black"/>
         <item
             android:id="@+id/nav_papers"
-            android:icon="@drawable/pages_black"
+            android:icon="@drawable/papers_black"
             android:title="Papers"/>
         <item
             android:id="@+id/nav_notes"
@@ -18,7 +18,7 @@
 
         <item
             android:id="@+id/nav_praciticals"
-            android:icon="@drawable/practical"
+            android:icon="@drawable/practicals_black"
             android:title="Practicals" />
     </group>
 

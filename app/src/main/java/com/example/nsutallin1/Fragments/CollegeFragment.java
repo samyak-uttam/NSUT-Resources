@@ -32,7 +32,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
     }
 
 
-    private ArrayList<Data> branches, years, data;
+    private ArrayList<Data> branches;
     public static final int NUM_COLUMNS = 2;
     private String selectedBranch = null;
     private String navSelection = "books";
@@ -57,8 +57,6 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
 
         branches = new ArrayList<>();
-        years = new ArrayList<>();
-        data = new ArrayList<>();
 
         branches.add(new Data("1st SEM", R.drawable.one));
         branches.add(new Data("ECE", R.drawable.ece));
@@ -68,16 +66,6 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
         branches.add(new Data("MPAE", R.drawable.mpae));
         branches.add(new Data("ME", R.drawable.me));
         branches.add(new Data("BT", R.drawable.bt));
-
-        years.add(new Data("1", R.drawable.year_placeholder));
-        years.add(new Data("2", R.drawable.year_placeholder));
-        years.add(new Data("3", R.drawable.year_placeholder));
-        years.add(new Data("4", R.drawable.year_placeholder));
-
-        data.add(new Data("Books", R.drawable.pages_black));
-        data.add(new Data("Notes", R.drawable.notes_black));
-        data.add(new Data("Papers", R.drawable.pages_black));
-        data.add(new Data("Practicals", R.drawable.notes_black));
 
         branchAdapter = new BranchAdapter(branches, this);
 

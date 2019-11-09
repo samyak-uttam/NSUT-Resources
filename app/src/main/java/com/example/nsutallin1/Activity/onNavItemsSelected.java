@@ -1,6 +1,5 @@
 package com.example.nsutallin1.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.nsutallin1.Adapter.SubjectAdapter;
-import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.Class.Subject;
 import com.example.nsutallin1.R;
 
