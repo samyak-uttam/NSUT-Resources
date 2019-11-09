@@ -19,7 +19,10 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
 
     public interface ListItemClickListener {
         void OnSavedItemClick(int clickedItemIndex);
+
+        void onSavedMenuClicked(int clickedItemIndex, View view);
     }
+
     private ArrayList<SavedData> mSavedData;
     private Context mContext;
     final private ListItemClickListener mOnClickListener;
@@ -40,11 +43,11 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
     public void onBindViewHolder(@NonNull SavedViewHolder holder, final int position) {
         String name = mSavedData.get(position).getDataName();
         String type = mSavedData.get(position).getDataType();
-        if(type.equals("books")) {
+        if (type.equals("books")) {
             holder.dataImage.setImageResource(R.drawable.book);
-        } else if(type.equals("notes")) {
+        } else if (type.equals("notes")) {
             holder.dataImage.setImageResource(R.drawable.notes);
-        } else if(type.equals("papers")) {
+        } else if (type.equals("papers")) {
             holder.dataImage.setImageResource(R.drawable.papers);
         } else {
             holder.dataImage.setImageResource(R.drawable.practicals);
@@ -62,13 +65,28 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
 
         TextView dataName;
         ImageView dataImage;
+        ImageView savedMenuIcon;
 
         public SavedViewHolder(@NonNull View itemView) {
             super(itemView);
             dataName = itemView.findViewById(R.id.data_name);
             dataImage = itemView.findViewById(R.id.data_image);
+            savedMenuIcon = itemView.findViewById(R.id.saved_menu);
 
             itemView.setOnClickListener(this);
+
+
+            savedMenuIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnClickListener != null) {
+                        int position = getAdapterPosition();
+                        mOnClickListener.onSavedMenuClicked(position, v);
+                    }
+
+                }
+            });
+
         }
 
         @Override
@@ -76,5 +94,6 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
             int clickedPosition = getAdapterPosition();
             mOnClickListener.OnSavedItemClick(clickedPosition);
         }
+
     }
 }

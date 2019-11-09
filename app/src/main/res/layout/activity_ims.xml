@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2"
+    android:background="@drawable/possiblebackground"
     android:padding="16dp">
 
     <androidx.cardview.widget.CardView
@@ -19,7 +19,7 @@
             android:id="@+id/notices_and_circulars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/baige"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <ImageView
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/notices_and_circulars"
-            android:background="@color/baige"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <ImageView

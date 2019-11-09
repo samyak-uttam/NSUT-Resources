@@ -9,7 +9,7 @@
         android:id="@+id/saved_rec_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bakgrnd"
+        android:background="@drawable/possiblebackground"
         android:padding="8dp" />
 
     <LinearLayout

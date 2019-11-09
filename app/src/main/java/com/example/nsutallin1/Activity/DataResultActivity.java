@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,14 @@ import android.widget.Toast;
 
 import com.example.nsutallin1.Adapter.DataAdapter;
 import com.example.nsutallin1.R;
+import com.facebook.android.crypto.keychain.AndroidConceal;
+import com.facebook.android.crypto.keychain.SharedPrefsBackedKeyChain;
+import com.facebook.crypto.Crypto;
+import com.facebook.crypto.CryptoConfig;
+import com.facebook.crypto.Entity;
+import com.facebook.crypto.exception.CryptoInitializationException;
+import com.facebook.crypto.exception.KeyChainException;
+import com.facebook.crypto.keychain.KeyChain;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -31,10 +40,13 @@ import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -75,6 +87,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         files = new ArrayList<>();
         data = new ArrayList<>();
+
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         ConnectivityManager connMgr =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -140,9 +154,13 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             for (int i = 0; i < listFile.length; i++) {
                 if (listFile[i].getName().split("&")[0].equals(data.get(index))) {
                     check = 1;
+
+
                     Intent intent = new Intent(this, PdfActivity.class);
                     intent.putExtra("name", data.get(index));
                     startActivity(intent);
+                    //TODO TRY KAR RAHA HU ENCRYPT KARNE KA ISKO ABHI MAT KARIO KUCH
+                    encryption(listFile[i],i);
                 }
             }
             if (check == 0) {
@@ -152,6 +170,55 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             DownloadFile(index);
         }
     }
+
+
+    private void encryption(File file,int index) {
+        // Creates a new Crypto object with default implementations of a key chain
+        KeyChain keyChain = new SharedPrefsBackedKeyChain(this, CryptoConfig.KEY_256);
+        Crypto crypto = AndroidConceal.get().createDefaultCrypto(keyChain);
+
+// Check for whether the crypto functionality is available
+// This might fail if Android does not load libaries correctly.
+        if (!crypto.isAvailable()) {
+            return;
+        }
+
+        OutputStream fileStream = null;
+        try {
+            fileStream = new BufferedOutputStream(
+                    new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+// Creates an output stream which encrypts the data as
+// it is written to it and writes it out to the file.
+        OutputStream outputStream = null;
+        try {
+            outputStream = crypto.getCipherOutputStream(
+                    fileStream,
+                    Entity.create("entity_id"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CryptoInitializationException e) {
+            e.printStackTrace();
+        } catch (KeyChainException e) {
+            e.printStackTrace();
+        }
+
+// Write plaintext to it.
+        try {
+            outputStream.write(index);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void DownloadFile(final int index) {
         File localFile = new File(getExternalFilesDir(null), data.get(index) + "&" + selData + ".pdf");
@@ -167,6 +234,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 File listFile[] = getExternalFilesDir(null).listFiles();
                 for (int i = 0; i < listFile.length; i++) {
                     if (listFile[i].getName().split("&")[0].equals(data.get(index))) {
+
                         Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
                         intent.putExtra("name", data.get(index));
                         startActivity(intent);

@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.nsutallin1.Activity.PdfActivity;
 import com.example.nsutallin1.Adapter.SavedAdapter;
@@ -24,14 +27,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener{
+public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener, PopupMenu.OnMenuItemClickListener {
 
     private ArrayList<SavedData> mSavedData;
     private RecyclerView mRecyclerView;
     private SavedAdapter mAdapter;
     private LinearLayout emptyLayout;
 
+    private int savedItemToBeDeletedId;
+
     public SavedFragment() {
+
         // Required empty public constructor
     }
 
@@ -83,11 +89,13 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         mAdapter.notifyDataSetChanged();
     }
 
-    public void SavedMenuClicked(View view) {
+    public void onSavedMenuClicked(int position,View view) {
         PopupMenu popupMenu = new PopupMenu(getActivity(), view);
+        savedItemToBeDeletedId=position;
         MenuInflater inflater = popupMenu.getMenuInflater();
         inflater.inflate(R.menu.saved_menu, popupMenu.getMenu());
         popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(this);
     }
 
     @Override
@@ -95,5 +103,52 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         Intent intent = new Intent(getActivity(), PdfActivity.class);
         intent.putExtra("name", mSavedData.get(clickedItemIndex).getDataName());
         getActivity().startActivity(intent);
+    }
+
+
+    private void deleteItem() {
+        SavedData dataToBeDeleted = mSavedData.get(savedItemToBeDeletedId);
+        Log.e("saved", String.valueOf(savedItemToBeDeletedId));
+        String dataType = dataToBeDeleted.getDataType();
+        String dataName = dataToBeDeleted.getDataName();
+        Log.e("dataname",dataName);
+        Log.e("we ll see", String.valueOf(savedItemToBeDeletedId));
+        Log.e("type",dataType);
+
+        String itemToBeDeleted=dataName+"&"+dataType+".pdf";
+
+
+        File listFile[] = getActivity().getExternalFilesDir(null).listFiles();
+        Log.e("Size:", String.valueOf(listFile.length));
+        if (listFile != null && listFile.length > 0) {
+            for (int i = 0; i < listFile.length; i++) {
+                if (listFile[i].getName().equals(itemToBeDeleted))
+                {
+                    mSavedData.remove(savedItemToBeDeletedId);
+                    listFile[i].delete();
+                    mAdapter.notifyDataSetChanged();
+
+                    if (mSavedData.size()==0)
+                    {
+                        emptyLayout.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                }
+
+            }
+        }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        int id=item.getItemId();
+        switch (id)
+        {
+            case R.id.delete:
+                Log.e("hi","We are clicked");
+                deleteItem();
+                break;
+        }
+        return true;
     }
 }
