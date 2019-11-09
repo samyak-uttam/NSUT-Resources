@@ -160,7 +160,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                     intent.putExtra("name", data.get(index));
                     startActivity(intent);
                     //TODO TRY KAR RAHA HU ENCRYPT KARNE KA ISKO ABHI MAT KARIO KUCH
-                    encryption(listFile[i],i);
+                    encryption(listFile[i], i);
                 }
             }
             if (check == 0) {
@@ -172,13 +172,13 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     }
 
 
-    private void encryption(File file,int index) {
+    private void encryption(File file, int index) {
         // Creates a new Crypto object with default implementations of a key chain
         KeyChain keyChain = new SharedPrefsBackedKeyChain(this, CryptoConfig.KEY_256);
         Crypto crypto = AndroidConceal.get().createDefaultCrypto(keyChain);
 
-// Check for whether the crypto functionality is available
-// This might fail if Android does not load libaries correctly.
+        // Check for whether the crypto functionality is available
+        // This might fail if Android does not load libaries correctly.
         if (!crypto.isAvailable()) {
             return;
         }
@@ -191,8 +191,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             e.printStackTrace();
         }
 
-// Creates an output stream which encrypts the data as
-// it is written to it and writes it out to the file.
+        // Creates an output stream which encrypts the data as
+        // it is written to it and writes it out to the file.
         OutputStream outputStream = null;
         try {
             outputStream = crypto.getCipherOutputStream(
@@ -206,7 +206,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             e.printStackTrace();
         }
 
-// Write plaintext to it.
+        // Write plaintext to it.
         try {
             outputStream.write(index);
         } catch (IOException e) {
@@ -221,7 +221,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
 
     private void DownloadFile(final int index) {
-        File localFile = new File(getExternalFilesDir(null), data.get(index) + "&" + selData + ".pdf");
+        File localFile = new File(getExternalFilesDir(null), data.get(index) + "&" + selData + ".encrypted");
         localFile.setReadOnly();
 
         final ProgressDialog pd = new ProgressDialog(this);

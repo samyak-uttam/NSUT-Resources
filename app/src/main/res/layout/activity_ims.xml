@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/possiblebackground"
-    android:padding="16dp">
+    android:padding="12dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/notices_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/login_card"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="4dp">
 
         <LinearLayout
@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginRight="8dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/notes_black" />
 
             <TextView
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
             android:id="@+id/student_login"
@@ -57,7 +57,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginRight="8dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/student_black" />
 
             <TextView

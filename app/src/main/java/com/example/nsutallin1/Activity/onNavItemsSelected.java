@@ -93,6 +93,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         yearOneSubs.add(new Subject("Electrical and Electronics Engineering"));
         yearOneSubs.add(new Subject("Physics"));
         yearOneSubs.add(new Subject("English I"));
+        yearOneSubs.add(new Subject("Miscellaneous"));
 
         jaggiMathur.add(new Subject("Book I"));
         jaggiMathur.add(new Subject("Book II"));

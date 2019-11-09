@@ -48,6 +48,11 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(notice.getDownloadLink()));
+                mContext.startActivity(intent);
+
+                /*
                 DownloadManager downloadmanager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
 
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(notice.getDownloadLink()));
@@ -58,6 +63,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,notice.getTitle());
 
                 downloadmanager.enqueue(request);
+                 */
             }
         });
     }

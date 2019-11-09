@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single" android:id="@+id/nav_items">
+    <group
+        android:id="@+id/nav_items"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_books"
-            android:title="Books"
-            android:icon="@drawable/book_black"/>
-        <item
-            android:id="@+id/nav_papers"
-            android:icon="@drawable/papers_black"
-            android:title="Papers"/>
+            android:icon="@drawable/book_black"
+            android:title="Books" />
         <item
             android:id="@+id/nav_notes"
             android:icon="@drawable/notes_black"
-            android:title="Notes"/>
-
+            android:title="Notes" />
+        <item
+            android:id="@+id/nav_papers"
+            android:icon="@drawable/papers_black"
+            android:title="Papers" />
         <item
             android:id="@+id/nav_praciticals"
             android:icon="@drawable/practicals_black"

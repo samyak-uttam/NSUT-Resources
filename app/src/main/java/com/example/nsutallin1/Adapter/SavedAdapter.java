@@ -75,7 +75,6 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
 
             itemView.setOnClickListener(this);
 
-
             savedMenuIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,10 +82,8 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
                         int position = getAdapterPosition();
                         mOnClickListener.onSavedMenuClicked(position, v);
                     }
-
                 }
             });
-
         }
 
         @Override
@@ -94,6 +91,5 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
             int clickedPosition = getAdapterPosition();
             mOnClickListener.OnSavedItemClick(clickedPosition);
         }
-
     }
 }

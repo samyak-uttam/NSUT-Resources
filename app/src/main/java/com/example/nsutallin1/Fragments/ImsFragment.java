@@ -40,7 +40,7 @@ public class ImsFragment extends Fragment {
         studentLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Working on it will be added in the next update!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"This feature will be added in the next update!",Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(getActivity(), StudentLoginActivity.class);
                 //startActivity(intent);
             }

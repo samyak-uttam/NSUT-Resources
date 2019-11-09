@@ -69,7 +69,7 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
             emptyLayout.setVisibility(View.GONE);
             for (int i = 0; i < listFile.length; i++) {
                 String dataName = listFile[i].getName().split("&")[0];
-                String dataType = listFile[i].getName().split("&")[1].split(".pdf")[0];
+                String dataType = listFile[i].getName().split("&")[1].split(".encrypted")[0];
                 mSavedData.add(new SavedData(dataName, dataType));
             }
 
@@ -111,30 +111,24 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         Log.e("saved", String.valueOf(savedItemToBeDeletedId));
         String dataType = dataToBeDeleted.getDataType();
         String dataName = dataToBeDeleted.getDataName();
-        Log.e("dataname",dataName);
-        Log.e("we ll see", String.valueOf(savedItemToBeDeletedId));
-        Log.e("type",dataType);
 
-        String itemToBeDeleted=dataName+"&"+dataType+".pdf";
-
+        String itemToBeDeleted=dataName+"&"+dataType+".encrypted";
 
         File listFile[] = getActivity().getExternalFilesDir(null).listFiles();
         Log.e("Size:", String.valueOf(listFile.length));
         if (listFile != null && listFile.length > 0) {
             for (int i = 0; i < listFile.length; i++) {
-                if (listFile[i].getName().equals(itemToBeDeleted))
-                {
+                if (listFile[i].getName().equals(itemToBeDeleted)) {
+
                     mSavedData.remove(savedItemToBeDeletedId);
                     listFile[i].delete();
                     mAdapter.notifyDataSetChanged();
 
-                    if (mSavedData.size()==0)
-                    {
+                    if (mSavedData.size()==0) {
                         emptyLayout.setVisibility(View.VISIBLE);
                     }
                     break;
                 }
-
             }
         }
     }
