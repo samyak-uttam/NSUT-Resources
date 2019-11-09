@@ -1,5 +1,6 @@
 package com.example.nsutallin1.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,12 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.PopupMenu;
 
+import com.example.nsutallin1.Activity.PdfActivity;
 import com.example.nsutallin1.Adapter.SavedAdapter;
 import com.example.nsutallin1.Class.SavedData;
 import com.example.nsutallin1.R;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SavedFragment extends Fragment {
+public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener{
 
     private ArrayList<SavedData> mSavedData;
     private RecyclerView mRecyclerView;
@@ -47,7 +49,7 @@ public class SavedFragment extends Fragment {
         mRecyclerView = rootView.findViewById(R.id.saved_rec_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mAdapter = new SavedAdapter(mSavedData, getActivity());
+        mAdapter = new SavedAdapter(mSavedData, this);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
@@ -79,5 +81,19 @@ public class SavedFragment extends Fragment {
         super.onResume();
         getFiles();
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void SavedMenuClicked(View view) {
+        PopupMenu popupMenu = new PopupMenu(getActivity(), view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.saved_menu, popupMenu.getMenu());
+        popupMenu.show();
+    }
+
+    @Override
+    public void OnSavedItemClick(int clickedItemIndex) {
+        Intent intent = new Intent(getActivity(), PdfActivity.class);
+        intent.putExtra("name", mSavedData.get(clickedItemIndex).getDataName());
+        getActivity().startActivity(intent);
     }
 }

@@ -47,7 +47,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
         return mData.size();
     }
 
-    public class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView dataName;
         ImageView dataImage;

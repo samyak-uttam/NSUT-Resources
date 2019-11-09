@@ -17,7 +17,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activity.StudentLoginActivity" />
         <activity
-            android:name=".Activity.DataResultActivity"/>
+            android:name=".Activity.DataResultActivity"
+            android:parentActivityName=".Activity.onNavItemsSelected"/>
         <activity android:name=".Activity.NoticesActivity" />
         <activity
             android:name=".Activity.MainActivity"

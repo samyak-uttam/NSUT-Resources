@@ -51,24 +51,27 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
                 holder.branchImage.setImageResource(R.drawable.one);
                 break;
             case 1:
-                holder.branchImage.setImageResource(R.drawable.coe);
+                holder.branchImage.setImageResource(R.drawable.maths);
                 break;
             case 2:
-                holder.branchImage.setImageResource(R.drawable.it);
+                holder.branchImage.setImageResource(R.drawable.coe);
                 break;
             case 3:
-                holder.branchImage.setImageResource(R.drawable.ece);
+                holder.branchImage.setImageResource(R.drawable.it);
                 break;
             case 4:
-                holder.branchImage.setImageResource(R.drawable.ice);
+                holder.branchImage.setImageResource(R.drawable.ece);
                 break;
             case 5:
-                holder.branchImage.setImageResource(R.drawable.me);
+                holder.branchImage.setImageResource(R.drawable.ice);
                 break;
             case 6:
-                holder.branchImage.setImageResource(R.drawable.mpae);
+                holder.branchImage.setImageResource(R.drawable.me);
                 break;
             case 7:
+                holder.branchImage.setImageResource(R.drawable.mpae);
+                break;
+            case 8:
                 holder.branchImage.setImageResource(R.drawable.bt);
                 break;
         }

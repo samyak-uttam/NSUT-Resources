@@ -1,8 +1,6 @@
 package com.example.nsutallin1.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nsutallin1.Activity.PdfActivity;
 import com.example.nsutallin1.Class.SavedData;
 import com.example.nsutallin1.R;
 
@@ -20,12 +17,16 @@ import java.util.ArrayList;
 
 public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHolder> {
 
+    public interface ListItemClickListener {
+        void OnSavedItemClick(int clickedItemIndex);
+    }
     private ArrayList<SavedData> mSavedData;
     private Context mContext;
+    final private ListItemClickListener mOnClickListener;
 
-    public SavedAdapter(ArrayList<SavedData> mSavedData, Context mContext) {
+    public SavedAdapter(ArrayList<SavedData> mSavedData, ListItemClickListener listener) {
         this.mSavedData = mSavedData;
-        this.mContext = mContext;
+        mOnClickListener = listener;
     }
 
     @NonNull
@@ -50,14 +51,6 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
         }
 
         holder.dataName.setText(name);
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, PdfActivity.class);
-                intent.putExtra("name", mSavedData.get(position).getDataName());
-                mContext.startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -65,17 +58,23 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.SavedViewHol
         return mSavedData.size();
     }
 
-    public static class SavedViewHolder extends RecyclerView.ViewHolder {
+    public class SavedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView dataName;
         ImageView dataImage;
-        View rootView;
 
         public SavedViewHolder(@NonNull View itemView) {
             super(itemView);
-            rootView = itemView;
             dataName = itemView.findViewById(R.id.data_name);
             dataImage = itemView.findViewById(R.id.data_image);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.OnSavedItemClick(clickedPosition);
         }
     }
 }

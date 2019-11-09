@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 public class onNavItemsSelected extends AppCompatActivity {
 
-    private String selectedBranch;
-    private String navSelection;
+    private static String selectedBranch;
+    private static String navSelection;
     private SubjectAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private static ArrayList<Subject> yearOneSubs, coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs;
+    private static ArrayList<Subject> yearOneSubs, jaggiMathur, coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         setContentView(R.layout.on_nav_items_selected);
 
         yearOneSubs = new ArrayList<>();
+        jaggiMathur = new ArrayList<>();
         coeSubs = new ArrayList<>();
         itSubs = new ArrayList<>();
         eceSubs = new ArrayList<>();
@@ -57,26 +58,29 @@ public class onNavItemsSelected extends AppCompatActivity {
             case "1st SEM":
                 mAdapter = new SubjectAdapter(yearOneSubs, 0, data,this);
                 break;
+            case "Jaggi Mathur":
+                mAdapter = new SubjectAdapter(jaggiMathur, 1, data,this);
+                break;
             case "COE":
-                mAdapter = new SubjectAdapter(coeSubs,1, data,this);
+                mAdapter = new SubjectAdapter(coeSubs,2, data,this);
                 break;
             case "IT":
-                mAdapter = new SubjectAdapter(itSubs,2, data,this);
+                mAdapter = new SubjectAdapter(itSubs,3, data,this);
                 break;
             case "ECE":
-                mAdapter = new SubjectAdapter(eceSubs,3, data,this);
+                mAdapter = new SubjectAdapter(eceSubs,4, data,this);
                 break;
             case "ICE":
-                mAdapter = new SubjectAdapter(iceSubs,4, data,this);
+                mAdapter = new SubjectAdapter(iceSubs,5, data,this);
                 break;
             case "ME":
-                mAdapter = new SubjectAdapter(meSubs,5, data,this);
+                mAdapter = new SubjectAdapter(meSubs,6, data,this);
                 break;
             case "MPAE":
-                mAdapter = new SubjectAdapter(mpaeSubs,6, data,this);
+                mAdapter = new SubjectAdapter(mpaeSubs,7, data,this);
                 break;
             case "BT":
-                mAdapter = new SubjectAdapter(btSubs,7, data,this);
+                mAdapter = new SubjectAdapter(btSubs,8, data,this);
                 break;
         }
         mRecyclerView.setAdapter(mAdapter);
@@ -89,6 +93,9 @@ public class onNavItemsSelected extends AppCompatActivity {
         yearOneSubs.add(new Subject("Electrical and Electronics Engineering"));
         yearOneSubs.add(new Subject("Physics"));
         yearOneSubs.add(new Subject("English I"));
+
+        jaggiMathur.add(new Subject("Book I"));
+        jaggiMathur.add(new Subject("Book II"));
 
         eceSubs.add(new Subject("Mathematics II"));
         eceSubs.add(new Subject("English II"));

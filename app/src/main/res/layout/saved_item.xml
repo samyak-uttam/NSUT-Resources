@@ -13,7 +13,7 @@
         android:background="@color/white"
         app:cardCornerRadius="7dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -23,21 +23,32 @@
                 android:id="@+id/data_image"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:scaleType="fitXY"
                 tools:src="@drawable/book"/>
 
             <TextView
                 android:id="@+id/data_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:layout_gravity="center"
+                android:layout_toEndOf="@id/data_image"
+                android:layout_centerVertical="true"
                 android:textSize="24sp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 tools:text="Let Us C" />
-        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/saved_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:src="@drawable/ic_vertical_menu"
+                android:onClick="SavedMenuClicked"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>

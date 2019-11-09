@@ -59,6 +59,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
         branches = new ArrayList<>();
 
         branches.add(new Data("1st SEM", R.drawable.one));
+        branches.add(new Data("Jaggi Mathur", R.drawable.maths));
         branches.add(new Data("ECE", R.drawable.ece));
         branches.add(new Data("COE", R.drawable.coe));
         branches.add(new Data("IT", R.drawable.it));
