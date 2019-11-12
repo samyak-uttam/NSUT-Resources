@@ -18,8 +18,6 @@ public class SyllabusActivity extends AppCompatActivity {
     private SyllabusAdapter mAdapter;
     private ArrayList<Syllabus> syllabi;
 
-    private static final int SYLLABUS_LOADER_ID = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,5 +41,4 @@ public class SyllabusActivity extends AppCompatActivity {
         mAdapter = new SyllabusAdapter(syllabi, this);
         mRecyclerView.setAdapter(mAdapter);
     }
-
 }

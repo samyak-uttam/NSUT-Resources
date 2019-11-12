@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.example.nsutallin1.Activity.PdfActivity;
 import com.example.nsutallin1.Adapter.SavedAdapter;

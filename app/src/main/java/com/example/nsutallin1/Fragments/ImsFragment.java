@@ -14,11 +14,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nsutallin1.Activity.NoticesActivity;
 import com.example.nsutallin1.Activity.StudentLoginActivity;
+import com.example.nsutallin1.Activity.SyllabusActivity;
 import com.example.nsutallin1.R;
 
 public class ImsFragment extends Fragment {
 
-    private LinearLayout notices, studentLogin;
+    private LinearLayout syllabi, studentLogin;
 
     @NonNull
     @Override
@@ -26,13 +27,13 @@ public class ImsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_ims, container, false);
 
-        notices = rootView.findViewById(R.id.notices_and_circulars);
+        syllabi = rootView.findViewById(R.id.syllabus);
         studentLogin = rootView.findViewById(R.id.student_login);
 
-        notices.setOnClickListener(new View.OnClickListener() {
+        syllabi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NoticesActivity.class);
+                Intent intent = new Intent(getActivity(), SyllabusActivity.class);
                 startActivity(intent);
             }
         });
