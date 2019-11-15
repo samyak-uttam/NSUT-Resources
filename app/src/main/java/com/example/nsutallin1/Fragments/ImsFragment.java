@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.nsutallin1.Activity.CodingActivity;
 import com.example.nsutallin1.Activity.NoticesActivity;
 import com.example.nsutallin1.Activity.StudentLoginActivity;
 import com.example.nsutallin1.Activity.SyllabusActivity;
@@ -19,7 +20,7 @@ import com.example.nsutallin1.R;
 
 public class ImsFragment extends Fragment {
 
-    private LinearLayout syllabi, studentLogin;
+    private LinearLayout syllabi, studentLogin, coding;
 
     @NonNull
     @Override
@@ -29,6 +30,7 @@ public class ImsFragment extends Fragment {
 
         syllabi = rootView.findViewById(R.id.syllabus);
         studentLogin = rootView.findViewById(R.id.student_login);
+        coding = rootView.findViewById(R.id.coding);
 
         syllabi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,14 @@ public class ImsFragment extends Fragment {
                 Toast.makeText(getContext(),"This feature will be added in the next update!",Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(getActivity(), StudentLoginActivity.class);
                 //startActivity(intent);
+            }
+        });
+
+        coding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CodingActivity.class);
+                startActivity(intent);
             }
         });
 

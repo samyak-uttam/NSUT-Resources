@@ -13,25 +13,30 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.PdfActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activity.DsAlgoActivity"></activity>
+        <activity
+            android:name=".Activity.CodingActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.PdfActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.StudentLoginActivity" />
         <activity
             android:name=".Activity.DataResultActivity"
-            android:parentActivityName=".Activity.onNavItemsSelected"/>
+            android:parentActivityName=".Activity.onNavItemsSelected" />
         <activity
             android:name=".Activity.NoticesActivity"
-            android:parentActivityName=".Activity.MainActivity"/>
+            android:parentActivityName=".Activity.MainActivity" />
         <activity
             android:name=".Activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.onNavItemsSelected"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,17 +44,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".Activity.AboutDevelopersActivity"
+        <activity
+            android:name=".Activity.AboutDevelopersActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/AppTheme"/>
-
-
-        <activity android:name=".Activity.SyllabusActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activity.SyllabusActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/AppTheme"/>
-
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

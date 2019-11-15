@@ -33,9 +33,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:layout_toEndOf="@id/data_image"
+                android:layout_toStartOf="@id/saved_menu"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="4dp"
-                android:textSize="23sp"
+                android:textSize="22sp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 tools:text="Let Us C" />
