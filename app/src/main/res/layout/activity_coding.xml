@@ -15,7 +15,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_centerHorizontal="true"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -37,9 +41,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/android_layout"
-            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -61,9 +68,13 @@
             android:id="@+id/machine_learning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/competetive_prog"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -86,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/machine_learning"
-            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
             android:orientation="vertical"
             android:padding="8dp">
 

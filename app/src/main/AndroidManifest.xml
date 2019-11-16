@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DsAlgoActivity"></activity>
+        <activity android:name=".Activity.DsAlgoActivity"
+            android:parentActivityName=".Activity.CodingActivity"></activity>
         <activity
             android:name=".Activity.CodingActivity"
             android:parentActivityName=".Activity.MainActivity" />
