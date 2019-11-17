@@ -12,12 +12,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,6 +41,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
     private static final int NOTICE_LOADER_ID = 1;
 
     private TextView mEmptyStateTextView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,22 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
         mNoticeAdapter = new NoticeAdapter(notices, this);
         mRecyclerView.setAdapter(mNoticeAdapter);
 
+        swipeRefreshLayout=findViewById(R.id.swiperefresh);
+
+
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Log.i("HI swiped", "onRefresh called from SwipeRefreshLayout");
+
+                        // This method performs the actual data-refresh operation.
+                        // The method calls setRefreshing(false) when it's finished.
+                        myUpdateOperation();
+                    }
+                }
+        );
+
         mRecyclerView.setVisibility(View.GONE);
         mEmptyStateTextView.setVisibility(View.VISIBLE);
 
@@ -65,8 +84,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
 
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(NOTICE_LOADER_ID, null, this);
+           myUpdateOperation();
         } else {
 
             View loadingIndicator = findViewById(R.id.loading_spinner);
@@ -84,6 +102,13 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
         }
     }
 
+    private void myUpdateOperation() {
+        LoaderManager loaderManager = getLoaderManager();
+        loaderManager.initLoader(NOTICE_LOADER_ID, null, this);
+    }
+
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -94,6 +119,8 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
     public android.content.Loader<ArrayList<Notice>> onCreateLoader(int id, @Nullable Bundle args) {
         return new NoticeLoader(this);
     }
+
+
 
     @Override
     public void onLoadFinished(android.content.Loader<ArrayList<Notice>> loader, ArrayList<Notice> data) {
@@ -110,6 +137,7 @@ public class NoticesActivity extends AppCompatActivity implements LoaderCallback
 
         View loadingIndicator = findViewById(R.id.loading_spinner);
         loadingIndicator.setVisibility(View.GONE);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

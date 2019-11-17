@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class DsAlgoLoader extends AsyncTaskLoader<ArrayList<Contest>> {
 
+
     private Document doc = null;
     private ArrayList<Contest> contests;
 
