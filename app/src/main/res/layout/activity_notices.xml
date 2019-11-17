@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <ProgressBar
         android:id="@+id/loading_spinner"
