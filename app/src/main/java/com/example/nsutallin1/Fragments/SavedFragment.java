@@ -1,5 +1,6 @@
 package com.example.nsutallin1.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,10 +15,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.example.nsutallin1.Activity.PdfActivity;
 import com.example.nsutallin1.Adapter.SavedAdapter;
@@ -35,7 +38,8 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
     private ArrayList<SavedData> mSavedData, copy;
     private RecyclerView mRecyclerView;
     private SavedAdapter mAdapter;
-    private LinearLayout emptyLayout;
+    private LinearLayout emptyLayout, searchLayout;
+    private TextView emptyTV;
     private CardView clearResults;
 
     private int savedItemToBeDeletedId;
@@ -56,7 +60,9 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         clearResults.setVisibility(View.GONE);
 
         mSavedData = new ArrayList<>();
+        searchLayout = rootView.findViewById(R.id.search_layout);
         emptyLayout = rootView.findViewById(R.id.empty_layout);
+        emptyTV = rootView.findViewById(R.id.empty_text_view);
 
         getFiles();
 
@@ -69,6 +75,11 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager inputManager = (InputMethodManager)
+                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
                 String search = dataSearch.getText().toString().trim();
 
                 if (search.isEmpty()) {
@@ -83,6 +94,7 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         clearResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                emptyLayout.setVisibility(View.GONE);
                 mSavedData.clear();
                 mSavedData.addAll(copy);
                 mAdapter.notifyDataSetChanged();
@@ -106,12 +118,19 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
                 itr.remove();
             }
         }
+
+        if(mSavedData.size() == 0) {
+            emptyLayout.setVisibility(View.VISIBLE);
+            emptyTV.setText("No Files Found.");
+        }
         mAdapter.notifyDataSetChanged();
     }
 
     private void getFiles() {
+
         mSavedData.clear();
         emptyLayout.setVisibility(View.VISIBLE);
+        emptyTV.setText("No Files Saved.");
         File listFile[] = getActivity().getExternalFilesDir(null).listFiles();
         if (listFile != null && listFile.length > 0) {
             emptyLayout.setVisibility(View.GONE);
@@ -128,6 +147,11 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
                 }
             });
             copy = new ArrayList<>(mSavedData);
+        }
+        if(mSavedData.isEmpty()) {
+            searchLayout.setVisibility(View.GONE);
+        } else {
+            searchLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -157,7 +181,6 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
 
     private void deleteItem() {
         SavedData dataToBeDeleted = mSavedData.get(savedItemToBeDeletedId);
-        Log.e("saved", String.valueOf(savedItemToBeDeletedId));
         String dataType = dataToBeDeleted.getDataType();
         String dataName = dataToBeDeleted.getDataName();
 
@@ -170,6 +193,7 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
                 if (listFile[i].getName().equals(itemToBeDeleted)) {
 
                     mSavedData.remove(savedItemToBeDeletedId);
+                    copy.remove(savedItemToBeDeletedId);
                     listFile[i].delete();
                     mAdapter.notifyDataSetChanged();
 
@@ -179,6 +203,10 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
                     break;
                 }
             }
+        }
+
+        if(mSavedData.isEmpty()) {
+            searchLayout.setVisibility(View.GONE);
         }
     }
 

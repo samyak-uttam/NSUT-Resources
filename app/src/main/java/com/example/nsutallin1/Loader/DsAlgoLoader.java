@@ -42,7 +42,7 @@ public class DsAlgoLoader extends AsyncTaskLoader<ArrayList<Contest>> {
 
             Elements rows = table.select("tr");
 
-            for (int i = 1; i < rows.size(); i++) {
+            for (int i = 0; i < rows.size(); i++) {
                 if (!rows.get(i).select("tr").isEmpty()) {
                     Element row = rows.get(i);
                     String name, startingTime, endTime, contestLink;
