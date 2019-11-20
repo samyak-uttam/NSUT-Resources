@@ -70,14 +70,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (selectedItem)
         {
             case R.id.nav_aboutdevelopers:
-                Intent intent=new Intent(this,AboutDevelopersActivity.class);
+                Intent intent = new Intent(this,AboutDevelopersActivity.class);
                 startActivity(intent);
                 break;
-
             case R.id.nav_notices:
-                Intent intent1=new Intent(this, NoticesActivity.class);
+                Intent intent1 = new Intent(this, NoticesActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.competetive_coding:
+                Intent intent2 = new Intent(this, DsAlgoActivity.class);
+                startActivity(intent2);
         }
 
         return true;

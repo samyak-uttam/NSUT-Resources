@@ -89,6 +89,13 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
                     mContext.startActivity(intent);
                 }
             });
+        } else {
+            holder.branchImage.setImageResource(R.color.white);
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
         }
     }
 
