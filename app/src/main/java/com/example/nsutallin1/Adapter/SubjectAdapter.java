@@ -46,48 +46,50 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
     public void onBindViewHolder(@NonNull SubjectViewHolder holder, int position) {
         final Subject subject = mSubjects.get(position);
 
-        switch (imageCode) {
-            case 0:
-                holder.branchImage.setImageResource(R.drawable.one);
-                break;
-            case 1:
-                holder.branchImage.setImageResource(R.drawable.maths);
-                break;
-            case 2:
-                holder.branchImage.setImageResource(R.drawable.coe);
-                break;
-            case 3:
-                holder.branchImage.setImageResource(R.drawable.it);
-                break;
-            case 4:
-                holder.branchImage.setImageResource(R.drawable.ece);
-                break;
-            case 5:
-                holder.branchImage.setImageResource(R.drawable.ice);
-                break;
-            case 6:
-                holder.branchImage.setImageResource(R.drawable.me);
-                break;
-            case 7:
-                holder.branchImage.setImageResource(R.drawable.mpae);
-                break;
-            case 8:
-                holder.branchImage.setImageResource(R.drawable.bt);
-                break;
-        }
-
         holder.subjectName.setText(subject.getSubjectName());
 
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DataResultActivity.class);
-                intent.putExtra("branchName", data[0]);
-                intent.putExtra("dataType", data[1]);
-                intent.putExtra("subName", subject.getSubjectName());
-                mContext.startActivity(intent);
+        if (!subject.getSubjectName().startsWith("SEM")) {
+            switch (imageCode) {
+                case 0:
+                    holder.branchImage.setImageResource(R.drawable.one);
+                    break;
+                case 1:
+                    holder.branchImage.setImageResource(R.drawable.maths);
+                    break;
+                case 2:
+                    holder.branchImage.setImageResource(R.drawable.coe);
+                    break;
+                case 3:
+                    holder.branchImage.setImageResource(R.drawable.it);
+                    break;
+                case 4:
+                    holder.branchImage.setImageResource(R.drawable.ece);
+                    break;
+                case 5:
+                    holder.branchImage.setImageResource(R.drawable.ice);
+                    break;
+                case 6:
+                    holder.branchImage.setImageResource(R.drawable.me);
+                    break;
+                case 7:
+                    holder.branchImage.setImageResource(R.drawable.mpae);
+                    break;
+                case 8:
+                    holder.branchImage.setImageResource(R.drawable.bt);
+                    break;
             }
-        });
+
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, DataResultActivity.class);
+                    intent.putExtra("branchName", data[0]);
+                    intent.putExtra("dataType", data[1]);
+                    intent.putExtra("subName", subject.getSubjectName());
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

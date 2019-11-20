@@ -2,6 +2,8 @@ package com.example.nsutallin1.Class;
 
 public class Contest {
 
+    private int imgResId;
+
     private String name;
 
     private String startingTime;
@@ -10,11 +12,16 @@ public class Contest {
 
     private String contestLink;
 
-    public Contest(String name, String startingTime, String endTime, String contestLink) {
+    public Contest(int imgResId, String name, String startingTime, String endTime, String contestLink) {
+        this.imgResId = imgResId;
         this.name = name;
         this.startingTime = startingTime;
         this.endTime = endTime;
         this.contestLink = contestLink;
+    }
+
+    public int getImgResId() {
+        return imgResId;
     }
 
     public String getName() {

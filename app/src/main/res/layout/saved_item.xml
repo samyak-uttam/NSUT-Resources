@@ -43,9 +43,9 @@
 
             <ImageView
                 android:id="@+id/saved_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/delete_red"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/trash_bin"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"/>
 

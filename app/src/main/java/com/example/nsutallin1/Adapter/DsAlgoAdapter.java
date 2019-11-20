@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
 
         final Contest contest = mContests.get(position);
 
+        holder.siteImage.setImageResource(contest.getImgResId());
         holder.name.setText(contest.getName());
         holder.startTime.setText(contest.getStartingTime());
         holder.endTime.setText(contest.getEndTime());
@@ -59,6 +61,7 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
 
     public static class DsAlgoViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView siteImage;
         TextView name;
         TextView startTime;
         TextView endTime;
@@ -68,6 +71,7 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
         public DsAlgoViewHolder(@NonNull View itemView) {
             super(itemView);
             rootView = itemView;
+            siteImage = itemView.findViewById(R.id.site_image);
             name = itemView.findViewById(R.id.contest_name);
             startTime = itemView.findViewById(R.id.start_time);
             endTime = itemView.findViewById(R.id.end_time);
