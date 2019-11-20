@@ -42,6 +42,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
     BottomNavigationView bottomNavigationView;
 
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,32 +73,44 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
 
         RecyclerView_Branch.setAdapter(branchAdapter);
 
+
         BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Toast bottomNavigationToast = Toast.makeText(getContext(), "", Toast.LENGTH_SHORT);
+
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
+
                 switch (item.getItemId()) {
 
                     case R.id.nav_books:
+
                         Log.e("nav_books", "You are in books");
-                        Toast.makeText(getContext(), "You are in books", Toast.LENGTH_SHORT).show();
+                        bottomNavigationToast.setText( "You are in books");
+                        bottomNavigationToast.show();
                         navSelection = "books";
                         break;
 
                     case R.id.nav_praciticals:
-                        Log.e("nav_notes", "You are in practicals");
-                        Toast.makeText(getContext(), "You are in practicals", Toast.LENGTH_SHORT).show();
+
+                        Log.e("nav_practicals", "You are in practicals");
+                        bottomNavigationToast.setText("You are in practicals");
+                        bottomNavigationToast.show();
                         navSelection = "practicals";
                         break;
 
                     case R.id.nav_notes:
+
                         Log.e("nav_notes", "You are in notes");
-                        Toast.makeText(getContext(), "You are in notes", Toast.LENGTH_SHORT).show();
+                        bottomNavigationToast.setText("You are in notes");
+                        bottomNavigationToast.show();
                         navSelection = "notes";
                         break;
 
                     case R.id.nav_papers:
+
                         Log.e("nav_papers", "You are in papers");
-                        Toast.makeText(getContext(), "You are in papers", Toast.LENGTH_SHORT).show();
+                        bottomNavigationToast.setText( "You are in papers");
+                        bottomNavigationToast.show();
                         navSelection = "papers";
                         break;
                 }

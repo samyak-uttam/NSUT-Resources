@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener, PopupMenu.OnMenuItemClickListener {
+public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener,DialogFragment.NoticeDialogListener {
 
     private ArrayList<SavedData> mSavedData, copy;
     private RecyclerView mRecyclerView;
@@ -43,6 +43,7 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
     private CardView clearResults;
 
     private int savedItemToBeDeletedId;
+    private final int confirmation=1;
 
     public SavedFragment() {
         // Required empty public constructor
@@ -163,12 +164,8 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
     }
 
     public void onSavedMenuClicked(int position, View view) {
-        PopupMenu popupMenu = new PopupMenu(getActivity(), view);
         savedItemToBeDeletedId = position;
-        MenuInflater inflater = popupMenu.getMenuInflater();
-        inflater.inflate(R.menu.saved_menu, popupMenu.getMenu());
-        popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(this);
+        showdialog();
     }
 
     @Override
@@ -180,6 +177,7 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
 
 
     private void deleteItem() {
+
         SavedData dataToBeDeleted = mSavedData.get(savedItemToBeDeletedId);
         String dataType = dataToBeDeleted.getDataType();
         String dataName = dataToBeDeleted.getDataName();
@@ -205,19 +203,26 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
             }
         }
 
-        if(mSavedData.isEmpty()) {
+        if (mSavedData.isEmpty()) {
             searchLayout.setVisibility(View.GONE);
         }
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.delete:
-                deleteItem();
-                break;
-        }
-        return true;
+    private void showdialog() {
+     DialogFragment dialogFragment=new DialogFragment();
+     dialogFragment.show(getActivity().getSupportFragmentManager(),"Dialog Fragment");
+     dialogFragment.setTargetFragment(SavedFragment.this,confirmation);
     }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Log.e("SavedFragment","getting PositiveConfirmation");
+        deleteItem();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Log.e("SavedFragment","getting NegtiveConfirmation");
+    }
+
 }

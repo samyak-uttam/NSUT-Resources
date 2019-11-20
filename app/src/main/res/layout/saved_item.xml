@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="6dp"
             android:background="@color/white">
 
             <ImageView
@@ -44,8 +44,8 @@
             <ImageView
                 android:id="@+id/saved_menu"
                 android:layout_width="wrap_content"
-                android:layout_height="54dp"
-                android:src="@drawable/ic_vertical_menu"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_red"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"/>
 
