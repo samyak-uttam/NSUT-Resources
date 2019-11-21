@@ -12,10 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nsutallin1.Activity.ContestDetailsActivity;
 import com.example.nsutallin1.Class.Contest;
+import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoViewHolder> {
 
@@ -41,14 +45,16 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
 
         holder.siteImage.setImageResource(contest.getImgResId());
         holder.name.setText(contest.getName());
-        holder.startTime.setText(contest.getStartingTime());
-        holder.endTime.setText(contest.getEndTime());
+
+        Date date = new Date(contest.getStartingTime());
+        holder.startTime.setText(formatDate(date) + ", " + formatTime(date));
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(contest.getContestLink()));
+                Intent intent = new Intent(mContext, ContestDetailsActivity.class);
+                //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(contest.getContestLink()));
                 mContext.startActivity(intent);
             }
         });
@@ -64,7 +70,6 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
         ImageView siteImage;
         TextView name;
         TextView startTime;
-        TextView endTime;
 
         View rootView;
 
@@ -74,7 +79,16 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
             siteImage = itemView.findViewById(R.id.site_image);
             name = itemView.findViewById(R.id.contest_name);
             startTime = itemView.findViewById(R.id.start_time);
-            endTime = itemView.findViewById(R.id.end_time);
         }
+    }
+
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 }
