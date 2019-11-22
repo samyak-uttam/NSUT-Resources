@@ -33,22 +33,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.crypto.Cipher;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
 
 public class DataResultActivity extends AppCompatActivity implements DataAdapter.ListItemClickListener {
 
@@ -161,31 +147,20 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     }
 
     private void DownloadFile(final int index) {
-        final File localFile = new File(getExternalFilesDir(null), "temp.encrypted");
-        final File outFile = new File(getExternalFilesDir(null), data.get(index) + "&" + selData + ".encrypted");
+        final File file = new File(getExternalFilesDir(null), "." + data.get(index) + "&" + selData + ".encrypted");
 
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("loading");
         pd.show();
 
-        files.get(index).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+        files.get(index).getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                try {
-                    FileInputStream in = new FileInputStream(localFile);
-                    FileOutputStream out = new FileOutputStream(outFile);
+                Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
+                intent.putExtra("name", data.get(index));
+                startActivity(intent);
 
-                    encrypt(in, out);
-                    localFile.delete();
-
-                    Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
-                    intent.putExtra("name", data.get(index));
-                    startActivity(intent);
-
-                } catch (IOException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-                    e.printStackTrace();
-                }
                 pd.cancel();
             }
         }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
@@ -201,22 +176,5 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 pd.cancel();
             }
         });
-    }
-
-    public void encrypt(FileInputStream in, FileOutputStream out) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-
-        SecretKeySpec sks = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, sks);
-        CipherOutputStream cos = new CipherOutputStream(out, cipher);
-        int b;
-        byte[] d = new byte[10240];
-        while ((b = in.read(d)) != -1) {
-            cos.write(d, 0, b);
-        }
-        cos.flush();
-        cos.close();
-        in.close();
-
     }
 }

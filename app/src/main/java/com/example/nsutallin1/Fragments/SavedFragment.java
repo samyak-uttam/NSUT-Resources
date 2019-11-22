@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.nsutallin1.Activity.PdfActivity;
@@ -132,11 +129,11 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         mSavedData.clear();
         emptyLayout.setVisibility(View.VISIBLE);
         emptyTV.setText("No Files Saved.");
-        File listFile[] = getActivity().getExternalFilesDir(null).listFiles();
+        File[] listFile = getActivity().getExternalFilesDir(null).listFiles();
         if (listFile != null && listFile.length > 0) {
             emptyLayout.setVisibility(View.GONE);
             for (int i = 0; i < listFile.length; i++) {
-                String dataName = listFile[i].getName().split("&")[0];
+                String dataName = listFile[i].getName().split("&")[0].substring(1);
                 String dataType = listFile[i].getName().split("&")[1].split(".encrypted")[0];
                 mSavedData.add(new SavedData(dataName, dataType));
             }
@@ -182,10 +179,9 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
         String dataType = dataToBeDeleted.getDataType();
         String dataName = dataToBeDeleted.getDataName();
 
-        String itemToBeDeleted = dataName + "&" + dataType + ".encrypted";
+        String itemToBeDeleted = "." + dataName + "&" + dataType + ".encrypted";
 
         File listFile[] = getActivity().getExternalFilesDir(null).listFiles();
-        Log.e("Size:", String.valueOf(listFile.length));
         if (listFile != null && listFile.length > 0) {
             for (int i = 0; i < listFile.length; i++) {
                 if (listFile[i].getName().equals(itemToBeDeleted)) {

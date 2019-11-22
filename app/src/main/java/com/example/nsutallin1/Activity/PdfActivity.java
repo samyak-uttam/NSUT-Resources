@@ -12,20 +12,8 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
 
 public class PdfActivity extends AppCompatActivity {
-
-    private File decrypted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +28,7 @@ public class PdfActivity extends AppCompatActivity {
 
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
 
-        String name = getIntent().getStringExtra("name");
+        String name = "." + getIntent().getStringExtra("name");
         PDFView pdfView = findViewById(R.id.pdf_viewer);
         int i = 0;
         File[] listFile = getExternalFilesDir(null).listFiles();
@@ -50,48 +38,12 @@ public class PdfActivity extends AppCompatActivity {
             }
         }
 
-        decrypted = new File(getExternalFilesDir(null),"temp.decrypted");
+        pdfView.fromFile(listFile[i])
+                .enableSwipe(true)
+                .defaultPage(0)
+                .password("samyak")
+                .scrollHandle(new DefaultScrollHandle(this))
+                .load();
 
-        try {
-            FileInputStream in = new FileInputStream(listFile[i]);
-            FileOutputStream out = new FileOutputStream(decrypted);
-
-            decrypt(in, out);
-            pdfView.fromFile(decrypted)
-                    .enableSwipe(true)
-                    .defaultPage(0)
-                    .scrollHandle(new DefaultScrollHandle(this))
-                    .load();
-        } catch (IOException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static void decrypt(FileInputStream in, FileOutputStream out) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-
-        SecretKeySpec sks = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, sks);
-        CipherInputStream cis = new CipherInputStream(in, cipher);
-        int b;
-        byte[] d = new byte[10240];
-        while((b = cis.read(d)) != -1) {
-            out.write(d, 0, b);
-        }
-        out.flush();
-        out.close();
-        cis.close();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        decrypted.delete();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        decrypted.delete();
     }
 }
