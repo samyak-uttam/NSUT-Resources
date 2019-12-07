@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ContestDetailsActivity"></activity>
+        <activity android:name=".Activity.ContestDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.DsAlgoActivity"
             android:parentActivityName=".Activity.MainActivity" />

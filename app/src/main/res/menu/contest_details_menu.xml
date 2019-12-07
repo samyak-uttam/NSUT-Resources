@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/setReminder"
+        android:title="set Reminder"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_contest_set_reminder"
+        />
+
+    <item
+        android:id="@+id/browse_contest"
+        android:title="browse"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_browse_contest"
+        />
+    <item
+        android:id="@+id/share_contest"
+        android:title="share"
+        android:orderInCategory="3"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_contest_share"
+        />
+
+</menu>
