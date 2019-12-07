@@ -46,7 +46,7 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
         holder.siteImage.setImageResource(contest.getImgResId());
         holder.name.setText(contest.getName());
 
-        Date date = new Date(contest.getStartingTime());
+        final Date date = new Date(contest.getStartingTime());
         holder.startTime.setText(formatDate(date) + ", " + formatTime(date));
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +54,12 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext, ContestDetailsActivity.class);
+                intent.putExtra("contest_name",contest.getName());
+                intent.putExtra("contest_start_date",contest.getStartingTime());
+                intent.putExtra("contest_end_date",contest.getEndTime());
+                intent.putExtra("contest_img",contest.getImgResId());
+                intent.putExtra("contest_url",contest.getContestLink());
+
                 //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(contest.getContestLink()));
                 mContext.startActivity(intent);
             }

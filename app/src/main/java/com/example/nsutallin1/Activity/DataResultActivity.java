@@ -130,7 +130,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         if (listFile != null && listFile.length > 0) {
             int check = 0;
             for (int i = 0; i < listFile.length; i++) {
-                if (listFile[i].getName().split("&")[0].equals(data.get(index))) {
+                if (listFile[i].getName().split("&")[0].equals("." + data.get(index))) {
                     check = 1;
 
                     Intent intent = new Intent(this, PdfActivity.class);
