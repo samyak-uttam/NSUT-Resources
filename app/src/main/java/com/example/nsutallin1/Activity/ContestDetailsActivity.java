@@ -48,6 +48,7 @@ public class ContestDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Contest Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         contestName=findViewById(R.id.contest_name);
         contestNameDesc=findViewById(R.id.contest_name_desc);
