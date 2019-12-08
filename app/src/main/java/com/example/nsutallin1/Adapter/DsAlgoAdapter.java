@@ -2,7 +2,6 @@ package com.example.nsutallin1.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nsutallin1.Activity.ContestDetailsActivity;
 import com.example.nsutallin1.Class.Contest;
-import com.example.nsutallin1.Class.Data;
 import com.example.nsutallin1.R;
 
 import java.text.SimpleDateFormat;

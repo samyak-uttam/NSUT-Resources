@@ -3,19 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE"
-    tools:context=".Activity.DsAlgoActivity">
+    android:background="#EEEEEE">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_running_contest"
+        android:id="@+id/rv_contest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@color/white"
-        android:scrollbars="vertical"
-        tools:context=".Activity.DsAlgoActivity">
+        android:scrollbars="vertical">
 
     </androidx.recyclerview.widget.RecyclerView>
 

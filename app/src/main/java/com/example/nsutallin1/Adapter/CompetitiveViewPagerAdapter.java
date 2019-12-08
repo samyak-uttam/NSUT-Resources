@@ -5,13 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import com.example.nsutallin1.Fragments.RunningContestsFragment;
 import com.example.nsutallin1.Fragments.UpcomingContestsFragment;
 
 import java.util.ArrayList;
 
 public class CompetitiveViewPagerAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> fragmentsInTabViewCompetitve=new ArrayList<Fragment>();
+    private ArrayList<Fragment> fragmentsInTabViewCompetitve = new ArrayList<>();
 
     public CompetitiveViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -35,8 +36,7 @@ public class CompetitiveViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        switch (position)
-        {
+        switch (position) {
             case 0:
                 return "Running";
             case 1:
