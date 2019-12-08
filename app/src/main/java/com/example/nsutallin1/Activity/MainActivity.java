@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent1);
                 break;
             case R.id.competetive_coding:
-                Intent intent2 = new Intent(this, DsAlgoActivity.class);
+                Intent intent2 = new Intent(this, CompetitiveProgrammingActivity.class);
                 startActivity(intent2);
         }
 

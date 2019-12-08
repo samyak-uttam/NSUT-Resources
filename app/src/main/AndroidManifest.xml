@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.ContestDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activity.DsAlgoActivity"
             android:parentActivityName=".Activity.MainActivity" />
@@ -53,6 +53,9 @@
             android:name=".Activity.SyllabusActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppTheme" />
+
+        <activity android:name=".Activity.CompetitiveProgrammingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
