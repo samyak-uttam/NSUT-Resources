@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nsutallin1">
+    package="com.ourcoolapp.nsutresources">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,29 +13,29 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ContestDetailsActivity"
-            android:parentActivityName=".Activity.CompetitiveProgrammingActivity"
+        <activity android:name="com.ourcoolapp.nsutresources.Activity.ContestDetailsActivity"
+            android:parentActivityName="com.ourcoolapp.nsutresources.Activity.CompetitiveProgrammingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.PdfActivity"
+            android:name="com.ourcoolapp.nsutresources.Activity.PdfActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.StudentLoginActivity" />
+        <activity android:name="com.ourcoolapp.nsutresources.Activity.StudentLoginActivity" />
         <activity
-            android:name=".Activity.DataResultActivity"
-            android:parentActivityName=".Activity.onNavItemsSelected" />
+            android:name="com.ourcoolapp.nsutresources.Activity.DataResultActivity"
+            android:parentActivityName="com.ourcoolapp.nsutresources.Activity.onNavItemsSelected" />
         <activity
-            android:name=".Activity.NoticesActivity"
-            android:parentActivityName=".Activity.MainActivity" />
+            android:name="com.ourcoolapp.nsutresources.Activity.NoticesActivity"
+            android:parentActivityName="com.ourcoolapp.nsutresources.Activity.MainActivity" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name="com.ourcoolapp.nsutresources.Activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.onNavItemsSelected"
+            android:name="com.ourcoolapp.nsutresources.Activity.onNavItemsSelected"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.SplashScreenActivity"
+            android:name="com.ourcoolapp.nsutresources.Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,15 +44,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.AboutDevelopersActivity"
-            android:parentActivityName=".Activity.MainActivity"
+            android:name="com.ourcoolapp.nsutresources.Activity.AboutDevelopersActivity"
+            android:parentActivityName="com.ourcoolapp.nsutresources.Activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activity.SyllabusActivity"
-            android:parentActivityName=".Activity.MainActivity"
+            android:name="com.ourcoolapp.nsutresources.Activity.SyllabusActivity"
+            android:parentActivityName="com.ourcoolapp.nsutresources.Activity.MainActivity"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".Activity.CompetitiveProgrammingActivity"
+        <activity android:name="com.ourcoolapp.nsutresources.Activity.CompetitiveProgrammingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

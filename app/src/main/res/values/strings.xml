@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NSUT All in 1</string>
+    <string name="app_name">NSUT Resources</string>
 
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet_connection">No internet connection.</string>
