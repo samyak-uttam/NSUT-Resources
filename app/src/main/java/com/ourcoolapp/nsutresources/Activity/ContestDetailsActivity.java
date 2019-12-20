@@ -74,10 +74,8 @@ public class ContestDetailsActivity extends AppCompatActivity {
             contestEndTime.setText(formatDate(endDate) + ", " + formatTime(endDate));
             contestEndTimeDesc.setTextColor(getResources().getColor(R.color.pink));
             contestUrlToBrowse = (intent.getStringExtra("contest_url"));
-            String[] resultUrl = contestUrlToBrowse.split("\\?");
-            String[] someUrl = resultUrl[0].split("//", 2);
             contestImage.setImageResource(intent.getIntExtra("contest_img", 0));
-            contestUrl.setText(someUrl[1]);
+            contestUrl.setText(contestUrlToBrowse);
             contestUrlDesc.setTextColor(getResources().getColor(R.color.pink));
         }
     }
