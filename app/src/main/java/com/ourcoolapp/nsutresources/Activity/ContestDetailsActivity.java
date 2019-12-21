@@ -16,18 +16,15 @@ import android.widget.TextView;
 import com.ourcoolapp.nsutresources.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ContestDetailsActivity extends AppCompatActivity {
 
     private TextView contestName;
-    private TextView contestNameDesc;
     private TextView contestStartTime;
-    private TextView contestStartTimeDesc;
     private TextView contestEndTime;
-    private TextView contestEndTimeDesc;
-    private TextView contestUrl;
-    private TextView contestUrlDesc;
+    private TextView timeLeft;
     private ImageView contestImage;
 
     private String contestUrlToBrowse;
@@ -47,37 +44,59 @@ public class ContestDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         contestName = findViewById(R.id.contest_name);
-        contestNameDesc = findViewById(R.id.contest_name_desc);
-
         contestStartTime = findViewById(R.id.contest_start_time);
-        contestStartTimeDesc = findViewById(R.id.contest_start_time_desc);
-
         contestEndTime = findViewById(R.id.contest_endtime);
-        contestEndTimeDesc = findViewById(R.id.contest_endtime_desc);
-
-        contestUrl = findViewById(R.id.url);
-        contestUrlDesc = findViewById(R.id.url_desc);
-
+        timeLeft = findViewById(R.id.time_left);
         contestImage = findViewById(R.id.contest_img);
 
         if (intent.hasExtra("contest_name")) {
             contestNameToCalender = intent.getStringExtra("contest_name");
             contestName.setText(contestNameToCalender);
-            contestNameDesc.setTextColor(getResources().getColor(R.color.pink));
 
             Date startDate = new Date(intent.getStringExtra("contest_start_date"));
             startDateToCalender = intent.getStringExtra("contest_start_date");
+
             contestStartTime.setText((formatDate(startDate) + ", " + formatTime(startDate)));
-            contestStartTimeDesc.setTextColor(getResources().getColor(R.color.pink));
             endDateToCalender = intent.getStringExtra("contest_end_date");
+
             Date endDate = new Date(endDateToCalender);
             contestEndTime.setText(formatDate(endDate) + ", " + formatTime(endDate));
-            contestEndTimeDesc.setTextColor(getResources().getColor(R.color.pink));
+
             contestUrlToBrowse = (intent.getStringExtra("contest_url"));
+
             contestImage.setImageResource(intent.getIntExtra("contest_img", 0));
-            contestUrl.setText(contestUrlToBrowse);
-            contestUrlDesc.setTextColor(getResources().getColor(R.color.pink));
+
+            final Date current = Calendar.getInstance().getTime();
+            final Date stTime = new Date(startDateToCalender);
+            if (stTime.getTime() - current.getTime() >= 0) {
+                timeLeft.setText(printDifference(current, startDate));
+            } else {
+                timeLeft.setText("00:00");
+            }
         }
+    }
+
+    public String printDifference(Date startDate, Date endDate) {
+
+        long difference = endDate.getTime() - startDate.getTime();
+
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+
+        long elapsedDays = difference / daysInMilli;
+        difference = difference % daysInMilli;
+
+        long elapsedHours = difference / hoursInMilli;
+        difference = difference % hoursInMilli;
+
+        long elapsedMinutes = difference / minutesInMilli;
+        difference = difference % minutesInMilli;
+
+        long elapsedSeconds = difference / secondsInMilli;
+
+        return (elapsedDays + "days, " + elapsedHours + "h, " + elapsedMinutes + "m, " + elapsedSeconds + "s");
     }
 
     private String formatDate(Date dateObject) {

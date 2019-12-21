@@ -19,7 +19,6 @@
         <activity
             android:name="com.ourcoolapp.nsutresources.Activity.PdfActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.ourcoolapp.nsutresources.Activity.StudentLoginActivity" />
         <activity
             android:name="com.ourcoolapp.nsutresources.Activity.DataResultActivity"
             android:parentActivityName="com.ourcoolapp.nsutresources.Activity.onNavItemsSelected" />

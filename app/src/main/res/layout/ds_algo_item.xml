@@ -28,6 +28,7 @@
                 android:id="@+id/site_image"
                 android:layout_width="84dp"
                 android:layout_height="84dp"
+                android:paddingRight="4dp"
                 tools:src="@drawable/codechef" />
 
             <LinearLayout

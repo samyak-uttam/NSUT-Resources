@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.ContestDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,49 +13,49 @@
         android:background="@color/blue"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
     <ImageView
         android:id="@+id/contest_img"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/contestdetails_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/contestdetails_toolbar"
+        android:layout_marginTop="10dp"
         android:contentDescription="ContestName"
         android:scaleType="center"
-        android:src="@drawable/codechef"/>
+        android:src="@drawable/codechef" />
 
     <LinearLayout
         android:id="@+id/contest_name_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contest_img"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/contest_name_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="Contest Name"
-            android:textSize="16sp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:layout_marginTop="5dp"/>
+            android:text="Contest Name"
+            android:textColor="@color/pink"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/contest_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contest Name"
             android:layout_marginTop="3dp"
             android:fontFamily="sans-serif"
             android:maxLines="2"
+            android:text="Contest Name"
             android:textColor="@color/black" />
 
     </LinearLayout>
@@ -66,34 +66,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contest_name_ll"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/contest_start_time_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Time"
-            android:textSize="16sp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:layout_marginTop="5dp" />
+            android:text="Start Time"
+            android:textColor="@color/pink"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/contest_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/contest_start_time_desc"
             android:layout_below="@id/contest_name_desc"
-            android:text="Monday 2nd march 2018"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/contest_start_time_desc"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:textColor="@color/black"
-            android:layout_marginTop="3dp" />
+            android:text="00:00"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,33 +101,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contest_starttime_ll"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/contest_endtime_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End time"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:textSize="16sp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:layout_marginTop="3dp" />
+            android:text="End time"
+            android:textColor="@color/pink"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/contest_endtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/contest_endtime_desc"
             android:layout_weight="1"
-            android:text="Contest Name"
             android:fontFamily="sans-serif"
-            android:textColor="@color/black"
-            android:layout_marginTop="3dp" />
+            android:text="00:00"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -136,40 +136,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contest_endtime_ll"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/url_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:text="Url"
-            android:textSize="16sp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:layout_marginTop="3dp"/>
+            android:text="Time Left to start"
+            android:textColor="@color/pink"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/url"
+            android:id="@+id/time_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/url_desc"
-            android:text="Contest Name"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:textColor="@color/black"
-            android:layout_marginTop="3dp"
-            android:maxLines="2"/>
-
+            android:maxLines="2"
+            android:text="00:00"
+            android:textColor="@color/black" />
 
     </LinearLayout>
-
-
-
-
 
 </RelativeLayout>
