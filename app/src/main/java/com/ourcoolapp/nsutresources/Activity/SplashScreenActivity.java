@@ -30,6 +30,4 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
-
-
 }

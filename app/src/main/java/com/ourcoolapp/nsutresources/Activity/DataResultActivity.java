@@ -172,6 +172,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                View loadingIndicator = findViewById(R.id.loading_spinner);
+                loadingIndicator.setVisibility(View.GONE);
                 Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
                 pd.cancel();
             }

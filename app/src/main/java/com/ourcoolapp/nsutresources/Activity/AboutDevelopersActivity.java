@@ -1,12 +1,19 @@
 package com.ourcoolapp.nsutresources.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -15,6 +22,8 @@ import com.ourcoolapp.nsutresources.R;
 public class AboutDevelopersActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    private TextView noteTV;
+    private String note;
     private ImageView samyakLinkdinImageView;
     private ImageView samyakFacebookImageView;
     private ImageView samyakInstagramImageView;
@@ -32,6 +41,27 @@ public class AboutDevelopersActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.about_developers);
 
         getSupportActionBar().setTitle("ABOUT US");
+
+        noteTV = findViewById(R.id.note);
+        note = "Note: If you find any content unsuitable for the app, please contact us here.";
+        SpannableString ss = new SpannableString(note);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                String[] TO = {"ankit.pro.132000@gmail.com", "samyakuttam@gmail.com"};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Complaint regarding the resources");
+                emailIntent.setType("message/rfc822");
+                startActivity(emailIntent);
+            }
+        };
+
+        ss.setSpan(clickableSpan, 72, 76, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        noteTV.setText(ss);
+        noteTV.setMovementMethod(LinkMovementMethod.getInstance());
+        noteTV.setHighlightColor(Color.TRANSPARENT);
 
         samyakLinkdinImageView = findViewById(R.id.samyak_linkdin);
         samyakFacebookImageView = findViewById(R.id.samyak_facebook);
@@ -104,7 +134,6 @@ public class AboutDevelopersActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.contribue_card:
-                Log.i("Send email", "");
                 String[] TO = {"ankit.pro.132000@gmail.com", "samyakuttam@gmail.com"};
                 String[] CC = {""};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);

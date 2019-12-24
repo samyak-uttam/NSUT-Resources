@@ -193,4 +193,15 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contribue_card"
+        android:paddingTop="32dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textColorLink="@color/blue"
+        android:text="Note: If you find any content unsuitable for the app, please contact us"/>
+
 </RelativeLayout>
