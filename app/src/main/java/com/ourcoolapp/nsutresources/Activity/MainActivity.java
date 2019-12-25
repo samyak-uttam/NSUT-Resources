@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent3);
         }
 
+        drawer.closeDrawer(GravityCompat.START,false);
         return true;
     }
 }

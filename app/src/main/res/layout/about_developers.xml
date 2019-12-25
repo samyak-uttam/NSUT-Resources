@@ -148,7 +148,7 @@
         android:layout_below="@id/bothdevelopers"
         android:layout_marginTop="30dp"
         android:padding="10dp"
-        android:text="The aim is to provide acess to academic help along with latest college news and student features."
+        android:text="The aim is to provide access to academic resources in one place along with regular updates of coding competitions."
         android:textColor="@color/black"
         android:textFontWeight="200"
         android:textSize="18dp" />

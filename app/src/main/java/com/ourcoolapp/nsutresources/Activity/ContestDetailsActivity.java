@@ -131,6 +131,9 @@ public class ContestDetailsActivity extends AppCompatActivity {
             case R.id.setReminder:
                 onAddEventClicked();
                 break;
+
+            case android.R.id.home:
+                    onBackPressed();
         }
 
         return true;

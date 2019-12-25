@@ -52,7 +52,8 @@
             android:theme="@style/AppTheme" />
 
         <activity android:name="com.ourcoolapp.nsutresources.Activity.CompetitiveProgrammingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Activity.MainActivity"/>
     </application>
 
 </manifest>

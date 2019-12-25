@@ -1,9 +1,12 @@
 package com.ourcoolapp.nsutresources.Activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ourcoolapp.nsutresources.Adapter.CompetitiveViewPagerAdapter;
@@ -25,6 +28,10 @@ public class CompetitiveProgrammingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_competitive);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Contests");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         viewPager = findViewById(R.id.view_pager_competitive);
         competitiveViewPagerAdapter = new CompetitiveViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(competitiveViewPagerAdapter);
@@ -33,6 +40,14 @@ public class CompetitiveProgrammingActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==android.R.id.home)
+        {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 
