@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TempActivity"></activity>
+        <activity android:name=".Activity.DataResultActivity"></activity>
         <activity
             android:name=".Activity.ContestDetailsActivity"
             android:parentActivityName=".Activity.CompetitiveProgrammingActivity"

@@ -1,20 +1,16 @@
 package com.educational.nsutresources.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,47 +18,56 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dropbox.core.DbxDownloader;
+import com.dropbox.core.DbxException;
+import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
 import com.educational.nsutresources.Adapter.DataAdapter;
 import com.educational.nsutresources.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataResultActivity extends AppCompatActivity implements DataAdapter.ListItemClickListener {
 
     private String selBranch, selData, subName;
     private RecyclerView mRecyclerView;
     private DataAdapter mAdapter;
-    private List<StorageReference> files;
     private ArrayList<String> data;
     private LinearLayout emptyLayout;
     private ImageView emptyIV;
     private TextView emptyTV;
+    private DbxRequestConfig config;
+    private DbxClientV2 client;
+    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAAMwWJhVAlvzWBma20NAAT-B70O80XhMbV_eqM1XBPahyz";
+    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_result);
+        setContentView(R.layout.activity_temp);
 
         Intent intent = getIntent();
         selBranch = intent.getStringExtra("branchName").toLowerCase();
         selData = intent.getStringExtra("dataType");
         subName = intent.getStringExtra("subName");
 
+        config = new DbxRequestConfig("dropbox/NSUT Resources");
+        client = new DbxClientV2(config, ACCESS_TOKEN);
+        path = "/NSUT Resources/" + selBranch + "/" + subName + "/" + selData;
+
         emptyLayout = findViewById(R.id.empty_layout);
         emptyIV = findViewById(R.id.empty_image_view);
         emptyTV = findViewById(R.id.empty_text_view);
         mRecyclerView = findViewById(R.id.data_rec_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        files = new ArrayList<>();
         data = new ArrayList<>();
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
@@ -74,38 +79,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            final StorageReference listRef = storage.getReference().child(selBranch + "/" + subName + "/" + selData);
-
-            listRef.listAll()
-                    .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                        @Override
-                        public void onSuccess(ListResult listResult) {
-                            files = listResult.getItems();
-                            for (StorageReference item : listResult.getItems()) {
-                                data.add(item.getName().split(".pdf")[0]);
-                            }
-
-                            View loadingIndicator = findViewById(R.id.loading_spinner);
-                            loadingIndicator.setVisibility(View.GONE);
-
-                            if (!data.isEmpty() && data.size() > 0) {
-                                mAdapter = new DataAdapter(data, DataResultActivity.this);
-                                mRecyclerView.setAdapter(mAdapter);
-                                mAdapter.notifyDataSetChanged();
-
-                            } else {
-                                emptyIV.setImageResource(R.drawable.empty);
-                                emptyTV.setText("No material available for this category.");
-                            }
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            ATask task = new ATask();
+            task.execute();
 
         } else {
             emptyIV.setImageResource(R.drawable.no_internet);
@@ -114,6 +89,43 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
             loadingIndicator.setVisibility(View.GONE);
         }
 
+    }
+
+    private class ATask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try {
+                ListFolderResult result = client.files().listFolder(path);
+
+                for (Metadata metadata : result.getEntries()) {
+                    data.add(metadata.getName().split(".pdf")[0]);
+                }
+
+            } catch (DbxException e) {
+                Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            View loadingIndicator = findViewById(R.id.loading_spinner);
+            loadingIndicator.setVisibility(View.GONE);
+
+            if (!data.isEmpty() && data.size() > 0) {
+                mAdapter = new DataAdapter(data, DataResultActivity.this);
+                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+
+            } else {
+                emptyIV.setImageResource(R.drawable.empty);
+                emptyTV.setText("No material available for this category.");
+            }
+        }
     }
 
     @Override
@@ -133,44 +145,73 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
                 }
             }
             if (check == 0) {
-                DownloadFile(index);
+                DownloadFile file = new DownloadFile();
+                file.execute(index);
             }
         } else {
-            DownloadFile(index);
+            DownloadFile file = new DownloadFile();
+            file.execute(index);
         }
     }
 
-    private void DownloadFile(final int index) {
-        final File file = new File(getExternalFilesDir(null), "." + data.get(index) + "&" + selData + ".encrypted");
+    private class DownloadFile extends AsyncTask<Integer, Integer, Void> {
 
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("loading");
-        pd.show();
+        private ProgressDialog pd;
+        private int index;
 
-        files.get(index).getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd = new ProgressDialog(DataResultActivity.this);
+            pd.setMessage("loading");
+            pd.show();
+        }
 
-                Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
-                intent.putExtra("name", data.get(index));
-                startActivity(intent);
+        @Override
+        protected Void doInBackground(Integer... integers) {
 
-                pd.cancel();
+            index = integers[0];
+            final File file = new File(getExternalFilesDir(null),
+                    "." + data.get(index) + "&" + selData + ".encrypted");
+            try {
+                OutputStream output = new FileOutputStream(file);
+                DbxDownloader<FileMetadata> metadata = client.files().download(path.toLowerCase() + "/"
+                        + data.get(index).toLowerCase() + ".pdf");
+                InputStream input = metadata.getInputStream();
+                long length = metadata.getResult().getSize();
+                int count;
+                long total = 0;
+                byte[] data = new byte[1024];
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+
+                    publishProgress((int) ((total * 100) / length));
+
+                    output.write(data, 0, count);
+                }
+
+                output.flush();
+                output.close();
+            } catch (IOException | DbxException e) {
+                e.printStackTrace();
             }
-        }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull FileDownloadTask.TaskSnapshot taskSnapshot) {
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                pd.setMessage((int) progress + "%");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                View loadingIndicator = findViewById(R.id.loading_spinner);
-                loadingIndicator.setVisibility(View.GONE);
-                Toast.makeText(DataResultActivity.this, "Sorry, an error occured!", Toast.LENGTH_SHORT).show();
-                pd.cancel();
-            }
-        });
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            pd.setMessage(progress[0] + "%");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
+            intent.putExtra("name", data.get(index));
+            startActivity(intent);
+
+            pd.cancel();
+        }
     }
 }
