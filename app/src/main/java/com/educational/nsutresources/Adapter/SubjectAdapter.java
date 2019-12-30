@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.educational.nsutresources.Activity.DataResultActivity;
+import com.educational.nsutresources.Activity.TempActivity;
 import com.educational.nsutresources.Class.Subject;
 import com.educational.nsutresources.R;
 
@@ -82,7 +83,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             holder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DataResultActivity.class);
+                    Intent intent = new Intent(mContext, TempActivity.class);
                     intent.putExtra("branchName", data[0]);
                     intent.putExtra("dataType", data[1]);
                     intent.putExtra("subName", subject.getSubjectName());

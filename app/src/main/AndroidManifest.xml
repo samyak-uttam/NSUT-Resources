@@ -12,28 +12,30 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.educational.nsutresources.Activity.ContestDetailsActivity"
-            android:parentActivityName="com.educational.nsutresources.Activity.CompetitiveProgrammingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activity.TempActivity"></activity>
         <activity
-            android:name="com.educational.nsutresources.Activity.PdfActivity"
+            android:name=".Activity.ContestDetailsActivity"
+            android:parentActivityName=".Activity.CompetitiveProgrammingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.educational.nsutresources.Activity.DataResultActivity"
-            android:parentActivityName="com.educational.nsutresources.Activity.onNavItemsSelected" />
+            android:name=".Activity.PdfActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.educational.nsutresources.Activity.NoticesActivity"
-            android:parentActivityName="com.educational.nsutresources.Activity.MainActivity" />
+            android:name=".Activity.DataResultActivity"
+            android:parentActivityName=".Activity.onNavItemsSelected" />
         <activity
-            android:name="com.educational.nsutresources.Activity.MainActivity"
+            android:name=".Activity.NoticesActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.educational.nsutresources.Activity.onNavItemsSelected"
+            android:name=".Activity.onNavItemsSelected"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.educational.nsutresources.Activity.SplashScreenActivity"
+            android:name=".Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,17 +44,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.educational.nsutresources.Activity.AboutDevelopersActivity"
-            android:parentActivityName="com.educational.nsutresources.Activity.MainActivity"
+            android:name=".Activity.AboutDevelopersActivity"
+            android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.educational.nsutresources.Activity.SyllabusActivity"
-            android:parentActivityName="com.educational.nsutresources.Activity.MainActivity"
+            android:name=".Activity.SyllabusActivity"
+            android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name="com.educational.nsutresources.Activity.CompetitiveProgrammingActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.educational.nsutresources.Activity.MainActivity"/>
+        <activity
+            android:name=".Activity.CompetitiveProgrammingActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
