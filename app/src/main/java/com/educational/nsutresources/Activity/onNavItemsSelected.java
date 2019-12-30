@@ -183,7 +183,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         itSubs.add(new Subject("Multimedia & Applications"));
         itSubs.add(new Subject("Theory of Computation"));
         itSubs.add(new Subject("Design And Analysis of Algorithm"));
-        itSubs.add(new Subject("Linux/Unix Lab"));
+        itSubs.add(new Subject("Linux Unix Lab"));
         itSubs.add(new Subject("SEM 6"));
         itSubs.add(new Subject("Internet and Web Engineering"));
         itSubs.add(new Subject("Compiler and Translator Design"));
@@ -301,7 +301,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         btSubs.add(new Subject("Methods & Instrumentation In Biotechnology"));
         btSubs.add(new Subject("Molecular Biology"));
         btSubs.add(new Subject("Immunology"));
-        btSubs.add(new Subject("Database Management ystems"));
+        btSubs.add(new Subject("Database Management Systems"));
         btSubs.add(new Subject("Genetics"));
         btSubs.add(new Subject("SEM 5"));
         btSubs.add(new Subject("Recombinant DNA Technology"));

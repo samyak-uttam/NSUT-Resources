@@ -46,13 +46,13 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private TextView emptyTV;
     private DbxRequestConfig config;
     private DbxClientV2 client;
-    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAAMwWJhVAlvzWBma20NAAT-B70O80XhMbV_eqM1XBPahyz";
+    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAAOmE1UlmuCsG26RFqc18DkmMzCgbHJ08LKJMkI_muVU58";
     private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_temp);
+        setContentView(R.layout.activity_data_result);
 
         Intent intent = getIntent();
         selBranch = intent.getStringExtra("branchName").toLowerCase();
@@ -79,7 +79,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            ATask task = new ATask();
+            GetData task = new GetData();
             task.execute();
 
         } else {
@@ -91,7 +91,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
     }
 
-    private class ATask extends AsyncTask<Void, Void, Void> {
+    private class GetData extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
