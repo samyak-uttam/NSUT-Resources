@@ -102,11 +102,11 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         eceSubs.add(new Subject("SEM 2"));
         eceSubs.add(new Subject("Mathematics II"));
-        eceSubs.add(new Subject("English II"));
-        eceSubs.add(new Subject("Electronic Engineering Materials"));
-        eceSubs.add(new Subject("Electronics I"));
-        eceSubs.add(new Subject("Digital Circuits and Systems"));
-        eceSubs.add(new Subject("Electrical Machines"));
+        eceSubs.add(new Subject("English"));
+        eceSubs.add(new Subject("Active Circuit Analysis and Synthesis"));
+        eceSubs.add(new Subject("Data Structures and Algorithms"));
+        eceSubs.add(new Subject("Electronic Devices and Circuits"));
+        eceSubs.add(new Subject("Environment Science and Green Chemistry"));
         eceSubs.add(new Subject("SEM 3"));
         eceSubs.add(new Subject("Mathematics III"));
         eceSubs.add(new Subject("Electronics II"));
@@ -132,11 +132,11 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         coeSubs.add(new Subject("SEM 2"));
         coeSubs.add(new Subject("Mathematics II"));
-        coeSubs.add(new Subject("English II"));
+        coeSubs.add(new Subject("English"));
         coeSubs.add(new Subject("Discrete Structures"));
         coeSubs.add(new Subject("Data Structures"));
         coeSubs.add(new Subject("Digital Logic Design"));
-        coeSubs.add(new Subject("Analog and Digital Communication"));
+        coeSubs.add(new Subject("Environment Science and Green Chemistry"));
         coeSubs.add(new Subject("SEM 3"));
         coeSubs.add(new Subject("Design and Analysis of Algorithms"));
         coeSubs.add(new Subject("Database Management Systems"));
@@ -162,11 +162,11 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         itSubs.add(new Subject("SEM 2"));
         itSubs.add(new Subject("Mathematics II"));
-        itSubs.add(new Subject("English II"));
-        itSubs.add(new Subject("Chemistry"));
-        itSubs.add(new Subject("Object Oriented Techniques"));
-        itSubs.add(new Subject("Analog and Digital Communication"));
-        itSubs.add(new Subject("Discrete Structure"));
+        itSubs.add(new Subject("English"));
+        itSubs.add(new Subject("Discrete Structures"));
+        itSubs.add(new Subject("Data Structures"));
+        itSubs.add(new Subject("Digital Logic Design"));
+        itSubs.add(new Subject("Environment Science and Green Chemistry"));
         itSubs.add(new Subject("SEM 3"));
         itSubs.add(new Subject("Mathematics III"));
         itSubs.add(new Subject("Data Structure and Algorithm"));
@@ -221,12 +221,12 @@ public class onNavItemsSelected extends AppCompatActivity {
 
 
         meSubs.add(new Subject("SEM 2"));
-        meSubs.add(new Subject("Mathematics II"));
-        meSubs.add(new Subject("English II"));
-        meSubs.add(new Subject("Chemistry"));
         meSubs.add(new Subject("Engineering Mechanics"));
-        meSubs.add(new Subject("Workshop Technology"));
-        meSubs.add(new Subject("Engineering Graphics"));
+        meSubs.add(new Subject("Engineering Material & Metallurgy"));
+        meSubs.add(new Subject("Engineering & Machine Drawing"));
+        meSubs.add(new Subject("Computer Programming"));
+        meSubs.add(new Subject("Mathematics II"));
+        meSubs.add(new Subject("Physics"));
         meSubs.add(new Subject("SEM 3"));
         meSubs.add(new Subject("Machine Drawing"));
         meSubs.add(new Subject("Manufacturing Processes I"));
