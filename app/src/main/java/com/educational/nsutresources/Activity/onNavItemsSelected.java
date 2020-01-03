@@ -192,11 +192,11 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         iceSubs.add(new Subject("SEM 2"));
         iceSubs.add(new Subject("Mathematics II"));
-        iceSubs.add(new Subject("English II"));
-        iceSubs.add(new Subject("Physics of Material"));
-        iceSubs.add(new Subject("Applied Mechanics"));
-        iceSubs.add(new Subject("Signal and Systems"));
-        iceSubs.add(new Subject("Power Apparatus"));
+        iceSubs.add(new Subject("Physics"));
+        iceSubs.add(new Subject("Computer Programming"));
+        iceSubs.add(new Subject("Electrical Measurements"));
+        iceSubs.add(new Subject("Network Analysis and Synthesis"));
+        iceSubs.add(new Subject("Electronics Devices & Circuits"));
         iceSubs.add(new Subject("SEM 3"));
         iceSubs.add(new Subject("Electronic Instrumentation"));
         iceSubs.add(new Subject("Electronics"));
@@ -253,11 +253,11 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         mpaeSubs.add(new Subject("SEM 2"));
         mpaeSubs.add(new Subject("Mathematics II"));
-        mpaeSubs.add(new Subject("English II"));
-        mpaeSubs.add(new Subject("Chemistry"));
+        mpaeSubs.add(new Subject("Physics"));
+        mpaeSubs.add(new Subject("Computer Programming"));
         mpaeSubs.add(new Subject("Engineering Mechanics"));
-        mpaeSubs.add(new Subject("Workshop Technology"));
-        mpaeSubs.add(new Subject("Engineering Graphics"));
+        mpaeSubs.add(new Subject("Mechanical Sciences"));
+        mpaeSubs.add(new Subject("Engineering Materials & Metallurgy"));
         mpaeSubs.add(new Subject("SEM 3"));
         mpaeSubs.add(new Subject("Machine Drawing"));
         mpaeSubs.add(new Subject("Manufacturing Processes I"));
@@ -286,10 +286,10 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         btSubs.add(new Subject("SEM 2"));
         btSubs.add(new Subject("Mathematics II"));
-        btSubs.add(new Subject("English II"));
-        btSubs.add(new Subject("Physics of Material"));
+        btSubs.add(new Subject("Physics"));
+        btSubs.add(new Subject("Physics of Materials"));
+        btSubs.add(new Subject("Computer Programming"));
         btSubs.add(new Subject("Advance Chemistry"));
-        btSubs.add(new Subject("Biostatistics"));
         btSubs.add(new Subject("Introduction to Biotechnology"));
         btSubs.add(new Subject("SEM 3"));
         btSubs.add(new Subject("Biochemistry"));

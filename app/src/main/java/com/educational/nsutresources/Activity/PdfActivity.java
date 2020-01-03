@@ -41,7 +41,6 @@ public class PdfActivity extends AppCompatActivity {
         pdfView.fromFile(listFile[i])
                 .enableSwipe(true)
                 .defaultPage(0)
-                .password("samyak")
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
 
