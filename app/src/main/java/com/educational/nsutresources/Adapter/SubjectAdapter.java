@@ -77,6 +77,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
                 case 8:
                     holder.branchImage.setImageResource(R.drawable.bt);
                     break;
+                case 9:
+                    holder.branchImage.setImageResource(R.drawable.electives);
+                    break;
             }
 
             holder.rootView.setOnClickListener(new View.OnClickListener() {

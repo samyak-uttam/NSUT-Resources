@@ -21,7 +21,7 @@ public class onNavItemsSelected extends AppCompatActivity {
     private SubjectAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private static ArrayList<Subject> yearOneSubs, jaggiMathur, coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs;
+    private static ArrayList<Subject> yearOneSubs, jaggiMathur, coeSubs, itSubs, eceSubs, iceSubs, meSubs, mpaeSubs, btSubs, electives;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class onNavItemsSelected extends AppCompatActivity {
         meSubs = new ArrayList<>();
         mpaeSubs = new ArrayList<>();
         btSubs = new ArrayList<>();
+        electives = new ArrayList<>();
 
         assignSubjects();
 
@@ -82,6 +83,9 @@ public class onNavItemsSelected extends AppCompatActivity {
             case "BT":
                 mAdapter = new SubjectAdapter(btSubs,8, data,this);
                 break;
+            case "Electives":
+                mAdapter = new SubjectAdapter(electives, 9, data, this);
+
         }
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -93,7 +97,6 @@ public class onNavItemsSelected extends AppCompatActivity {
         yearOneSubs.add(new Subject("Electrical and Electronics Engineering"));
         yearOneSubs.add(new Subject("Physics"));
         yearOneSubs.add(new Subject("English I"));
-        yearOneSubs.add(new Subject("Miscellaneous"));
 
 
         jaggiMathur.add(new Subject("Book I"));
@@ -312,5 +315,10 @@ public class onNavItemsSelected extends AppCompatActivity {
         btSubs.add(new Subject("Bioprocess Technology"));
         btSubs.add(new Subject("Plant and Animal Technology"));
         btSubs.add(new Subject("Downstream Processing"));
+
+        electives.add(new Subject("Corporate Social Responsibility"));
+        electives.add(new Subject("Introduction to Indian Society"));
+        electives.add(new Subject("Yoga"));
+        electives.add(new Subject("Financial Literacy"));
     }
 }

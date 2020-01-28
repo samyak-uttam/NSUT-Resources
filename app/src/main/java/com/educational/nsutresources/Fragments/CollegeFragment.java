@@ -69,6 +69,7 @@ public class CollegeFragment extends Fragment implements BranchAdapter.ListItemC
         branches.add(new Data("MPAE", R.drawable.mpae));
         branches.add(new Data("ME", R.drawable.me));
         branches.add(new Data("BT", R.drawable.bt));
+        branches.add(new Data("Electives", R.drawable.electives));
 
         branchAdapter = new BranchAdapter(branches, this);
 
