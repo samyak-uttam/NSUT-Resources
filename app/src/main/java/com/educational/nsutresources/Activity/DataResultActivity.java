@@ -1,13 +1,16 @@
 package com.educational.nsutresources.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -26,6 +29,8 @@ import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 import com.educational.nsutresources.Adapter.DataAdapter;
+import com.educational.nsutresources.Data.BookDbHelper;
+import com.educational.nsutresources.Data.ContractClass.BookEntry;
 import com.educational.nsutresources.R;
 
 import java.io.File;
@@ -48,6 +53,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private DbxClientV2 client;
     private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAAOmE1UlmuCsG26RFqc18DkmMzCgbHJ08LKJMkI_muVU58";
     private String path;
+    private BookDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,8 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         selBranch = intent.getStringExtra("branchName").toLowerCase();
         selData = intent.getStringExtra("dataType");
         subName = intent.getStringExtra("subName");
+
+        mDbHelper = new BookDbHelper(this);
 
         config = new DbxRequestConfig("dropbox/NSUT Resources");
         client = new DbxClientV2(config, ACCESS_TOKEN);
@@ -136,11 +144,14 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         if (listFile != null && listFile.length > 0) {
             int check = 0;
             for (int i = 0; i < listFile.length; i++) {
-                if (listFile[i].getName().split("&")[0].equals("." + data.get(index))) {
+                if (listFile[i].getName().equals(data.get(index) + ".pdf")) {
                     check = 1;
 
-                    Intent intent = new Intent(this, PdfActivity.class);
-                    intent.putExtra("name", data.get(index));
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext()
+                            .getPackageName() + ".provider", listFile[i]), "application/pdf");
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
                     startActivity(intent);
                 }
             }
@@ -172,7 +183,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
             index = integers[0];
             final File file = new File(getExternalFilesDir(null),
-                    "." + data.get(index) + "&" + selData + ".encrypted");
+                    data.get(index) + ".pdf");
             try {
                 OutputStream output = new FileOutputStream(file);
                 DbxDownloader<FileMetadata> metadata = client.files().download(path.toLowerCase() + "/"
@@ -207,11 +218,33 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = new Intent(DataResultActivity.this, PdfActivity.class);
-            intent.putExtra("name", data.get(index));
+
+            addToDatabase(index);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            File[] listFile = getExternalFilesDir(null).listFiles();
+            int i = 0;
+            for (i = 0; i < listFile.length; i++) {
+                if (listFile[i].getName().equals(data.get(index) + ".pdf")) {
+                    break;
+                }
+            }
+            intent.setDataAndType(FileProvider.getUriForFile(DataResultActivity.this, getApplicationContext()
+                    .getPackageName() + ".provider", listFile[i]), "application/pdf");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
 
             pd.cancel();
         }
+    }
+
+    private void addToDatabase(int index) {
+
+        SQLiteDatabase writableDatabase = mDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(BookEntry.COLUMN_BOOK_NAME, data.get(index));
+        values.put(BookEntry.COLUMN_BOOK_DATA, selData);
+
+        writableDatabase.insert(BookEntry.TABLE_NAME, null, values);
     }
 }
