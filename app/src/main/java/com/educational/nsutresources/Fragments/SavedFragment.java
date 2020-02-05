@@ -34,6 +34,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 import com.educational.nsutresources.Data.ContractClass.BookEntry;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class SavedFragment extends Fragment implements SavedAdapter.ListItemClickListener, DialogFragment.NoticeDialogListener {
 
@@ -58,6 +60,10 @@ public class SavedFragment extends Fragment implements SavedAdapter.ListItemClic
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_saved, container, false);
+
+        AdView mAdView = rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         final EditText dataSearch = rootView.findViewById(R.id.data_search_et);
         ImageButton searchButton = rootView.findViewById(R.id.search_button);

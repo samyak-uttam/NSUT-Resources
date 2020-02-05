@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.educational.nsutresources.Adapter.SyllabusAdapter;
 import com.educational.nsutresources.Class.Syllabus;
 import com.educational.nsutresources.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,10 @@ public class SyllabusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_syllabus);
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         getSupportActionBar().setTitle("SYLLABUS");
 

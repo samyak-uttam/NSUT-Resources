@@ -32,6 +32,8 @@ import com.educational.nsutresources.Adapter.DataAdapter;
 import com.educational.nsutresources.Data.BookDbHelper;
 import com.educational.nsutresources.Data.ContractClass.BookEntry;
 import com.educational.nsutresources.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,6 +61,10 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_result);
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Intent intent = getIntent();
         selBranch = intent.getStringExtra("branchName").toLowerCase();

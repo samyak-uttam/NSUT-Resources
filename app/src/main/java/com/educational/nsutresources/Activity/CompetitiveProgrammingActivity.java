@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.educational.nsutresources.Adapter.CompetitiveViewPagerAdapter;
 import com.educational.nsutresources.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -23,6 +25,10 @@ public class CompetitiveProgrammingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_competitive_programming);
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Toolbar toolbar = findViewById(R.id.toolbar_competitive);
         setSupportActionBar(toolbar);

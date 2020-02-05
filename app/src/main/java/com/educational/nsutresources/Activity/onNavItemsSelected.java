@@ -26,7 +26,6 @@ public class onNavItemsSelected extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.on_nav_items_selected);
 
         yearOneSubs = new ArrayList<>();
