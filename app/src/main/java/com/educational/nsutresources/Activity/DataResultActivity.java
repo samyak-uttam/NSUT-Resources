@@ -53,7 +53,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private TextView emptyTV;
     private DbxRequestConfig config;
     private DbxClientV2 client;
-    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAAOmE1UlmuCsG26RFqc18DkmMzCgbHJ08LKJMkI_muVU58";
+    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAASbfIDBHQQ_vOOfBzBitsACm4baC6ytb_Jj8zcnpJaeAY";
     private String path;
     private BookDbHelper mDbHelper;
 
