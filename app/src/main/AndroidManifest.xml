@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".Notifications.NotificationClass"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -65,6 +66,8 @@
             android:name=".Activity.CompetitiveProgrammingActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name=".Notifications.AlertReceiver"/>
     </application>
 
 </manifest>

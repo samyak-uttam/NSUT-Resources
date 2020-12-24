@@ -1,5 +1,6 @@
 package com.educational.nsutresources.Adapter;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -50,13 +51,12 @@ public class DsAlgoAdapter extends RecyclerView.Adapter<DsAlgoAdapter.DsAlgoView
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, ContestDetailsActivity.class);
-                intent.putExtra("contest_name",contest.getName());
-                intent.putExtra("contest_start_date",contest.getStartingTime());
-                intent.putExtra("contest_end_date",contest.getEndTime());
-                intent.putExtra("contest_img",contest.getImgResId());
-                intent.putExtra("contest_url",contest.getContestLink());
+                intent.putExtra("contest_name", contest.getName());
+                intent.putExtra("contest_start_date", contest.getStartingTime());
+                intent.putExtra("contest_end_date", contest.getEndTime());
+                intent.putExtra("contest_img", contest.getImgResId());
+                intent.putExtra("contest_url", contest.getContestLink());
 
                 //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(contest.getContestLink()));
                 mContext.startActivity(intent);

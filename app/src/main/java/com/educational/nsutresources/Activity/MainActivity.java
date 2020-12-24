@@ -1,26 +1,34 @@
 package com.educational.nsutresources.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 
 import com.educational.nsutresources.Adapter.ViewPagerAdapter;
+import com.educational.nsutresources.Class.Contest;
+import com.educational.nsutresources.Loader.DsAlgoLoader;
 import com.educational.nsutresources.R;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LoaderManager.LoaderCallbacks<ArrayList<Contest>> {
 
     private DrawerLayout drawer;
     private ViewPager viewPager;
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         tabLayout.setupWithViewPager(viewPager);
 
-        navigationView=findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -54,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        LoaderManager loaderManager = getSupportLoaderManager();
+        loaderManager.initLoader(1, null, this);
     }
 
 
@@ -68,12 +78,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int selectedItem=menuItem.getItemId();
+        int selectedItem = menuItem.getItemId();
 
-        switch (selectedItem)
-        {
+        switch (selectedItem) {
             case R.id.nav_aboutdevelopers:
-                Intent intent = new Intent(this,AboutDevelopersActivity.class);
+                Intent intent = new Intent(this, AboutDevelopersActivity.class);
                 startActivity(intent);
                 break;
             case R.id.syllabus:
@@ -89,7 +98,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent3);
         }
 
-        drawer.closeDrawer(GravityCompat.START,false);
+        drawer.closeDrawer(GravityCompat.START, false);
         return true;
+    }
+
+    @NonNull
+    @Override
+    public Loader<ArrayList<Contest>> onCreateLoader(int id, @Nullable Bundle args) {
+        return new DsAlgoLoader(this, 2);
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<ArrayList<Contest>> loader, ArrayList<Contest> data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<ArrayList<Contest>> loader) {
+
     }
 }

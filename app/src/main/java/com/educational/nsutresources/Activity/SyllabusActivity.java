@@ -33,6 +33,7 @@ public class SyllabusActivity extends AppCompatActivity {
 
         syllabi = new ArrayList<>();
 
+        syllabi.add(new Syllabus("1st Sem NSUT", R.drawable.one, "1U7cBlAOhX5-P8r0G20NBz0FBZVtJlOIW"));
         syllabi.add(new Syllabus("Electronics and Communication Engineering", R.drawable.ece, "143Eca437QUQvW83u5Gy-pjaBtP2M4Dha"));
         syllabi.add(new Syllabus("Computer Engineering", R.drawable.coe, "14BUJuR4PexMjBccRL_t4DQglirA68pNq"));
         syllabi.add(new Syllabus("Information Technology", R.drawable.it, "14Eb7TZEH7EY7aAOCby5mULYjDrAm7dM2"));
