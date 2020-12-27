@@ -8,15 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.educational.nsutresources.Activity.CompetitiveProgrammingActivity;
 import com.educational.nsutresources.R;
 
 import static com.educational.nsutresources.Notifications.NotificationClass.CHANNEL_1_ID;
-import static com.educational.nsutresources.Notifications.NotificationClass.manager;
 
 public class AlertReceiver extends BroadcastReceiver {
 
+    private NotificationManagerCompat notificationManager;
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -37,6 +38,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .build();
 
-        manager.notify(1, notification);
+        notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(1, notification);
     }
 }

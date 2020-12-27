@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,7 +76,7 @@ public class DsAlgoLoader extends AsyncTaskLoader<ArrayList<Contest>> {
 
                         Calendar cal = Calendar.getInstance();
                         cal.setTime(ccsdf.parse(startingTime));
-                        if (tableNo == 2 && (Calendar.getInstance().getTimeInMillis() - cal.getTimeInMillis()) / 6000 > 20)
+                        if (tableNo == 2 && (cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) / 60000 > 20)
                             setNotification(cal, "Codechef", name);
 
                         contestLink = "https://www.codechef.com/" + row.select("a").attr("href");
@@ -123,7 +124,7 @@ public class DsAlgoLoader extends AsyncTaskLoader<ArrayList<Contest>> {
                         cal.setTime(cfsdf.parse(startingTime));
                         cal.add(Calendar.HOUR, 3);
                         cal.add(Calendar.MINUTE, -30);
-                        if (tableNo == 2 && (Calendar.getInstance().getTimeInMillis() - cal.getTimeInMillis()) / 6000 > 20)
+                        if (tableNo == 2 && (cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) / 60000 > 20)
                             setNotification(cal, "Codeforces", name);
 
                         final Date current = Calendar.getInstance().getTime();

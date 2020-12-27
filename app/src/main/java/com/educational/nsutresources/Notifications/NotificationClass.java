@@ -9,7 +9,6 @@ import android.util.Log;
 public class NotificationClass extends Application {
 
     public static final String CHANNEL_1_ID = "Contests";
-    public static NotificationManager manager;
 
     @Override
     public void onCreate() {
@@ -27,7 +26,7 @@ public class NotificationClass extends Application {
 
             channel.setDescription("This is Contests channel");
 
-            manager = getSystemService(NotificationManager.class);
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
     }

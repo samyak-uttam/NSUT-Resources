@@ -5,11 +5,19 @@ import android.os.Bundle;
 import android.os.Handler;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
+import com.educational.nsutresources.Class.Contest;
+import com.educational.nsutresources.Loader.DsAlgoLoader;
 import com.educational.nsutresources.R;
 
-public class SplashScreenActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class SplashScreenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Contest>>{
 
     private static final long SPLASH_DISPLAY_LENGTH = 1000;
 
@@ -30,5 +38,25 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             }
         }, SPLASH_DISPLAY_LENGTH);
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        loaderManager.initLoader(1, null, this);
+    }
+
+
+    @NonNull
+    @Override
+    public Loader<ArrayList<Contest>> onCreateLoader(int id, @Nullable Bundle args) {
+        return new DsAlgoLoader(this, 2);
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<ArrayList<Contest>> loader, ArrayList<Contest> data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<ArrayList<Contest>> loader) {
+
     }
 }

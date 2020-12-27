@@ -28,7 +28,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LoaderManager.LoaderCallbacks<ArrayList<Contest>> {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private ViewPager viewPager;
@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        LoaderManager loaderManager = getSupportLoaderManager();
-        loaderManager.initLoader(1, null, this);
     }
 
 
@@ -100,21 +98,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer.closeDrawer(GravityCompat.START, false);
         return true;
-    }
-
-    @NonNull
-    @Override
-    public Loader<ArrayList<Contest>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new DsAlgoLoader(this, 2);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<ArrayList<Contest>> loader, ArrayList<Contest> data) {
-
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<ArrayList<Contest>> loader) {
-
     }
 }
