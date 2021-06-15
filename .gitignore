@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+DROPBOX_ACCESS_TOKEN.txt

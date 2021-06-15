@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,7 +54,7 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
     private TextView emptyTV;
     private DbxRequestConfig config;
     private DbxClientV2 client;
-    private static final String ACCESS_TOKEN = "etGspIjOmAAAAAAAAAAASbfIDBHQQ_vOOfBzBitsACm4baC6ytb_Jj8zcnpJaeAY";
+    private static String ACCESS_TOKEN;
     private String path;
     private BookDbHelper mDbHelper;
 
@@ -73,6 +74,16 @@ public class DataResultActivity extends AppCompatActivity implements DataAdapter
 
         mDbHelper = new BookDbHelper(this);
 
+        try {
+            InputStream is = getAssets().open("DROPBOX_ACCESS_TOKEN.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            ACCESS_TOKEN = new String(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         config = new DbxRequestConfig("dropbox/NSUT Resources");
         client = new DbxClientV2(config, ACCESS_TOKEN);
         path = "/NSUT Resources/" + selBranch + "/" + subName + "/" + selData;

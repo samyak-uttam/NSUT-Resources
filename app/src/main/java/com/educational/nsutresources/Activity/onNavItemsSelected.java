@@ -118,11 +118,10 @@ public class onNavItemsSelected extends AppCompatActivity {
         eceSubs.add(new Subject("Probability Theory and Random Processes"));
         eceSubs.add(new Subject("Digital Circuits and Systems"));
         eceSubs.add(new Subject("SEM 4"));
-        eceSubs.add(new Subject("Linear Integrated Circuits"));
-        eceSubs.add(new Subject("Data Structures"));
-        eceSubs.add(new Subject("Transmission lines and Waveguides"));
-        eceSubs.add(new Subject("Probability Theory and Communication"));
-        eceSubs.add(new Subject("Control Systems"));
+        eceSubs.add(new Subject("Electromagnetics"));
+        eceSubs.add(new Subject("Machine Learning and AI"));
+        eceSubs.add(new Subject("MicroProcessors and Comp Architecture"));
+        eceSubs.add(new Subject("Communication Engineering"));
         eceSubs.add(new Subject("SEM 5"));
         eceSubs.add(new Subject("Digital Signal Processing"));
         eceSubs.add(new Subject("Digital Communication"));
@@ -148,11 +147,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         coeSubs.add(new Subject("Computer Architecture and Organization"));
         coeSubs.add(new Subject("Microprocessors and Microcontrollers"));
         coeSubs.add(new Subject("SEM 4"));
-        coeSubs.add(new Subject("Microprocessors"));
-        coeSubs.add(new Subject("Software Engineering"));
-        coeSubs.add(new Subject("Computer Graphics"));
-        coeSubs.add(new Subject("Computer Networking"));
         coeSubs.add(new Subject("Operating Systems"));
+        coeSubs.add(new Subject("Theory of Automata & Formal languages"));
+        coeSubs.add(new Subject("Software Engineering"));
+        coeSubs.add(new Subject("Data Communication"));
+        coeSubs.add(new Subject("Probability and Stochastic Processes"));
         coeSubs.add(new Subject("SEM 5"));
         coeSubs.add(new Subject("Theory of Computation"));
         coeSubs.add(new Subject("High Performance Computing"));
@@ -178,11 +177,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         itSubs.add(new Subject("Database Management System"));
         itSubs.add(new Subject("Computer Graphics"));
         itSubs.add(new Subject("SEM 4"));
-        itSubs.add(new Subject("Probability and Stochastic Processes"));
         itSubs.add(new Subject("Operating System"));
-        itSubs.add(new Subject("Computer System Architecture"));
-        itSubs.add(new Subject("Computer Networks"));
+        itSubs.add(new Subject("Design and Analysis of Algorithm"));
         itSubs.add(new Subject("Software Engineering"));
+        itSubs.add(new Subject("Computer Networks"));
+        itSubs.add(new Subject("Analog and Digital Communication"));
         itSubs.add(new Subject("SEM 5"));
         itSubs.add(new Subject("Multimedia & Applications"));
         itSubs.add(new Subject("Theory of Computation"));
@@ -208,11 +207,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         iceSubs.add(new Subject("Electronic Instrumentation"));
         iceSubs.add(new Subject("Power Apparatus"));
         iceSubs.add(new Subject("SEM 4"));
-        iceSubs.add(new Subject("Mathematics III"));
+        iceSubs.add(new Subject("Database Management System"));
+        iceSubs.add(new Subject("Engineering Analysis & Design"));
         iceSubs.add(new Subject("Control System I"));
-        iceSubs.add(new Subject("Transducer and Measurement"));
-        iceSubs.add(new Subject("Industrial Electronics"));
-        iceSubs.add(new Subject("Digital Circuits and Systems"));
+        iceSubs.add(new Subject("Microprocessor Based System Design"));
+        iceSubs.add(new Subject("Sensors and Transducers"));
         iceSubs.add(new Subject("SEM 5"));
         iceSubs.add(new Subject("Microprocessor and Microcontroller"));
         iceSubs.add(new Subject("Process Dynamics and Control"));
@@ -238,11 +237,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         meSubs.add(new Subject("Strength of Materials"));
         meSubs.add(new Subject("Fluid Mechanics and Machines"));
         meSubs.add(new Subject("SEM 4"));
-        meSubs.add(new Subject("Kinematics Dynamics of Machines"));
-        meSubs.add(new Subject("Mechanics of Solids"));
-        meSubs.add(new Subject("Fluid Mechanics"));
+        meSubs.add(new Subject("Theory of Machines"));
         meSubs.add(new Subject("Manufacturing Processes II"));
-        meSubs.add(new Subject("Management of Manufacturing Systems"));
+        meSubs.add(new Subject("Thermal Engineering II"));
+        meSubs.add(new Subject("Industrial Engineering & Management"));
+        meSubs.add(new Subject("Control Systems"));
         meSubs.add(new Subject("SEM 5"));
         meSubs.add(new Subject("Industrial Engineering"));
         meSubs.add(new Subject("Refrigeration & Air-Conditioning"));
@@ -302,11 +301,11 @@ public class onNavItemsSelected extends AppCompatActivity {
         btSubs.add(new Subject("Data Structure And Algorithms"));
         btSubs.add(new Subject("Chemical Enggineering Principles"));
         btSubs.add(new Subject("SEM 4"));
-        btSubs.add(new Subject("Methods & Instrumentation In Biotechnology"));
+        btSubs.add(new Subject("Structural Biology"));
+        btSubs.add(new Subject("Bioanalytical Techniques"));
         btSubs.add(new Subject("Molecular Biology"));
-        btSubs.add(new Subject("Immunology"));
-        btSubs.add(new Subject("Database Management Systems"));
         btSubs.add(new Subject("Genetics"));
+        btSubs.add(new Subject("Immunology"));
         btSubs.add(new Subject("SEM 5"));
         btSubs.add(new Subject("Recombinant DNA Technology"));
         btSubs.add(new Subject("Structural Biology"));
@@ -319,10 +318,12 @@ public class onNavItemsSelected extends AppCompatActivity {
 
         electives.add(new Subject("Corporate Social Responsibility"));
         electives.add(new Subject("Introduction to Indian Society"));
+        electives.add(new Subject("Entrepreneurship"));
         electives.add(new Subject("Yoga"));
         electives.add(new Subject("Financial Literacy"));
         electives.add(new Subject("Analog filter design"));
         electives.add(new Subject("Biological computing"));
+        electives.add(new Subject("Image Processing"));
         electives.add(new Subject("BICMOS"));
     }
 }
