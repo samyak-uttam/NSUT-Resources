@@ -140,7 +140,7 @@ public class AboutDevelopersActivity extends AppCompatActivity implements View.O
                 emailIntent.setData(Uri.parse("mailto:"));
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
                 emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Material for NSUT All In 1");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Material for NSUT Resources");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi, I would like to add the following resources:");
                 emailIntent.setType("message/rfc822");
 

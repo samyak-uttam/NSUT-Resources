@@ -14,11 +14,11 @@ An android app that provides access to all study-related materials for NSUT stud
 
 <table>
 	<tr>
-		<td> <img src = './images/image1.jpg' height = '330'> </td>
-		<td> <img src = './images/image2.jpg' height = '330'> </td>
-		<td> <img src = './images/image3.jpg' height = '330'> </td>
-		<td> <img src = './images/image4.jpg' height = '330'> </td>
-		<td> <img src = './images/image5.jpg' height = '330'> </td>
+		<td> <img src = './images/image1.jpg' height = '300'> </td>
+		<td> <img src = './images/image2.jpg' height = '300'> </td>
+		<td> <img src = './images/image3.jpg' height = '300'> </td>
+		<td> <img src = './images/image4.jpg' height = '300'> </td>
+		<td> <img src = './images/image5.jpg' height = '300'> </td>
 	</tr>
 </table>
 
